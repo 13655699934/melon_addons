@@ -10,7 +10,7 @@
     "version": "15.0.0.1.0",
     "license": "LGPL-3",
     "depends": ["base"],
-    "images": ["static/description/image.png"],
+    "images": ["static/description/img.png"],
     "external_dependencies": {
         "python": ["xlrd"],
     },

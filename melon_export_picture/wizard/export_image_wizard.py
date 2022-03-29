@@ -2,8 +2,6 @@ from odoo import _, api, fields, models
 import base64
 import io
 import xlsxwriter
-from PIL import Image
-from io import BytesIO
 from odoo import fields, models
 
 

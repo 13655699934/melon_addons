@@ -96,3 +96,4 @@ class ImportImageWizard(models.TransientModel):
         }
         return notification
 
+

@@ -1,6 +1,6 @@
 {
-    "name": "Large Screen",
-    "summary": """Large Screen""",
+    "name": "IFrame Large Screen",
+    "summary": """IFrame Large Screen""",
     "description": """
         H5 Large visual screen.
     """,

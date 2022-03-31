@@ -32,3 +32,12 @@ class LargeScreenController(http.Controller):
         values['users'] = request.env.user
         html = template.render(object=values)
         return html
+
+    @http.route('/iframe/smart/community', type='http', auth="public", csrf=False)
+    def community_html(self, **post):
+        template = env.get_template('/smart_community/index.html')
+        values = {}
+        values['users'] = request.env.user
+        html = template.render(object=values)
+        return html
+

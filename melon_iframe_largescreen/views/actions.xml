@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+
+        <record id="action_big_data" model="ir.actions.client">
+            <field name="name">Big Data</field>
+            <field name="tag">tag_big_data</field>
+        </record>
+
+
+        <record id="action_smart_logistics" model="ir.actions.client">
+            <field name="name">Smart Logistics</field>
+            <field name="tag">tag_smart_logistic</field>
+        </record>
+
+    </data>
+</odoo>

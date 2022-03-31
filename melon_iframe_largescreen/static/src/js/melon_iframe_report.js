@@ -11,5 +11,8 @@ odoo.define('melon_iframe_largescreen',function (require) {
     var HomePagename_smart_logistic =Widget.extend({template: "templates_smart_logistics",});
     core.action_registry.add('tag_smart_logistic',HomePagename_smart_logistic);
 
+    var HomePagename_smart_community =Widget.extend({template: "templates_smart_community",});
+    core.action_registry.add('tag_smart_community',HomePagename_smart_community);
+
 
 });

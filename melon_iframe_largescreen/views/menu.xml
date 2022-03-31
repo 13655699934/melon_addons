@@ -19,6 +19,12 @@
                   sequence="10"
                   action="action_smart_logistics"/>
 
+        <menuitem id="menu_report_0003"
+                  name="Smart Community"
+                  parent="menu_report_new"
+                  sequence="15"
+                  action="action_smart_community"/>
+
 
     </data>
 </odoo>

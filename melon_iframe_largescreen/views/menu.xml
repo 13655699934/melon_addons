@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+
+        <menuitem id="menu_report_new"
+                  name="Large Screen"
+                  web_icon="melon_iframe_largescreen,static/description/icon.png"
+                  sequence="99"/>
+
+        <menuitem id="menu_report_0001"
+                  name="Big Data"
+                  parent="menu_report_new"
+                  sequence="5"
+                  action="action_big_data"/>
+
+
+        <menuitem id="menu_report_0002"
+                  name="Smart Logistics"
+                  parent="menu_report_new"
+                  sequence="10"
+                  action="action_smart_logistics"/>
+
+
+    </data>
+</odoo>

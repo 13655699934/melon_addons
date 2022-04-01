@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="print_sale_order_report_document1">
+        <div class="page" style="margin-top:0px">
+            <style type="text/css">
+                .tabledata{
+                border-collapse:collapse;
+                border:1px soild #000;
+                }
+                .gxtr >th{
+                text-align:center;
+                border-top: 1px solid #000;
+                border-left: 1px solid #000;
+                border-right: 1px solid #000;
+                border-bottom: 1px solid #000;
+                background-color:#BEBEBE;
+                border-collapse:collapse;
+                font-size:14px;
+                }
+                .gxtr >td{
+                text-align:center;
+                border-bottom: 1px solid #000;
+                border-right: 1px solid #000;
+                border-left: 1px solid #000;
+                font-size:14px;
+                }
+                .herdtd{
+                word-wrap:break-word;width:22%;font-size:14px;
+                }
+                .gxdiv{
+                border-left:1px solid #000;
+                font-size:14px;
+                }
+            </style>
+            <table class="tabledata" >
+                <thead>
+                    <tr>
+                        <th height="22" colspan="10">
+                            <div class="text-center">
+                                <h2 class="text_center">
+                                    <span t-field="doc_id.company_id.name"/>
+                                </h2>
+                                <div class="text-center" style="font-size:20px;">销售订单</div>
+                            </div>
+                            <table style="width:100%;">
+                                <tr>
+                                    <td style="word-wrap:break-word;width:30%;font-size:14px;">客户:
+                                        <span t-field="doc_id.partner_id"/>
+                                    </td>
+                                    <td class="herdtd">日 期:
+                                        <span t-field="doc_id.date_order" t-options="{'widget': 'date'}"/>
+                                    </td>
+                                    <td class="herdtd">税 码:</td>
+                                    <td style="word-wrap:break-word;width:26%;font-size:14px;">订单编号:
+                                        <span t-field="doc_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                </tr>
+                                <tr>
+                                    <td style="word-wrap:break-word;width:30%;font-size:14px;">Emai:
+                                        <span t-field="doc_id.partner_id.email"/>
+                                    </td>
+                                    <td class="herdtd">电 话:
+                                        <span t-field="doc_id.partner_id.phone"/>
+                                    </td>
+                                    <td class="herdtd">传 真:
+                                        <span t-value="doc_id.partner_id.vat"/>
+                                    </td>
+                                    <td style="word-wrap:break-word;width:26%;font-size:14px;">手 机:
+                                        <span t-field="doc_id.partner_id.mobile"/>
+                                    </td>
+                                </tr>
+                                <tr style="height:2px;"></tr>
+                            </table>
+                        </th>
+                    </tr>
+                    <tr class="gxtr">
+                        <th width="5%" height="22">NO</th>
+                        <th width="10%">产品代码</th>
+                        <th width="10%">品名(材质)</th>
+                        <th width="10%">规格</th>
+                        <th width="10%">数量/单位</th>
+                        <th width="10%">单价</th>
+                        <th width="10%" style="border-right: 1px solid #000;">小计</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-set="items" t-value="[0,1,2,3]"/>
+                    <t t-set="i" t-value="0"/>
+                    <tr t-foreach="doc_id.order_line" t-as="l" class="gxtr">
+                        <t t-set="i" t-value="i+1"/>
+                        <td height="25" class="text-center">
+                            <t t-esc="i"/>
+                        </td>
+                        <td>
+                            <span t-field="l.product_id"/>
+                        </td>
+                        <td>
+                            <span t-field="l.product_id.name"/>
+                        </td>
+                        <td>
+                            <span t-field="l.product_id.name"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="l.product_uom_qty"/>
+                            <span t-field="l.product_uom"/>
+                        </td>
+                        <td>
+                            <span t-field="l.price_unit"/>
+                        </td>
+                        <td style="border-right: 1px solid #000;">
+                            <span t-field="l.discount"/>
+                        </td>
+                    </tr>
+
+                    <tr t-foreach="items" t-as="j" class="gxtr">
+                        <t t-if="j>=(i%8)">
+                            <td height="22"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="border-right: 1px solid #000;"></td>
+                        </t>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td height="22" colspan="10">
+                            <div>
+                                <div style="font-size:18px;">
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td style="width:50%;" class="text-left">业务员：
+                                                <span t-field="doc_id.create_uid.name"/>
+                                            </td>
+                                            <td style="width:30%;" class="text-right">页码：1</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </template>
+
+    <template id="print_sale_order_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc_id">
+                <t t-call="melon_sale_print.print_sale_order_report_document1" t-lang="doc_id.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

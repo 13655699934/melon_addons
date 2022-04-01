@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!--纸张的格式-->
+        <record id="paperformat_standard_A4_3" model="report.paperformat">
+            <field name="name">标准３/4 A4</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">93</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">2</field>
+            <field name="margin_bottom">2</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">3</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="paperformat_standard_40_30" model="report.paperformat">
+            <field name="name">30*40标签纸张</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">37</field>
+            <field name="page_width">52</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">1</field>
+            <field name="dpi">200</field>
+        </record>
+
+        <record id="paperformat_standard_A4_2" model="report.paperformat">
+            <field name="name">标准1/2 A4</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">146</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">2</field>
+            <field name="margin_bottom">2</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">3</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="paperformat_standard_47_57" model="report.paperformat">
+            <field name="name">47*57标签纸张</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">57</field>
+            <field name="page_width">47</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">2</field>
+            <field name="margin_right">2</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">3</field>
+            <field name="dpi">90</field>
+        </record>
+
+    </data>
+</odoo>

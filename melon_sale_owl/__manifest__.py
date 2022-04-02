@@ -13,7 +13,7 @@
     "license": "LGPL-3",
     'category': 'owl/page',
     'version': '15.0.1',
-    "images": ["static/description/icon.png"],
+    "images": ["static/description/image.png"],
     'depends': ['base', 'web','sale_management'],
     'data': [
         'views/views.xml'

@@ -1,31 +1,32 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Melon OWL",
+    'name': "Melon Char Search",
 
     'summary': """
-      MELON SALE OWL
+      char search
        """,
     'description': """
-       MELON SALE OWL
+       char search
     """,
-    'author': "Melon",
+    'author': "melon",
     "website": "http://www.hxmelon.com",
     "license": "LGPL-3",
-    'category': 'owl/page',
+    'category': 'tools/search',
     'version': '15.0.1',
-    "images": ["static/description/image.png"],
-    'depends': ['base', 'web','sale_management'],
+    "images": ["static/description/img.png"],
+    'depends': ['web'],
+    'currency': "USD",
+    'price': 8.88,
     'data': [
-        'views/views.xml'
     ],
     'demo': [
     ],
     'assets': {
         'web.assets_backend': [
-            'melon_sale_owl/static/src/js/components/PartnerOrderSummary.js'
+            'melon_char_search/static/src/js/char_search.js'
         ],
         'web.assets_qweb': [
-            "melon_sale_owl/static/src/xml/PartnerOrderSummary.xml"
+            "melon_char_search/static/src/xml/base.xml"
         ]
     },
     'installable': True,

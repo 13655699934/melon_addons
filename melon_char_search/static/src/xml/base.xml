@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="char_search.dropdown">
+        <div class="dropdown-menu" role="menu" style="position: absolute;height: 200px;overflow-y: scroll;">
+            <t t-call="char_search.dropdown.items"/>
+        </div>
+    </t>
+    <t t-name="char_search.dropdown.items">
+        <t t-foreach="select_items" t-as="item">
+            <a role="menuitem" href="#" class="dropdown-item"
+                t-att-data-index="item.id"
+                t-att-data-value="item.name">
+                <div class="o_char_autocomplete_info">
+                    <div><t t-esc="item.name"/></div>
+                </div>
+            </a>
+        </t>
+    </t>
+
+<!--    <t t-name="char_search.btn_search">-->
+<!--        <span class="o_btn_search_container">-->
+<!--            <button type="button" class="o_btn_search btn btn-sm oe_highlight">添加</button>-->
+<!--        </span>-->
+<!--    </t>-->
+
+<!--    <t t-name="char_search.btn_search_result">-->
+<!--        <table class="table table-borderd">-->
+<!--            <thead>-->
+<!--                <tr>-->
+<!--                    <th>选择</th>-->
+<!--                    <t t-foreach="fields" t-as="field">-->
+<!--                        <th><t t-raw="field"></t></th>-->
+<!--                    </t>-->
+<!--                </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--                <t t-call="char_search.btn_search_result.lines"/>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </t>-->
+
+<!--    <t t-name="char_search.btn_search_result.lines">-->
+<!--        <t t-foreach="select_items" t-as="line">-->
+<!--            <tr>-->
+<!--                <td><input type="checkbox" t-att-data-index="line['id']"/></td>-->
+<!--                <t t-foreach="fields" t-as="field">-->
+<!--                    <td><t t-raw="line[field]"></t></td>-->
+<!--                </t>-->
+<!--            </tr>-->
+<!--        </t>-->
+<!--    </t>-->
+
+</templates>

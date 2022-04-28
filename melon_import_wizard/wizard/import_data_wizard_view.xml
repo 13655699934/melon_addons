@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="import_data_wizard_view" model="ir.ui.view">
+            <field name="name">数据导入</field>
+            <field name="model">import.data.wizard</field>
+            <field name="arch" type="xml">
+                <form string="导入数据">
+                    <sheet>
+                        <group>
+                            <field name="data" required="1"/>
+                        </group>
+                        <footer>
+                            <button string="导入" name="btn_confirm" type="object" class="btn-primary"/>
+                            <button string="取消" class="btn-secondary" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="import_data_wizard_action" model="ir.actions.act_window">
+            <field name="name">数据导入</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">import.data.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="import_data_wizard_view"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

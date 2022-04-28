@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--    一级菜单-->
+    <menuitem
+            id="menu_import"
+            name="Excel导入"
+            web_icon="melon_import_wizard,static/description/icon.png"
+            sequence="7"/>
+
+    <menuitem
+            id="menu_test"
+            name="测试"
+            parent="menu_import"
+            action="action_melon_data_order"
+            sequence="15"
+    />
+    <menuitem
+            id="menu_zimo_data_import"
+            name="数据导入"
+            parent="menu_import"
+            action="import_data_wizard_action"
+            sequence="20"
+    />
+
+
+</odoo>
+

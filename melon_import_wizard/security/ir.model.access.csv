@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_melon_data_order,melon_data_order,model_melon_data_order,base.group_user,1,1,1,1
+access_import_data_wizard,import_data_wizard,model_import_data_wizard,base.group_user,1,1,1,1

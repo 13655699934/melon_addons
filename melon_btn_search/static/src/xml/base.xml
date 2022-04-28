@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+
+    <t t-name="melon_btn_search.btn_search">
+        <span class="o_btn_search_container">
+            <button type="button" class="o_btn_search melon_btn">添加</button>
+        </span>
+    </t>
+
+    <t t-name="melon_btn_search.btn_search_result">
+        <table class="table table-borderd">
+            <thead>
+                <tr>
+                    <th>选择</th>
+                    <t t-foreach="fields" t-as="field">
+                        <th><t t-raw="field"></t></th>
+                    </t>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-call="melon_btn_search.btn_search_result.lines"/>
+            </tbody>
+        </table>
+    </t>
+
+    <t t-name="melon_btn_search.btn_search_result.lines">
+        <t t-foreach="select_items" t-as="line">
+            <tr>
+                <td><input type="checkbox" t-att-data-index="line['id']"/></td>
+                <t t-foreach="fields" t-as="field">
+                    <td><t t-raw="line[field]"></t></td>
+                </t>
+            </tr>
+        </t>
+    </t>
+
+</templates>

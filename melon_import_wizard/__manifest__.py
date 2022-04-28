@@ -4,13 +4,13 @@
     'summary': """
           导入Excel
        """,
+    'author': 'melon',
     "website": "http://www.hxmelon.com",
     "license": "LGPL-3",
     'version': '15.0.1',
     "images": ["static/description/img.png"],
     'category': 'tools/数据导入',
     'description': '数据导入',
-    'author': '数据导入',
     'depends': ['base'],
     'data': [
         'security/ir.model.access.csv',

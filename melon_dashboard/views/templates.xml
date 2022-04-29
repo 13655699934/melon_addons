@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <template id="assets_backend" name="caini iframe assets" inherit_id="web.assets_backend">-->
+<!--        <xpath expr="." position="inside">-->
+<!--          <script type="text/javascript" src="/melon_dashboard/static/src/js/melon_dashboard_report.js"></script> &lt;!&ndash;指定JS文件&ndash;&gt;-->
+<!--          <script type="text/javascript" src="/melon_dashboard/static/src/js/dtcloud_web.js"/>-->
+<!--          <script type="text/javascript" src="/melon_dashboard/static/src/js/echarts.min1.js"/>-->
+<!--          <script type="text/javascript" src="/melon_dashboard/static/src/js/caini_dashboard.js"/>-->
+<!--        </xpath>-->
+<!--    </template>-->
+
+</odoo>

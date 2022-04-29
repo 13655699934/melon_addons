@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+
+        <menuitem id="menu_report_new"
+                  name="Dashboard"
+                  web_icon="melon_dashboard,static/description/icon.png"
+                  sequence="99"/>
+
+        <menuitem id="menu_report_0001"
+                  name="Dashboard"
+                  parent="menu_report_new"
+                  sequence="2"
+                  action="action_dashboard"/>
+
+        <menuitem id="menu_report_pyecharts"
+                  name="Dashboard2"
+                  parent="menu_report_new"
+                  sequence="1"
+                  action="action_pyecharts"/>
+
+    </data>
+</odoo>

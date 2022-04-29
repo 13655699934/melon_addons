@@ -24,7 +24,5 @@
         ],
         "web.assets_qweb": [
         ],
-    },
-    "images": [
-    ],
+    }
 }

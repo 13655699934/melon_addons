@@ -16,7 +16,7 @@
     "images": ["static/description/img.png"],
     'depends': ['web'],
     'currency': "USD",
-    'price': 8.88,
+    'price': 6.66,
     'data': [
     ],
     'demo': [

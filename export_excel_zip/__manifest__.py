@@ -8,6 +8,7 @@
     'website': 'http://hxmelon.com/',
     'depends': ['base', 'mail'],
     'version': '0.1',
+    'license': 'LGPL-3',
     "images": ["static/description/img.png"],
     'data': [
         'data/mo_data.xml',
@@ -15,7 +16,7 @@
         'views/demo_views.xml',
         'views/action_views.xml',
         'views/menu_views.xml',
-     ],
+    ],
     'installable': True,
     'application': True,
     'auto_install': False,

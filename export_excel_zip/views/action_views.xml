@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="demo_uesr_order_action" model="ir.actions.act_window">
+            <field name="name">ZIP用户</field>
+            <field name="res_model">demo.user</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain"></field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user_export_all,user.export,model_user_export,base.group_user,1,1,1,1
+access_demo_user_all,demo.user,model_demo_user,base.group_user,1,1,1,1
+
+
+
+
+

@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单点登录测试</title>
+
+    <style>
+        #father {
+            width: 300px;
+            height: 300px;
+            background-color: #0deeee;
+            position: relative;
+        }
+
+        #son {
+            width: 100px;
+            height: 100px;
+            background-color: #ec7e8e;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<!--onload="CloseWebPage()"  自动触发点击事件-->
+<body >
+<div id="father">
+    <div id="son">
+        <p>
+            <a href="http://127.0.0.1:8099/web/melon/sso?MELON_CERT_G=admin" title="点击测试单点登录">
+            SSO Test</a>
+        </p>
+    </div>
+</div>
+
+<button  id="exitSystem" onclick="CloseWebPage()">关闭</button>
+        <script>
+            function CloseWebPage() {
+                if (navigator.userAgent.indexOf("MSIE") > 0) {
+                    if (navigator.userAgent.indexOf("MSIE 6.0") > 0) {
+                        window.opener = null; window.close();
+                    }
+                    else {
+                        window.open('', '_top'); window.top.close();
+                    }
+                }
+                else if (navigator.userAgent.indexOf("Firefox") > 0) {
+                    window.location.href = 'about:blank '; //火狐默认状态非window.open的页面window.close是无效的
+                    //window.history.go(-2);
+                }
+                else {
+                    window.opener = null;
+                    window.open('', '_self', '');
+                    window.close();
+                }
+            }
+        </script>
+</body>
+</html>

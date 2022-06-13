@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!--oauth单点配置-->
+        <record model="ir.config_parameter" id="app_redirect_uri">
+            <field name="key">app_redirect_uri</field>
+            <field name="value">0</field>
+        </record>
+
+        <record model="ir.config_parameter" id="app_client_id">
+            <field name="key">app_client_id</field>
+            <field name="value">0</field>
+        </record>
+
+        <record model="ir.config_parameter" id="app_client_secret">
+            <field name="key">app_client_secret</field>
+            <field name="value">0</field>
+        </record>
+
+        <record model="ir.config_parameter" id="eetrust_oauth_url">
+            <field name="key">eetrust_oauth_url</field>
+            <field name="value">0</field>
+        </record>
+
+    </data>
+</odoo>
+
+
+

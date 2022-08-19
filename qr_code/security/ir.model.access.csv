@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_melon_qr_code,melon_qr_code,model_melon_qr_code,base.group_user,1,1,1,1
+access_melon_qr_code,二维码生成器,model_melon_qr_code,base.group_user,1,1,1,1

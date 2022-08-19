@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-
 import base64
-import io
-import re
 from io import BytesIO
 from odoo import models, fields, api
 import qrcode
-from PIL import Image
+
 
 
 class QRCode(models.Model):

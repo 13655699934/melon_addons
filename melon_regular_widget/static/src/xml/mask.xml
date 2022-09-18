@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="FieldMask">
+        <span t-if="widget.mode === 'readonly'"
+              t-att="('contenteditable' in widget.attrsMask) ? widget.attrsMask: undefined"/>
+        <input t-if="widget.mode !== 'readonly'"
+               type="text"
+               t-att-id="widget.id_for_label"
+               t-att-tabindex="widget.attrs.tabindex"
+               t-att-autofocus="widget.attrs.autofocus"
+               t-att-placeholder="widget.attrs.placeholder"
+               t-att-autocomplete="widget.attrs.autocomplete"
+               t-att-maxlength="widget.field.size"
+               t-att="widget.attrsMask"
+        />
+    </t>
+</templates> 

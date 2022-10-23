@@ -1,0 +1,31 @@
+/*层级越高div越显示在上层*/
+.dropdown-menu{
+    z-index:9999;
+}
+
+.keyboard_content {
+    padding: 10px;
+    text-align: center;
+    border-radius: 5%;
+    width: 152px;
+    height: 209px;
+    /*background-color: #e0dff3;*/
+    background-color: #0288D1;
+}
+
+.keyboard_content input{
+    margin-top: 8px;
+    margin-left: 3px;
+    font-size: 20px;
+    border-radius: 33%;
+    width: 22%;
+    height: 33px;
+}
+
+.keyboard_content input:hover {
+    box-shadow: 5px 5px 5px #888888;
+}
+
+.keyboard_content input:active {
+    background-color: #FF0000;
+}

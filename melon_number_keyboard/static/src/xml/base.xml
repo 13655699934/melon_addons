@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="number_keyboard">
+        <div class="dropdown-menu" id="drop_float_keyboard" role="menu" style="position: absolute;height: 217px;">
+            <div class="keyboard_content" >
+                <input type="button" id="1" value="1"  />
+                <input type="button" id="2" value="2"  />
+                <input type="button" id="3" value="3"  />
+                <br/>
+                <input type="button" id="4" value="4" />
+                <input type="button" id="5" value="5" />
+                <input type="button" id="6" value="6" />
+                <br/>
+                <input type="button" id="7" value="7" />
+                <input type="button" id="8" value="8" />
+                <input type="button" id="9" value="9" />
+                <br/>
+                <input type="button" id="0" value="0" />
+                <input type="button" id="point" value="." />
+                <input type="button" id="del1" value="x"  style="background-color: #FF0000;"/>
+                <br/>
+            </div>
+        </div>
+    </t>
+
+
+    <t t-name="integer_keyboard">
+        <div class="dropdown-menu" id="drop_int_keyboard" role="menu" style="position: absolute;height: 217px;">
+            <div class="keyboard_content">
+                <input type="button" id="1" value="1" />
+                <input type="button" id="2" value="2" />
+                <input type="button" id="3" value="3" />
+                <br/>
+                <input type="button" id="4" value="4" />
+                <input type="button" id="5" value="5" />
+                <input type="button" id="6" value="6" />
+                <br/>
+                <input type="button" id="7" value="7" />
+                <input type="button" id="8" value="8" />
+                <input type="button" id="9" value="9" />
+                <br/>
+                <input type="button" id="0" value="0" />
+                <input type="button" id="del1" value="x"  style="background-color: #FF0000;"/>
+                <br/>
+            </div>
+        </div>
+    </t>
+
+
+</templates>

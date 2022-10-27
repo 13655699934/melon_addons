@@ -9,10 +9,8 @@
     'website': "http://www.hxmelon.com",
     'category': 'Demo',
     'version': '16.0.1',
-    # any module necessary for this one to work correctly
+    'images': ["static/description/img.png"],
     'depends': ['base','mail','web'],
-
-    # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/views.xml',
@@ -22,7 +20,6 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'book_library/static/src/js/odoo_form_condition.js'
         ]
     },
     # only loaded in demonstration mode

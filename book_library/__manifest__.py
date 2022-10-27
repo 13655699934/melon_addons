@@ -9,6 +9,7 @@
     'website': "http://www.hxmelon.com",
     'category': 'Demo',
     'version': '16.0.1',
+    'license': 'LGPL-3',
     'images': ["static/description/img.png"],
     'depends': ['base','mail','web'],
     'data': [

@@ -8,7 +8,7 @@
     "category": "Tools/Picture import",
     "website": "http://www.hxmelon.com",
     "version": "15.0.0.1.0",
-    "license": "LGPL-1",
+    "license": "LGPL-3",
     "depends": ["base"],
     "images": ["static/description/image.png"],
     "external_dependencies": {

@@ -1,0 +1,38 @@
+<odoo>
+    <data>
+        <record id="object0" model="melon.book">
+            <field name="name">流畅的python</field>
+            <field name="author">[巴西]Luciano Ramalho</field>
+            <field name="date">2017-05-17</field>
+            <field name="price">139</field>
+        </record>
+
+        <record id="object1" model="melon.book">
+            <field name="name">代码大全</field>
+            <field name="author"> [美] 史蒂夫·迈克康奈尔</field>
+            <field name="date">2006-05-20</field>
+            <field name="price">128</field>
+        </record>
+
+        <record id="object2" model="melon.book">
+            <field name="name">设计模式</field>
+            <field name="author">[美] Erich Gamma</field>
+            <field name="date">2000-9-17</field>
+            <field name="price">39</field>
+        </record>
+
+        <record id="object3" model="melon.book">
+            <field name="name">人月神话</field>
+            <field name="author">[美] 弗雷德里克·布鲁克斯</field>
+            <field name="date">2002-11-17</field>
+            <field name="price">35</field>
+        </record>
+
+        <record id="object4" model="melon.book">
+            <field name="name">UNIX编程艺术</field>
+            <field name="author"> [美国] Eric S·Raymond</field>
+            <field name="date">2006-5-17</field>
+            <field name="price">59</field>
+        </record>
+    </data>
+</odoo>

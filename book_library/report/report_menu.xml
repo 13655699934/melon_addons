@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+          <report
+            string="mrp打印"
+            id="action_mrp_order_report"
+            model="melon.book"
+            report_type="qweb-pdf"
+            name="book_library.print_mrp_order_report"
+            file="book_library.print_mrp_order_report"
+        />
+
+
+    </data>
+</odoo>

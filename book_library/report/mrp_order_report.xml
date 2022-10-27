@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="print_mrp_order_report_document1">
+            <div class="page" style="margin-top:0px">
+                <style type="text/css">
+                    .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
+                    sans-serif;font-size:14px;
+                    overflow:hidden;padding:10px 5px;word-break:normal;}
+                    .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial,
+                    sans-serif;font-size:14px;
+                    font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+                    .tg .tg-lboi{border-color:inherit;text-align:left;vertical-align:middle}
+                    .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+                    .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+                    .tg .tg-yz93{border-color:inherit;text-align:left;vertical-align:middle}
+                </style>
+                <table class="tg" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <td class="tg-0pky" style="width:30%;">
+                                <span style="color:#000">生产单:</span>
+                            </td>
+                            <td class="tg-0pky" style="width:70%;">
+                                <span t-field="doc_id.name"/>
+                            </td>
+                            <td class="tg-lboi" rowspan="3">
+                                <div style="width:100px;height:100px">
+                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', doc_id.name, 360, 60)"
+                                         style="text-align:left"/>
+                                </div>
+                            </td>
+                            <td class="tg-c3ow" rowspan="3"></td>
+                        </tr>
+                        <tr>
+                            <td class="tg-0pky" style="width:30%;">
+                                <span style="color:#000">产品:</span>
+                            </td>
+                            <td class="tg-0pky" style="width:70%;">移动桌子</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-0pky" style="width:30%;" >
+                                <span style="color:#000">数量:</span>
+                            </td>
+                            <td class="tg-yz93" style="width:70%;">999.99</td>
+                        </tr>
+                    </thead>
+                </table>
+                <br/>
+
+            </div>
+        </template>
+
+        <template id="print_mrp_order_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc_id">
+                    <t t-call="book_library.print_mrp_order_report_document1"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -10,7 +10,7 @@
     'category': 'Demo',
     'version': '16.0.1',
     'license': 'LGPL-3',
-    'images': ["static/description/img.png"],
+    'images': ["static/description/image.png"],
     'depends': ['base','mail','web'],
     'data': [
         'security/ir.model.access.csv',

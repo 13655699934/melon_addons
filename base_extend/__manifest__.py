@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Base Extend',
-    'summary': '全局样式修改',
+    'summary': '主题色调全局样式修改',
     'category': '通用/基础扩展',
     'description': """全局样式修改""",
     'sequence': 666,

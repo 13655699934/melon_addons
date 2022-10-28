@@ -9,7 +9,7 @@
     'depends': ['base', 'mail'],
     'license': 'LGPL-3',
     'version': '0.1',
-    "images": ["static/description/images.png"],
+    "images": ["static/description/image.png"],
     'data': [
         'data/mo_data.xml',
         'security/ir.model.access.csv',

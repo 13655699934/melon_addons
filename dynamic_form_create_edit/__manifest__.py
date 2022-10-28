@@ -2,7 +2,7 @@
 {
     'name': 'Dynamic Form Button',
     'summary': """
-           根据控制form表单编辑与创建按钮
+           根据字段值控制form表单编辑与创建按钮
      """,
     'description': """
             根据控制form表单编辑与创建按钮
@@ -25,7 +25,7 @@
         ],
     },
     'images': [
-        'static/description/img.png',
+        'static/description/img_2.png',
     ],
     'installable': True,
     'auto_install': False,

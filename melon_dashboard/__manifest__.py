@@ -14,7 +14,7 @@
     'license': 'LGPL-3',
     'currency': "USD",
     'price': 6.66,
-    "images": ["static/description/img.png"],
+    "images": ["static/description/img_4.png"],
     "external_dependencies": {
         "python": [],
     },

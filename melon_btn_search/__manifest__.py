@@ -3,7 +3,7 @@
     'name': "Melon Btn Search",
 
     'summary': """
-      btn search
+      自定义Dialog,扩展接口搜索功能
        """,
     'description': """
        btn search
@@ -13,7 +13,7 @@
     "license": "LGPL-3",
     'category': 'tools/search',
     'version': '15.0.1',
-    "images": ["static/description/img.png"],
+    "images": ["static/description/img_1.png"],
     'depends': ['web'],
     'currency': "USD",
     'price': 6.66,

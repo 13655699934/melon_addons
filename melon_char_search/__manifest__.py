@@ -3,7 +3,7 @@
     'name': "Melon Char Search",
 
     'summary': """
-      char search
+      扩展文本框搜索功能，可动态搜索数据
        """,
     'description': """
        char search
@@ -13,7 +13,7 @@
     "license": "LGPL-3",
     'category': 'tools/search',
     'version': '15.0.1',
-    "images": ["static/description/img.png"],
+    "images": ["static/description/img_1.png"],
     'depends': ['web'],
     'currency': "USD",
     'price': 6.66,

@@ -8,7 +8,7 @@
     'website': 'http://www.hxmelon.com',
     'license': 'LGPL-3',
     'version': '15.0.1',
-    "images": ["static/description/img.png"],
+    "images": ["static/description/img_1.png"],
     'depends': ['web'],
     'currency': "USD",
     'price': 6.66,

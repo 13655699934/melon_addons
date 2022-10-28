@@ -2,7 +2,7 @@
     "name": "Export picture to Excel",
     "summary": """Export picture to Excel""",
     "description": """
-        Export picture to Excel.
+        图片导出至Excel单元格中.
     """,
     "author": "Melon",
     "category": "Tools/Picture Export",
@@ -10,7 +10,7 @@
     "version": "15.0.0.1.0",
     "license": "LGPL-3",
     "depends": ["base"],
-    "images": ["static/description/img.png"],
+    "images": ["static/description/img_1.png"],
     "external_dependencies": {
         "python": ["xlrd"],
     },

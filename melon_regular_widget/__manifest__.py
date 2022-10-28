@@ -10,7 +10,7 @@
     'license': 'AGPL-3',
     'depends': ['web'],
     "data": [],
-    'images': ['static/description/img.png'],
+    'images': ['static/description/img_1.png'],
     'assets': {
         'web.assets_backend': [
             'melon_regular_widget/static/lib/jquery.inputmask/jquery.inputmask.bundle.js',

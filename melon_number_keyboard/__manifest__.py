@@ -11,7 +11,7 @@
     "license": "LGPL-3",
     'category': 'tools/search',
     'version': '15.0.1',
-    "images": ["static/description/img.png"],
+    "images": ["static/description/img_2.png"],
     'depends': ['web'],
     'data': [
         "security/ir.model.access.csv",

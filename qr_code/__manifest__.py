@@ -25,7 +25,7 @@
         ],
     },
     'images': [
-        'static/description/img.png',
+        'static/description/img_2.png',
     ],
     'installable': True,
     'auto_install': False,

@@ -2,13 +2,13 @@
 {
     'name': '导入Excel',
     'summary': """
-          导入Excel
+          解析Excel数据导入功能
        """,
     'author': 'melon',
     "website": "http://www.hxmelon.com",
     "license": "LGPL-3",
     'version': '15.0.1',
-    "images": ["static/description/image.png"],
+    "images": ["static/description/img.png"],
     'category': 'tools/数据导入',
     'description': '数据导入',
     'depends': ['base'],

@@ -9,7 +9,7 @@
     'category': '通用/列表',
     'license': 'LGPL-3',
     'author': "melon",
-    "images": ["static/description/img.png"],
+    "images": ["static/description/img_1.png"],
     'website': "http://hxmelon.com",
     'depends': ['web'],
     'data': [

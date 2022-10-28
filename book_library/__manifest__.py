@@ -3,14 +3,14 @@
     'name': "book_library",
 
     'summary': """
-        Book Library
+        图书管理模块,Odoo16视图集合
     """,
     'author': "melon",
     'website': "http://www.hxmelon.com",
     'category': 'Demo',
     'version': '16.0.1',
     'license': 'LGPL-3',
-    'images': ["static/description/image.png"],
+    'images': ["static/description/img_2.png"],
     'depends': ['base','mail','web'],
     'data': [
         'security/ir.model.access.csv',

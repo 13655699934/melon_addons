@@ -1,6 +1,6 @@
 
 {
-    "name": "Product Base",
+    "name": "Melon Product Base",
     "summary": "产品模块继承 通用字段扩展",
     "version": "15.0.1.0.0",
     "category": "product",

@@ -12,7 +12,7 @@
     'depends': ['base', 'mail'],
     'version': '15.0.1',
     "license": "LGPL-3",
-    "images": ["static/description/images.png"],
+    "images": ["static/description/img.png"],
     'data': [
         'security/ir.model.access.csv',
         'views/demo_views.xml',

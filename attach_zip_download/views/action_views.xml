@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="base_demo_test_action" model="ir.actions.act_window">
+            <field name="name">测试</field>
+            <field name="res_model">attach.zip.download.demo</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+
+    </data>
+</odoo>

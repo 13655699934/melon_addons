@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="attach_zip_download_tree_view" model="ir.ui.view">
+            <field name="name">附件打包</field>
+            <field name="model">attach.zip.download.demo</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <header>
+                        <button  name="action_download_attachment" type="object" string="附件打包" class="oe_highlight"/>
+                    </header>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="attach_zip_download_form_view" model="ir.ui.view">
+            <field name="name">附件打包</field>
+            <field name="model">attach.zip.download.demo</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_download_attachment" confirm="确定打包？" type="object" class="oe_highlight" string="附件打包"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="attachment_ids" widget="many2many_binary"/>
+                            <field name="test_data" filename="test_filename"/>
+                            <field name="test_filename" invisible="1"/>
+                            <field name="demo_data" filename="demo_filename"/>
+                            <field name="demo_filename" invisible="1"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="attach_zip_download_search_view" model="ir.ui.view">
+            <field name="name">附件打包</field>
+            <field name="model">attach.zip.download.demo</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

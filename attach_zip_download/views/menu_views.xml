@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    一级菜单-->
+    <menuitem id="menu_attach_test" name="附件下载" web_icon="attach_zip_download,static/description/icon.png"
+              sequence="80"/>
+
+
+    <!--    二级菜单-->
+    <menuitem name="附件下载测试" id="menu_base_attach_zip_records" parent="attach_zip_download.menu_attach_test"
+              action="attach_zip_download.base_demo_test_action"
+              sequence="10"/>
+
+</odoo>

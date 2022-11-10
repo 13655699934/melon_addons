@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--    继承产品表添加字段-->
+    <record model="ir.ui.view" id="inherit_product_template_melon_inherit_form">
+        <field name="name">product.template.melon.inherit.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+
+            <field name="categ_id" position="after">
+                <field name="product_brand"/>
+                <field name="model"/>
+            </field>
+            <field name="uom_po_id" position="after">
+                <field name="map_number"/>
+                <field name="remark_message"/>
+                <field name="hs_code"/>
+                <field name="purchase_method" widget="radio"/>
+            </field>
+            <field name="uom_id" position="before">
+                <field name="fix_price"/>
+            </field>
+            <xpath expr="//header" position="inside">
+                <field name="state" widget="statusbar"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="inherit_product_template_melon_inherit_tree">
+        <field name="name">product.template.melon.inherit.tree</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="default_code" position="after">
+                <field name="model"/>
+            </field>
+        </field>
+    </record>
+
+
+    <!--    继承产品分类表添加字段-->
+    <record model="ir.ui.view" id="inherit_product_category_melon_inherit_form">
+        <field name="name">product.category.melon.inherit.form</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="type"/>
+            </field>
+        </field>
+    </record>
+
+
+</odoo>

@@ -12,8 +12,6 @@
     'depends': ['base', 'mail'],
     'version': '15.0.1',
     "license": "LGPL-3",
-    'currency': "USD",
-    'price': 1.88,
     "images": ["static/description/img.png"],
     'data': [
         'security/ir.model.access.csv',

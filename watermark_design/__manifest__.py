@@ -6,8 +6,6 @@
     'category': '通用/水印',
     'website': 'https://hxmelon.com',
     'sequence': 2,
-    'currency': "USD",
-    'price': 1.88,
     'summary': """
                  WaterMark
                 <field name="colorpicker" widget="colorpicker"/>

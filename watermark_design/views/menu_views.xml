@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    一级菜单-->
+    <menuitem id="menu_watermark" name="水印设置" web_icon="watermark_design,static/description/icon.png"
+              sequence="80"/>
+
+
+    <!--    二级菜单-->
+    <menuitem name="水印内容" id="menu_base_watermark_design" parent="menu_watermark"
+              action="watermark_design_action"
+              sequence="10"/>
+
+</odoo>

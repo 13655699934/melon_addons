@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="watermark_design_action" model="ir.actions.act_window">
+            <field name="name">水印内容</field>
+            <field name="res_model">watermark.design.order</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    </data>
+</odoo>

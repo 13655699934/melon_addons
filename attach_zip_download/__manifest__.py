@@ -7,7 +7,7 @@
                      附件打包下载 
                     """,
     'sequence': 90,
-    'author': 'melon',
+    'author': 'Melon',
     'website': 'http://hxmelon.com/',
     'depends': ['base', 'mail'],
     'version': '15.0.1',

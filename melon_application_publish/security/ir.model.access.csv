@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_melon_application_manager,melon_application_manager,model_melon_application_manager,base.group_user,1,1,1,1
+access_application_content_type,application_content_type,model_application_content_type,base.group_user,1,1,1,1
+access_melon_application_version,melon_application_version,model_melon_application_version,base.group_user,1,1,1,1

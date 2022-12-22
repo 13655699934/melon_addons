@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 {
     "name": "Payment Approval",
     "summary": "Payment Approval",

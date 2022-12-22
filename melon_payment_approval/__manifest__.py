@@ -9,7 +9,7 @@
     "license": "LGPL-3",
     "installable": True,
     "depends": ['account'],
-    'images': ["static/description/img_3.png"],
+    'images': ["static/description/img_4.png"],
     "maintainers": [],
     "data": [
         'security/account_groups.xml',

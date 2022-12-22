@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="inherit_account_move_melon_form">
+        <field name="name">account.move.melon.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='action_post']" position="replace">
+            </xpath>
+            <xpath expr="//button[@name='action_post']" position="replace">
+            </xpath>
+            <xpath expr="//button[@name='button_cancel']"  position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('id', '=', False), ('state', 'not in', ['draft','approved'])]}</attribute>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_post" string="确认" class="oe_highlight" type="object"
+                        groups="account.group_account_invoice"
+                        attrs="{'invisible': ['|', '|', ('state', '!=', 'approved'), ('auto_post', '=', True), ('move_type', '!=', 'entry')]}"/>
+                <button name="action_post" string="确认" class="oe_highlight" type="object"
+                        groups="account.group_account_invoice"
+                        attrs="{'invisible': ['|', '|', ('state', '!=', 'approved'), ('auto_post', '=', True), ('move_type', '=', 'entry')]}"/>
+                <button name="btn_to_approval" string="提交" class="oe_highlight" type="object"
+                        groups="account.group_account_invoice"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                <button name="btn_approved" string="批准" class="oe_highlight" type="object"
+                        groups="melon_payment_approval.account_move_manager"
+                        attrs="{'invisible': [('state', '!=', 'to_approved')]}"/>
+                <button name="btn_to_refuse" string="拒绝" class="oe_highlight" type="object"
+                        groups="melon_payment_approval.account_move_manager"
+                        attrs="{'invisible': [('state', '!=', 'to_approved')]}"/>
+            </xpath>
+            <field name="state" position="replace">
+                <field name="state" widget="statusbar" statusbar_visible="draft,to_approved,approved,posted"/>
+            </field>
+            <field name="invoice_date" position="after">
+                <field name="partner_type" invisible="1"/>
+            </field>
+
+            <field name="invoice_vendor_bill_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="invoice_date" position="attributes">
+                <attribute name="attrs">{'readonly':[('state','not in',['draft','approved'])]}</attribute>
+            </field>
+            <label name="invoice_vendor_bill_id_label" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </label>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="inherit_account_move_melon_tree">
+        <field name="name">account.move.melon.tree</field>
+        <field name="model">account.move</field>
+         <field name="mode">primary</field>
+        <field name="priority">0</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <field name="amount_untaxed_signed" position="replace">
+                <field name="amount_untaxed" string="不含税" sum="Total" decoration-bf="1" optional="show"/>
+            </field>
+            <field name="amount_total_signed" position="replace">
+                <field name="amount_total" string="总计" sum="Total" decoration-bf="1" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="inherit_account_move_melon_tree1">
+        <field name="name">account.move.melon.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_tree"/>
+        <field name="arch" type="xml">
+            <field name="amount_total_signed" position="replace">
+                <field name="amount_total" string="总计" sum="Total" decoration-bf="1" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="inherit_account_move_melon_invoice_tree1">
+        <field name="name">account.move.melon.invoice.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_in_invoice_tree"/>
+        <field name="arch" type="xml">
+             <field name="amount_untaxed_signed" position="replace">
+                <field name="amount_untaxed" string="不含税" sum="Total" decoration-bf="1" optional="show"/>
+            </field>
+            <field name="amount_total_signed" position="replace">
+                <field name="amount_total" string="总计" sum="Total" decoration-bf="1" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+
+</odoo>
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="account_move_manager" model="res.groups">
+            <field name="name">账单审批权限</field>
+            <field name="category_id" ref="base.module_category_usability"/>
+        </record>
+
+          <record id="account_payment_manager" model="res.groups">
+            <field name="name">支付审批权限</field>
+            <field name="category_id" ref="base.module_category_usability"/>
+        </record>
+
+	</data>
+</odoo>

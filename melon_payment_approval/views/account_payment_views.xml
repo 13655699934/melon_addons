@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="inherit_view_account_payment_melon_form">
+        <field name="name">account.payment.melon.form</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <field name="state" position="replace">
+                <field name="state" widget="statusbar" statusbar_visible="draft,to_approved,approved,posted"/>
+            </field>
+            <xpath expr="//button[@name='action_post']" position="replace">
+            </xpath>
+            <xpath expr="//button[@name='action_cancel']"  position="attributes">
+                <attribute name="attrs">{'invisible': [('state', 'not in', ['draft','approved'])]}</attribute>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_post" string="确认" class="oe_highlight" type="object"
+                        groups="account.group_account_invoice"
+                        attrs="{'invisible': [('state', '!=', 'approved')]}"/>
+                <button name="btn_to_approval" string="提交" class="oe_highlight" type="object"
+                        groups="account.group_account_invoice"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                <button name="btn_approved" string="批准" class="oe_highlight" type="object"
+                        groups="melon_payment_approval.account_payment_manager"
+                        attrs="{'invisible': [('state', '!=', 'to_approved')]}"/>
+                <button name="btn_to_refuse" string="拒绝" class="oe_highlight" type="object"
+                        groups="melon_payment_approval.account_payment_manager"
+                        attrs="{'invisible': [('state', '!=', 'to_approved')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
+

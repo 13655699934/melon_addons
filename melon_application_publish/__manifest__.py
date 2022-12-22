@@ -28,9 +28,6 @@
         'web.assets_qweb': [
         ],
     },
-    'images': [
-        'static/description/img.png',
-    ],
     'installable': True,
     'auto_install': False,
     'application': False,

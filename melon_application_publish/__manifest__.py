@@ -12,6 +12,8 @@
     'license': 'LGPL-3',
     'version': '15.0.0.1',
     'category': 'Tools',
+    'currency': "USD",
+    'price': 0.88,
     'depends': ['web','mail'],
     "images": ["static/description/img_1.png"],
     'data': [

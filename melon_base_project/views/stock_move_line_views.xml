@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="inherit_stock_move_inherit_tree1" model="ir.ui.view">
+        <field name="name">stock.move.line.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="qty_done" position="after">
+                <field name="standard_price" widget='monetary'/>
+                <field name="amount_total" widget='monetary'/>
+            </field>
+        </field>
+    </record>
+</odoo>

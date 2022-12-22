@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="inherit_sale_order_melon_form">
+        <field name="name">sale.order.melon.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="payment_term_id" position="after">
+                <field name="project_id"/>
+            </field>
+
+            <field name="payment_term_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='name']" position="after">
+                <field name="model"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="inherit_sale_order_melon_management_form">
+        <field name="name">sale.order.melon.management.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_management.sale_order_form_quote"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='optional_products']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="inherit_view_sale_order_tree_melon_1">
+        <field name="name">sale.order.melon.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="project_id" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="inherit_view_sale_tree_melon_kpis">
+        <field name="name">sale.order.melon.kpis.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="project_id" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="inherit_view_sale_melon_search">
+        <field name="name">sale.order.melon.filter.search</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="project_id"/>
+            </field>
+            <filter name="customer" position="after">
+                <filter string="项目" name="project_id" domain="[]" context="{'group_by': 'project_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+
+</odoo>

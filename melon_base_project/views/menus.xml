@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.menu" id="menu_action_account_payments_receivable">
+            <field name="name">收款</field>
+        </record>
+    </data>
+</odoo>

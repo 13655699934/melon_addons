@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="application.content.type" id="content_type_1">
+            <field name="name">社交类</field>
+        </record>
+        <record model="application.content.type" id="content_type_2">
+            <field name="name">新闻类</field>
+        </record>
+        <record model="application.content.type" id="content_type_3">
+            <field name="name">购物类</field>
+        </record>
+        <record model="application.content.type" id="content_type_4">
+            <field name="name">娱乐类</field>
+        </record>
+        <record model="application.content.type" id="content_type_5">
+            <field name="name">金融类</field>
+        </record>
+        <record model="application.content.type" id="content_type_6">
+            <field name="name">生活类</field>
+        </record>
+        <record model="application.content.type" id="content_type_7">
+            <field name="name">工具类</field>
+        </record>
+    </data>
+</odoo>

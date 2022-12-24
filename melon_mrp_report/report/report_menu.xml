@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+          <report
+            string="MRP打印"
+            id="action_mrp_order_report"
+            model="mrp.production"
+            report_type="qweb-pdf"
+            name="melon_mrp_report.print_mrp_order_report"
+            file="melon_mrp_report.print_mrp_order_report"
+            paperformat="melon_mrp_report.paperformat_standard_A4"
+        />
+
+
+    </data>
+</odoo>
+

@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_audit_logs_form">
+            <field name="name">audit.logs.form</field>
+            <field name="model">audit.logs</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="审计日志" create="false" edit="false">
+                    <sheet>
+                        <div class="oe_title" colspan="4">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                            <div>
+                                <field name="model_id" class="oe_inline"/>,
+                            </div>
+                            <group>
+                                <field name="create_date"/>
+                                <field name="user_id"/>
+                                <field name="model_method" groups="base.group_no_one"/>
+                            </group>
+                        </div>
+                        <notebook>
+                            <page string="操作数据">
+                                <field name="params" colspan="4" nolabel="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_audit_logs_tree">
+            <field name="name">audit.logs.tree</field>
+            <field name="model">audit.logs</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="审计日志" create="false">
+                    <field name="name"/>
+                    <field name="create_date" string="创建时间"/>
+                    <field name="model_id"/>
+                    <field name="user_id"/>
+                    <field name="url"/>
+                    <field name="ipaddress"/>
+                    <field name="model_method"/>
+                    <field name="result"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_audit_logs_search" model="ir.ui.view">
+            <field name="name">audit.logs.search</field>
+            <field name="model">audit.logs</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="审计日志">
+                    <filter name="logs_create" string="创建" icon="terp-tools" domain="[('model_method','=','create')]"/>
+                    <filter name="logs_write" string="更新" icon="terp-tools" domain="[('model_method','=','write')]"/>
+                    <filter name="logs_unlink" string="删除" icon="terp-tools" domain="[('model_method','=','unlink')]"/>
+                    <field name="name"/>
+                    <field name="model_id"/>
+                    <field name="user_id"/>
+                    <newline/>
+                    <group expand="0" string="分组">
+                        <filter name="group_by_user_id" string="用户" context="{'group_by':'user_id'}"/>
+                        <filter name="group_by_model_id" string="模型" context="{'group_by':'model_id'}"/>
+                        <filter name="group_by_create_date" string="时间" context="{'group_by':'create_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+
+        <record model="ir.actions.act_window" id="action_security_logs_tree">
+            <field name="name">操作日志</field>
+            <field name="res_model">audit.logs</field>
+            <field name="search_view_id" ref="view_audit_logs_search"/>
+            <field name="view_id" ref="view_audit_logs_tree"/>
+        </record>
+
+
+    </data>
+</odoo>

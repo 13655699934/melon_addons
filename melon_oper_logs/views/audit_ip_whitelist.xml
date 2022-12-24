@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="form_audit_ip_whitelist" model="ir.ui.view">
+            <field name="name">audit.ip.whitelist.form</field>
+            <field name="model">audit.ip.whitelist</field>
+            <field name="arch" type="xml">
+                <form string="表单">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="state"/>
+                        </group>
+
+                        <field name="audit_login_ids">
+                            <tree string="列表" decoration-danger="state=='异常'" create="false" edit="false"
+                                  delete="false">
+                                <field name="name" invisible="1"/>
+                                <field name="browser"/>
+                                <field name="model_number"/>
+                                <field name="ip"/>
+                                <field name="login"/>
+                                <field name="user_id"/>
+                                <field name="date"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="tree_audit_ip_whitelist" model="ir.ui.view">
+            <field name="name">audit.ip.whitelist.tree</field>
+            <field name="model">audit.ip.whitelist</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="列表" decoration-danger="state=='拒绝'">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="state"/>
+                    <button name='button_state' string='放行' type='object'
+                            attrs="{'invisible': [('state', '=', '放行')]}"
+                            context="{'default_state':'放行'}" class='oe_highlight'/>
+                    <button name='button_state' string='拒绝' type='object'
+                            attrs="{'invisible': [('state', '=', '拒绝')]}"
+                            context="{'default_state':'拒绝'}" class='oe_highlight'/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_search_audit_ip_whitelist" model="ir.ui.view">
+            <field name="name">audit.ip.whitelist.search</field>
+            <field name="model">audit.ip.whitelist</field>
+            <field name="arch" type="xml">
+                <search string="查询">
+                    <field name="name" string="单据"
+                           filter_domain="[('name','ilike',self)]"/>
+                    <filter string="今天" name="today"
+                            domain="[('date', '&gt;=', time.strftime('%Y-%m-%d 00:00:00')),('date', '&lt;=', time.strftime('%Y-%m-%d 23:59:59'))]"
+                    />
+                    <filter string="本月" name="month"
+                            domain="[('date','&lt;=', time.strftime('%Y-%m-%d')),('date','&gt;=',time.strftime('%Y-%m-01'))]"
+                    />
+                    <filter string="本年" name="year"
+                            domain="[('date','&lt;=', time.strftime('%%Y-12-31')),('date','&gt;=',time.strftime('%%Y-01-01'))]"
+                    />
+                    <separator/>
+                    <filter string="放行" name='state1' domain="[('state','=','放行')]"/>
+                    <filter string="拒绝" name='state2' domain="[('state','=','拒绝')]"/>
+                    <separator/>
+                    <group expand="0" string="分组">
+                        <filter string="状态" name='state' domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="登陆时间" name='date' domain="[]" context="{'group_by':'date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_audit_ip_whitelist" model="ir.actions.act_window">
+            <field name="name">白名单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">audit.ip.whitelist</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_search_audit_ip_whitelist"/>
+        </record>
+
+
+    </data>
+</odoo>

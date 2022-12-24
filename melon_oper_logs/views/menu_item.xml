@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <!-- 日志追踪 -->
+    <menuitem id="menu_security_manager" name="日志追踪" web_icon="caini_audit,static/description/icon.png"
+              sequence="10"/>
+
+    <!-- 登录日志：二级菜单 -->
+    <menuitem id="menu_security_manager_login" parent="menu_security_manager" name="登录日志"
+              action="action_user_audit_login"
+              sequence="10"/>
+
+    <!-- 操作日志 二级菜单 -->
+    <menuitem id="menu_security_manager_logs" parent="menu_security_manager" name="操作日志"
+               action="action_security_logs_tree"
+               sequence="20"/>
+
+
+
+
+</odoo>

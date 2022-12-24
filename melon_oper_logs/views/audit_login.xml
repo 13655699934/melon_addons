@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="form_audit_login" model="ir.ui.view">
+            <field name="name">audit.login.form</field>
+            <field name="model">audit.login</field>
+            <field name="arch" type="xml">
+                <form string="表单" create="false" edit="false" delete="false">
+                    <sheet>
+                        <group>
+                            <field name="browser"/>
+                            <field name="website"/>
+                            <field name="databases"/>
+                            <field name="model_number"/>
+                            <field name="ip"/>
+                            <field name="login"/>
+                            <field name="user_id"/>
+                            <field name="date"/>
+                            <field name="error"/>
+                            <field name="name" widget="text"/>
+                            <field name="loglevel"/>
+                            <field name="state"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="tree_audit_login" model="ir.ui.view">
+            <field name="name">audit.login.tree</field>
+            <field name="model">audit.login</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="列表" decoration-danger="state=='异常'" create="false" edit="false" delete="false">
+                    <field name="name" invisible="1"/>
+                    <field name="browser"/>
+                    <field name="model_number"/>
+                    <field name="ip"/>
+                    <field name="login"/>
+                    <field name="user_id"/>
+                    <field name="date"/>
+                    <field name="loglevel"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_search_audit_login" model="ir.ui.view">
+            <field name="name">audit.login.search</field>
+            <field name="model">audit.login</field>
+            <field name="arch" type="xml">
+                <search string="查询">
+                    <field name="name" string="单据"
+                           filter_domain="['|',('name','ilike',self),('ip','ilike',self)]"/>
+                    <filter string="今天" name="today"
+                            domain="[('date', '&gt;=', time.strftime('%Y-%m-%d 00:00:00')),('date', '&lt;=', time.strftime('%Y-%m-%d 23:59:59'))]"
+                    />
+                    <filter string="本月" name="month"
+                            domain="[('date','&lt;=', time.strftime('%Y-%m-%d')),('date','&gt;=',time.strftime('%Y-%m-01'))]"
+                    />
+                    <filter string="本年" name="year"
+                            domain="[('date','&lt;=', time.strftime('%%Y-12-31')),('date','&gt;=',time.strftime('%%Y-01-01'))]"
+                    />
+                    <separator/>
+                    <filter string="异常" name='state1' domain="[('state','=','异常')]"/>
+                    <separator/>
+                    <group expand="0" string="分组">
+                        <filter string="状态" name='state' domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="浏览器" name='browser' domain="[]" context="{'group_by':'browser'}"/>
+                        <filter string="登陆时间" name='date' domain="[]" context="{'group_by':'date'}"/>
+                        <filter string="日志等级" name='loglevel' domain="[]" context="{'group_by':'loglevel'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- 普通用户登录日志 -->
+        <record id="action_user_audit_login" model="ir.actions.act_window">
+            <field name="name">登录日志</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">audit.login</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_search_audit_login"/>
+        </record>
+
+
+
+    </data>
+</odoo>

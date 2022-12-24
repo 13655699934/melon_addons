@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+ir_model_access_audit_logs_group_user,Audit Logs User,model_audit_logs,,1,0,1,0
+access_audit_login_user,audit_login,model_audit_login,,1,0,1,0
+access_audit_ip_whitelist_user,audit_ip_whitelist,model_audit_ip_whitelist,,1,1,1,1

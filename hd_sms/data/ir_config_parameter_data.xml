@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="ir.config_parameter" id="object_hd_sms_host">
+            <field name="key">hd_sms_host</field>
+            <field name="value">sms.yunpian.com</field>
+        </record>
+
+        <record model="ir.config_parameter" id="object_hd_sms_port">
+            <field name="key">hd_sms_port</field>
+            <field name="value">443</field>
+        </record>
+        <record model="ir.config_parameter" id="object_hd_sms_appkey">
+            <field name="key">hd_sms_appkey</field>
+            <field name="value">b173139284df9373c79c6adbae43ffac</field>
+        </record>
+
+        <record model="ir.config_parameter" id="object_hd_sms_single_url">
+            <field name="key">sms_single_url</field>
+            <field name="value">/v2/sms/tpl_single_send.json</field>
+        </record>
+
+        <record model="ir.config_parameter" id="object_hd_sms_batch_url">
+            <field name="key">sms_batch_url</field>
+            <field name="value">0</field>
+        </record>
+
+        <record model="ir.config_parameter" id="object_hd_sms_tpl_url">
+            <field name="key">sms_tpl_url</field>
+            <field name="value">/v2/sms/tpl_single_send.json</field>
+        </record>
+
+    </data>
+</odoo>
+
+
+

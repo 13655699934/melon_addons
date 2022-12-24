@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hd_sms_order_view_tree" model="ir.ui.view">
+            <field name="name">hd.sms.order.tree</field>
+            <field name="model">hd.sms.order</field>
+            <field name="arch" type="xml">
+                <tree multi_edit="1"
+                      decoration-success="state == 'success'"
+                      decoration-danger="state == 'fail'"
+                >
+                    <field name="name"/>
+                    <field name="mobile"/>
+                    <field name="order_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hd_sms_order_form" model="ir.ui.view">
+            <field name="name">hd.sms.order.form</field>
+            <field name="model">hd.sms.order</field>
+            <field name="arch" type="xml">
+                <form create="0" edit="0">
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group string="短信信息">
+                            <group>
+                                <field name="mobile"/>
+                                <field name="models_name"/>
+                                <field name="order_date"/>
+                                <field name="name"/>
+                                <field name="back_content"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hd_sms_templates_view_tree" model="ir.ui.view">
+            <field name="name">hd.sms.templates.tree</field>
+            <field name="model">hd.sms.templates</field>
+            <field name="arch" type="xml">
+                <tree multi_edit="1">
+                    <field name="name"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hd_sms_templates_form" model="ir.ui.view">
+            <field name="name">hd.sms.templates.form</field>
+            <field name="model">hd.sms.templates</field>
+            <field name="arch" type="xml">
+                <form>
+                    <style type="text/css">
+                        .o_form_view .o_group.o_inner_group > tbody > tr > td.o_td_label {
+                        width: 0%;
+                        padding: 0 15px 0 0;
+                        min-width: 100px;
+                        }
+                    </style>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group >
+                            <group>
+                                <field name="type" required="1"/>
+                                <field name="tpl_id" attrs="{'invisible': [('type', '=', 'bs_sms')]}"/>
+                                <field name="tpl_content" attrs="{'invisible': [('type', '=', 'bs_sms')]}"/>
+                                <field name="single_content" attrs="{'invisible': [('type', '!=', 'bs_sms')]}"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="模板描述">
+                                <field name="tmp_desc"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

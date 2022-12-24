@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="base_hd_send_sms" model="ir.actions.act_window">
+            <field name="name">SMS配置</field>
+            <field name="res_model">hd.send.sms</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+           <record id="base_hd_sms_order" model="ir.actions.act_window">
+            <field name="name">短信记录</field>
+            <field name="res_model">hd.sms.order</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+            <record id="base_hd_sms_templates" model="ir.actions.act_window">
+            <field name="name">云片短信模板</field>
+            <field name="res_model">hd.sms.templates</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    </data>
+</odoo>

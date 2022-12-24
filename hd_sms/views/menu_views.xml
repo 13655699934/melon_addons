@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_hd_sms" name="云片短信" web_icon="hd_sms,static/description/icon.png"
+                  sequence="80"/>
+        <menuitem name="SMS参数配置" id="menu_base_hd_sms_setting" parent="hd_sms.menu_hd_sms"
+                  action="hd_sms.base_hd_send_sms"
+                  sequence="10"/>
+        <menuitem name="短信发送记录" id="menu_base_hd_sms_record" parent="hd_sms.menu_hd_sms"
+                  action="hd_sms.base_hd_sms_order"
+                  sequence="20"/>
+        <menuitem name="云片短信模板" id="menu_base_hd_sms_templates" parent="hd_sms.menu_hd_sms"
+                  action="hd_sms.base_hd_sms_templates"
+                  sequence="30"/>
+    </data>
+</odoo>

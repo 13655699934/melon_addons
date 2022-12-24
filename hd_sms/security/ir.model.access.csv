@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hd_send_sms_group_base,hd_send_sms,model_hd_send_sms,base.group_user,1,1,1,1
+access_hd_sms_order_group_base,hd_sms_order,model_hd_sms_order,base.group_user,1,1,1,1
+access_hd_sms_templates_group_base,hd_sms_templates,model_hd_sms_templates,base.group_user,1,1,1,1
+
+
+

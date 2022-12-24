@@ -6,6 +6,7 @@
     "category": "Tools",
     "license": 'LGPL-3',
     'version': '15.0.1',
+    'images': ["static/description/img_2.png"],
     "description": """该模块允许管理员跟踪每个用户的操作系统的所有对象.""",
     "depends": [
         'base',

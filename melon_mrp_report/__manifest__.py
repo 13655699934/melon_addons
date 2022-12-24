@@ -10,7 +10,7 @@
     'author': "melon",
     'website': "https://www.hxmelon.com",
     'category': 'print',
-    'version': '16.0.1',
+    'version': '15.0.1',
     "license": "LGPL-3",
     'depends': ['mrp'],
     'images': ["static/description/img_2.png"],

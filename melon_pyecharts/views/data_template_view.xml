@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_data_template_tree" model="ir.ui.view">
+            <field name="name">view.data.template.tree</field>
+            <field name="model">data.template</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_data_template_form" model="ir.ui.view">
+            <field name="name">view.data.template.form</field>
+            <field name="model">data.template</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="action_generate_charts" string="生成图表" type="object" class="oe_highlight"/>
+                    </header>
+                    <!--                    <sheet>-->
+                    <group>
+                        <field name="name" required="1"/>
+                    </group>
+                    <field name="line_ids">
+                        <tree editable="bottom">
+                            <field name="name" required="1"/>
+                            <field name="key" required="1"/>
+                            <field name="value" required="1"/>
+                        </tree>
+                    </field>
+                    <notebook>
+                        <page string="饼状图">
+                            <field name="pie_charts" widget="html"/>
+                        </page>
+                        <page string="柱状图">
+                            <field name="bar_charts" widget="html"/>
+                        </page>
+                    </notebook>
+                    <!--                    </sheet>-->
+                </form>
+            </field>
+        </record>
+
+        <record id="action_data_template" model="ir.actions.act_window">
+            <field name="name">数据</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">data.template</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem name="Odoo Echarts" id="melon_pyecharts.menu_root"
+                  web_icon="melon_pyecharts,static/description/icon.png"/>
+        <menuitem name="Echarts" id="menu_data_template_root" parent="melon_pyecharts.menu_root"
+                  action="action_data_template"/>
+
+    </data>
+</odoo>

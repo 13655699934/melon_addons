@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record model="ir.config_parameter" id="object_pyecharts_save_path">
+            <field name="key">echarts_save_path</field>
+            <field name="value">0</field>
+        </record>
+    </data>
+</odoo>
+
+
+

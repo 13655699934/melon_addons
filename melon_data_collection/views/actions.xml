@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+
+        <!-- 人员信息 -->
+        <record id="action_talent_base_inform" model="ir.actions.act_window">
+            <field name="name">信息采集</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">talent.base.inform</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    </data>
+</odoo>

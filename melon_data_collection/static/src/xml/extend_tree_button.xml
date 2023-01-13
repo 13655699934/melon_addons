@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-extend="ListView.buttons" t-name="MinfoAddsListView.buttons">
+        <t t-jquery="button.o_list_button_add" t-operation="after">
+            <button type="button" class="btn btn-danger o_button_add_tree_btn_import_info"
+                    title="数据采集">数据采集
+            </button>
+        </t>
+    </t>
+
+</templates>

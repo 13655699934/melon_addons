@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_talent_base_inform_user,talent_base_inform,model_talent_base_inform,base.group_user,1,1,1,1
+access_project_base_detail_user,project_base_detail,model_project_base_detail,base.group_user,1,1,1,1
+access_import_talent_info_wizard_user,import_talent_info_wizard,model_import_talent_info_wizard,base.group_user,1,1,1,1
+

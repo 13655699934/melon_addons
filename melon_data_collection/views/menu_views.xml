@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 一级菜单 -->
+    <menuitem id="menu_talent_base_inform_root" name="信息采集" web_icon="melon_data_collection,static/description/icon.png"
+              sequence="3"/>
+
+    <!-- 二级菜单 -->
+    <menuitem id="menu_talent_base_inform_record" name="人员信息采集" parent="menu_talent_base_inform_root" sequence="10"
+              action="action_talent_base_inform"
+    />
+
+
+</odoo>

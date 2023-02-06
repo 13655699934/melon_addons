@@ -6,7 +6,7 @@
         图书管理模块,Odoo16视图集合
     """,
     'author': "melon",
-    'website': "http://www.hxmelon.com",
+    'website': "https://www.hxmelon.com",
     'category': 'Demo',
     'version': '16.0.1',
     'license': 'LGPL-3',

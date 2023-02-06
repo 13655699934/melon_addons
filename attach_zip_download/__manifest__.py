@@ -8,7 +8,7 @@
                     """,
     'sequence': 90,
     'author': 'Melon',
-    'website': 'http://hxmelon.com/',
+    'website': 'https://hxmelon.com/',
     'depends': ['base', 'mail'],
     'version': '15.0.1',
     "license": "LGPL-3",

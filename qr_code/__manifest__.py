@@ -8,7 +8,7 @@
             二维码生成器
     """,
     'author': 'melon',
-    'website': 'http://www.hxmelon.com',
+    'website': 'https://www.hxmelon.com',
     'license': 'LGPL-3',
     'version': '15.0.0.1',
     'category': 'Tools',

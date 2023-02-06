@@ -8,7 +8,7 @@
             根据控制form表单编辑与创建按钮
     """,
     'author': 'melon',
-    'website': 'http://www.hxmelon.com',
+    'website': 'https://www.hxmelon.com',
     'license': 'LGPL-3',
     'version': '15.0.0.1',
     'category': 'Tools',

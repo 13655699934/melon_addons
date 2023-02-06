@@ -6,7 +6,7 @@
     'description': """全局样式修改""",
     'sequence': 666,
     'author': 'melon',
-    'website': 'http://hxmelon.com/',
+    'website': 'https://hxmelon.com/',
     'depends': ['base', 'web'],
     "images": ["static/description/img.png"],
     'version': '15.0.1',

@@ -6,7 +6,7 @@
     'description': """日期字段禁用过去日期""",
     'sequence': 666,
     'author': 'melon',
-    'website': 'http://hxmelon.com/',
+    'website': 'https://hxmelon.com/',
     'depends': ['web'],
     "images": ["static/description/img.png"],
     'version': '15.0.1',

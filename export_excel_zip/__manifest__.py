@@ -5,7 +5,7 @@
     'category': u'通用/下载Excel',
     'sequence': 100,
     'author': 'melon',
-    'website': 'http://hxmelon.com/',
+    'website': 'https://hxmelon.com/',
     'depends': ['base', 'mail'],
     'license': 'LGPL-3',
     'version': '0.1',

@@ -1,0 +1,17 @@
+.card {
+    border-radius: 1.2rem;
+    -webkit-box-shadow: 0 .6rem 1rem -.4rem rgba(0,0,0,.15);
+    box-shadow: 0 .6rem 1rem -.4rem rgba(0,0,0,.15);
+    font-size: 1.4rem;
+    background-color: #fff;
+    color: #252422;
+    margin: 0 1.4rem;
+    position: relative;
+    border: 0;
+    -webkit-transition: transform .3s cubic-bezier(.34,2,.6,1),box-shadow .2s ease;
+    -webkit-transition: -webkit-transform .3s cubic-bezier(.34,2,.6,1),-webkit-box-shadow .2s ease;
+    transition: -webkit-transform .3s cubic-bezier(.34,2,.6,1),-webkit-box-shadow .2s ease;
+    transition: transform .3s cubic-bezier(.34,2,.6,1),box-shadow .2s ease;
+    transition: transform .3s cubic-bezier(.34,2,.6,1),box-shadow .2s ease,-webkit-transform .3s cubic-bezier(.34,2,.6,1),-webkit-box-shadow .2s ease;
+    overflow: hidden;
+}

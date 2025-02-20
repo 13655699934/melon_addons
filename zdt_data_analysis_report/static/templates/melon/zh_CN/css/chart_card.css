@@ -1,0 +1,73 @@
+.chart-card-wrap > div{
+    margin-bottom: 2.4rem;
+}
+
+.chart-card{
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-card-top {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: .1rem solid #E7F0F7;
+    margin-bottom: 1rem;
+    height: 6rem;
+    align-items: center;
+    padding: 0 1.5rem 0;
+}
+
+.chart-card-top-left{
+    font-size: 2.3rem;
+    color:#333333;
+    font-family: Source Han Sans CN-Bold;
+    font-weight: Bold;
+    margin-left: .4rem;
+}
+
+.chart-card-top-right{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.chart-card-top-right .layui-form-switch{
+    border-color: #5FB878 !important;
+    background-color: #5FB878 !important;
+
+}
+
+.chart-card-top-right .layui-form-switch{
+    height: 2.2rem;
+    line-height: 2.2rem;
+    min-width: 3.5rem;
+    padding: 0 .5rem;
+    margin-top: .8rem;
+}
+
+.chart-card-top-right .layui-form-switch em{
+    font-size: 1.2rem;
+    color: #fff !important;
+}
+
+.chart-card-top-right .layui-form-switch i{
+    left: .5rem;
+    top: .3rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 2rem;
+    background-color: #fff !important;
+}
+
+.chart-card-top-right .layui-form-onswitch i {
+    left: 100%;
+    margin-left: -2.1rem;
+    background-color: #fff;
+}
+
+
+.chart-card-bottom{
+    display: flex;
+    justify-content: center;
+    padding: 0 1.5rem 1rem;
+}

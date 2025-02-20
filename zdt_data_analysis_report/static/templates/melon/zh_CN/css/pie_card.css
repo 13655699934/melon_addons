@@ -1,0 +1,36 @@
+.pie-card-wrap > div{
+    margin-bottom: 2.4rem;
+}
+
+.pie-card{
+    display: flex;
+    flex-direction: column;
+}
+
+.pie-card-top {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: .1rem solid #E7F0F7;
+    margin-bottom: 1rem;
+    padding: 0 1.5rem 0;
+    height: 3.8rem;
+    align-items: center;
+}
+
+.pie-card-top-left{
+    font-size: 1.7rem;
+    color:#333333;
+    font-family: Source Han Sans CN-Bold;
+    font-weight: Bold;
+    margin-left: .4rem;
+}
+
+.pie-card-top-right{
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem 1rem;
+}
+
+.pie-card-bottom{
+    padding: 0 1.5rem 0;
+}

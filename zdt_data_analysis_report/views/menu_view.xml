@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem name="数据分析" id="melon_order_menu_root" sequence="1"
+                  web_icon="zdt_data_analysis_report,static/description/icon.png"/>
+
+        <menuitem id="melon_work_plan_menu_root" name="数据分析"
+                  parent="melon_order_menu_root"
+                  action="zdt_data_analysis_act"
+                  sequence="10"/>
+
+    </data>
+</odoo>

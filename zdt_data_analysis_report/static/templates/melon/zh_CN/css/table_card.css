@@ -1,0 +1,14 @@
+.table-card-wrap > div{
+    margin-bottom: 2.4rem;
+}
+
+.table-card{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+}
+
+.table-card-top{
+    display: flex;
+    justify-content: flex-end;
+}

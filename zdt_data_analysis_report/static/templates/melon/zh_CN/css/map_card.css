@@ -1,0 +1,26 @@
+.map-card{
+    display: flex;
+    flex-direction: column;
+}
+
+.map-card-top {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: .1rem solid #E7F0F7;
+    margin-bottom: 1rem;
+    height: 6rem;
+    align-items: center;
+    padding: 0 1.5rem 0;
+}
+
+.map-card-top-left{
+    font-size: 2.3rem;
+    color:#333333;
+    font-family: Source Han Sans CN-Bold;
+    font-weight: Bold;
+    margin-left: .4rem;
+}
+
+.map-card-bottom{
+    padding: 0 1.5rem 1rem;
+}

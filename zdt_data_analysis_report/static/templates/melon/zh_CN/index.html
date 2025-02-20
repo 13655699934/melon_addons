@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="0">
+    <link rel="stylesheet" href="/zdt_data_analysis_report/static/templates/melon/zh_CN/libs/layui/css/layui.css">
+    <link rel="stylesheet" href="/zdt_data_analysis_report/static/templates/melon/zh_CN/css/card.css">
+    <link rel="stylesheet" href="/zdt_data_analysis_report/static/templates/melon/zh_CN/css/chart_card.css">
+    <link rel="stylesheet" href="/zdt_data_analysis_report/static/templates/melon/zh_CN/css/pie_card.css">
+    <link rel="stylesheet" href="/zdt_data_analysis_report/static/templates/melon/zh_CN/css/table_card.css">
+    <link rel="stylesheet" href="/zdt_data_analysis_report/static/templates/melon/zh_CN/css/map_card.css">
+    <link rel="stylesheet" href="/zdt_data_analysis_report/static/templates/melon/zh_CN/css/global.css">
+
+    <title>{{object.company.name}}-数据分析</title>
+</head>
+<body>
+
+    <article class="root">
+        <header>
+        </header>
+
+        <main>
+
+            <section class="stats-card-wrap layui-row" id="states-card-wrap">
+
+                <div class="layui-col-xs6 layui-col-sm6 layui-col-md3">
+                    <states-card tag="草稿" label="总数" src="imgs/a1.png" data-id ='try'>
+                        <div slot="tag" class="tag" style="background-color: #3866FF;padding: .4rem 1.2rem;">草稿</div>
+                    </states-card>
+                </div>
+
+                <div class="layui-col-xs6 layui-col-sm6 layui-col-md3">
+                    <states-card tag="已询价" label="总数" src="imgs/a2.png" data-id ='consult'>
+                        <div slot="tag" style="background-color: #16DBCC;padding: .4rem 1.2rem;">已询价</div>
+                    </states-card>
+                </div>
+
+                <div class="layui-col-xs6 layui-col-sm6 layui-col-md3">
+                    <states-card tag="已确认" label="已确认" src="imgs/a3.png" data-id ='conversion'>
+                        <div slot="tag" style="background-color: #FFBB38;padding: .4rem 1.2rem;">已确认</div>
+                    </states-card>
+                </div>
+
+                <div class="layui-col-xs6 layui-col-sm6 layui-col-md3">
+                    <states-card tag="已取消" label="已取消" src="imgs/a4.png" data-id ='occupancy'>
+                        <div slot="tag" style="background-color: #CB45EB;padding: .4rem 1.2rem;">已取消</div>
+                    </states-card>
+                </div>
+
+
+            </section>
+
+             <section class="chart-card-wrap layui-row">
+
+                   <div class="layui-col-xs12 layui-col-sm12 layui-col-md6">
+
+                    <section class="card chart-card">
+                        <div class="chart-card-top">
+                            <h2 class="chart-card-top-left">客户职业</h2>
+                            <div class="chart-card-top-right">
+                            </div>
+                        </div>
+                        <div class="chart-card-bottom">
+                            <bar-chart data-id="customer_occ_data" type="simple" style="display: inline-flex;width: 100%;"></bar-chart>
+                        </div>
+                    </section>
+
+                </div>
+
+                <div class="layui-col-xs12 layui-col-sm12 layui-col-md6">
+                    <section class="card map-card">
+                        <div class="map-card-top">
+                            <h2 class="map-card-top-left">客户地址分布</h2>
+                            <div class="map-card-top-right">
+
+                            </div>
+                        </div>
+
+                        <div class="map-card-bottom">
+                            <map-card id="map"></map-card>
+                        </div>
+                    </section>
+                </div>
+
+            </section>
+
+
+            <section class="table-card-wrap layui-row">
+
+                <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
+
+                    <section class="card table-card">
+                        <div class="table-card-top">
+
+                            <input class="layui-input" name="id" id="tableReload" autocomplete="off" placeholder="输入客户姓名查找" style="width:180px;margin-right: 10px;">
+                            <button id="table_search" class="layui-btn" data-type="reload">搜索</button>
+
+                        </div>
+
+                        <div class="table-card-bottom">
+
+                            <table class="layui-hide" id="LAY_table_user" lay-filter="user"></table>
+
+                        </div>
+                    </section>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer>
+
+
+        </footer>
+
+    </article>
+
+    <script>
+        const publicPath = '/zdt_data_analysis_report/static/templates/melon/zh_CN/'
+        const apiPath=`{{ api_url }}`
+    </script>
+
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/libs/layui/layui.js"></script>
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/libs/axios.min.js"></script>
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/libs/echarts.min.js"></script>
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/js/http.js" type="module"></script>
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/js/utils.js"></script>
+    <script src="https://api.map.baidu.com/api?v=3.0&ak=ph1UtdQV0g7i4lOaq5qsZd2cEpOGbH8g"></script>
+
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/components/line_chart.js"></script>
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/components/pie_chart.js"></script>
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/components/bar_chart.js"></script>
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/components/polar_bar_chart.js"></script>
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/components/funnel_chart.js"></script>
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/components/map_card.js"></script>
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/components/states_card.js"></script>
+    <script>
+        this.flexible()
+    </script>
+
+    <!--异步渲染-->
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/js/states_render.js" type="module"></script>
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/js/bar_chart_render.js" type="module"></script>
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/js/map_render.js" type="module"></script>
+    <script src="/zdt_data_analysis_report/static/templates/melon/zh_CN/js/table_render.js" type="module"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

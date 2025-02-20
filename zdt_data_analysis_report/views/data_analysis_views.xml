@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.actions.client" id="zdt_data_analysis_act">
+            <field name="name">数据分析看板</field>
+            <field name="tag">zdt_data_Analysis</field>
+            <field name="params">{}</field>
+        </record>
+    </data>
+</odoo>

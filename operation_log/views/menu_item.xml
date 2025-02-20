@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <!-- 安全管理：一级菜单 -->
+    <menuitem id="menu_security_manager" name="日志管理"
+              web_icon="operation_log,static/description/icon.png"
+              sequence="18"/>
+
+    <!-- 登录日志：二级菜单 -->
+    <menuitem id="menu_security_manager_login" parent="menu_security_manager" name="登录日志"
+              action="action_user_audit_login"
+              sequence="10"/>
+
+    <!-- 操作日志 二级菜单 -->
+    <menuitem id="menu_security_manager_logs" parent="menu_security_manager" name="操作日志"
+               action="action_security_logs_list"
+               sequence="20"/>
+
+    <!-- 白名单 二级菜单 -->
+    <menuitem id="menu_audit_ip_whitelist" parent="menu_security_manager" name="登录白名单"
+               action="action_audit_ip_whitelist"
+               sequence="30"/>
+
+
+
+
+</odoo>

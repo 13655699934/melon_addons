@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_global_module_temp,global_module_temp,model_global_module_temp,base.group_user,1,1,1,1
+access_global_temp_field_line,global_temp_field_line,model_global_temp_field_line,base.group_user,1,1,1,1
+access_temp_fields_selection,temp_fields_selection,model_temp_fields_selection,base.group_user,1,1,1,1

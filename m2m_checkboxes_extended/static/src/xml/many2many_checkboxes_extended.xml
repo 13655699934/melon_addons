@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <t t-name="zdt_elderly_abilities.Many2ManyCheckboxesFieldExtended">
+        <div t-att-style="'display: grid; grid-template-columns: repeat(' + colCount + ', 1fr); gap: 8px;'">
+            <t t-foreach="items" t-as="item" t-key="item[0]">
+                <!-- ✅ 使用 flex 让 Checkbox 和文字对齐 -->
+                <label t-att-style="'display: flex; align-items: center; gap: 6px;'">
+                    <t t-set="isChecked" t-value="isSelected(item)"/>
+                    <CheckBox checked="isChecked"
+                              t-on-click="() => onChange(item[0], !isChecked)"/>
+                    <t t-esc="item[1]"/>
+                </label>
+            </t>
+        </div>
+    </t>
+</odoo>

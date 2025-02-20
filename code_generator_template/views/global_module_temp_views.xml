@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_global_module_temp_list" model="ir.ui.view">
+        <field name="name">模型创建模版</field>
+        <field name="model">global.module.temp</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_global_module_temp_form" model="ir.ui.view">
+        <field name="name">模型创建模版</field>
+        <field name="model">global.module.temp</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_auto_all" string="生成全部文件" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="class_name"/>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                    <group col="3" string="代码文件">
+                        <group>
+                            <field name="py_binary_name" invisible="1"/>
+                            <field name="py_binary" filename="py_binary_name"/>
+                        </group>
+                        <group>
+                            <field name="xml_binary_name" invisible="1"/>
+                            <field name="xml_binary" filename="xml_binary_name"/>
+                        </group>
+                        <group>
+                            <field name="csv_binary_name" invisible="1"/>
+                            <field name="csv_binary" filename="csv_binary_name"/>
+                        </group>
+                    </group>
+                    <group string="Python代码">
+                        <field name="py_logs" nolabel="1" widget="code"/>
+                    </group>
+                    <group string="xml代码">
+                        <field name="xml_logs" nolabel="1" widget="code"/>
+                    </group>
+                    <group string="csv代码">
+                        <field name="csv_logs" nolabel="1" widget="code"/>
+                    </group>
+                    <notebook>
+                        <page string="字段列表">
+                            <field name="field_line_ids">
+                                <form string="字段列表">
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="name" required="1"/>
+                                                <field name="field_description" required="1"/>
+                                                <field name="type" required="1"/>
+                                                <field name="model_id"
+                                                       invisible="type not in ['many2one', 'many2many', 'one2many']"/>
+                                                <field name="relation_table" invisible="type != 'many2many'"/>
+                                                <field name="column1" invisible="type != 'many2many'"/>
+                                                <field name="column2" invisible="type != 'many2many'"/>
+                                                <field name="related_field" invisible="type != 'one2many'"/>
+                                            </group>
+                                            <group>
+                                                <field name="help"/>
+                                                <field name="required"/>
+                                                <field name="readonly"/>
+                                            </group>
+                                        </group>
+                                        <notebook  invisible="type != 'selection'">
+                                            <page string="选项">
+                                                <field name="selection_ids">
+                                                    <list editable="bottom">
+                                                        <field name="name" required="1"/>
+                                                        <field name="value" required="1"/>
+                                                    </list>
+                                                </field>
+                                            </page>
+                                        </notebook>
+                                    </sheet>
+                                </form>
+                                <list>
+                                    <field name="name" required="1"/>
+                                    <field name="field_description" required="1"/>
+                                    <field name="type" required="1"/>
+                                    <field name="required"/>
+                                    <field name="readonly"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_global_module_temp" model="ir.actions.act_window">
+        <field name="name">模型创建模版</field>
+        <field name="res_model">global.module.temp</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem
+            id="menu_global_module_temp_main"
+            name="模型创建模版"
+            web_icon="code_generator_template,static/description/icon.png"
+            sequence="1"/>
+
+    <menuitem
+            id="menu_global_module_temp"
+            name="模型创建模版"
+            parent="menu_global_module_temp_main"
+            action="action_global_module_temp"
+            groups="base.group_user"/>
+</odoo>
+

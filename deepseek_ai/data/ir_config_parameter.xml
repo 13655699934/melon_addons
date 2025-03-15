@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="ir.config_parameter" id="ai_chat_url">
+            <field name="key">ai_chat_url</field>
+            <field name="value">https://openrouter.ai/api/v1</field>
+        </record>
+
+        <record model="ir.config_parameter" id="ai_chat_api_key">
+            <field name="key">ai_chat_api_key</field>
+            <field name="value">sk-or-v1-efb45902cef*******************</field>
+        </record>
+
+         <record model="ir.config_parameter" id="ai_chat_model">
+            <field name="key">ai_chat_model</field>
+            <field name="value">deepseek/deepseek-r1-distill-llama-70b:free</field>
+        </record>
+    </data>
+</odoo>

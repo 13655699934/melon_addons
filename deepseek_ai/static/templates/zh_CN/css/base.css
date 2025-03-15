@@ -1,0 +1,205 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    margin-right: 8px; /* 让Logo和文字之间有点间距 */
+}
+
+#history-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#history-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.header img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.container {
+    display: flex;
+    width: 90vw; /* 确保适应不同屏幕 */
+    max-width: 1200px; /* 避免超宽 */
+    height: 90vh; /* 避免溢出 */
+}
+
+.chat-container {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    margin: 0;
+}
+
+.header {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chat-box {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* 取消 margin-left，确保不会偏移 */
+.input-container {
+    display: flex;
+    padding: 10px;
+    background: #fff;
+}
+
+input[type="text"], input[type="file"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+/* 历史记录抽屉 */
+#history-drawer {
+    position: relative;
+    width: 550px;
+    height: 100%;
+    background-color: #fff;
+    border-left: 1px solid #eee;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    visibility: hidden; /* 代替 display: none */
+    transform: translateX(100%); /* 确保默认隐藏 */
+}
+
+#history-drawer.open {
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: #849ec0;
+    color: #fff;
+}
+
+#history-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    max-height: calc(100vh - 50px); /* 限制最大高度，避免溢出 */
+    box-sizing: border-box; /* 避免padding导致溢出 */
+}
+
+/* 消息样式优化 */
+.message {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    max-width: 80%;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+
+
+.message img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user {
+    background: #dcf8c6;
+    align-self: flex-end;
+}
+
+.bot {
+    background: #ececec;
+    align-self: flex-start;
+}
+
+/* 用户消息样式 */
+.user {
+    justify-content: flex-end;
+}
+
+.user .chat-avatar {
+    order: 2;
+}
+
+.user .chat-bubble {
+    background-color: #d4edda; /* 绿色背景 */
+    color: #000;
+}
+
+/* AI 消息样式 */
+.ai {
+    justify-content: flex-start;
+}
+
+.ai .chat-avatar {
+    order: 0;
+}
+
+.ai .chat-bubble {
+    background-color: #f1f1f1; /* 灰色背景 */
+    color: #000;
+}
+
+.chat-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+/* 气泡框 */
+.chat-bubble {
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 100%;
+    font-size: 12px;
+}
+
+/* 时间 */
+.chat-time {
+    font-size: 10px;
+    color: #888;
+}

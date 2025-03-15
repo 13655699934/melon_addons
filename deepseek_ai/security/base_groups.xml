@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--==============权限组============-->
+        <record id="category_ai_manager" model="ir.module.category">
+            <field name="name">AI管理组</field>
+            <field name="description">管理AI模块的使用</field>
+        </record>
+
+        <record id="group_ai_user" model="res.groups">
+            <field name="name">AI用户组</field>
+            <field name="comment">可以对话，可以解析文件，可以查看历史记录</field>
+            <field name="category_id" ref="deepseek_ai.category_ai_manager"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+    </data>
+</odoo>

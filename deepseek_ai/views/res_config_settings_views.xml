@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    Res config settings view form-->
+    <record id="res_config_settings_view_form_ai" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.ai</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="DeepSeek AI" string="DeepSeekAI" name="DeepSeek AI"
+                     logo="/deepseek_ai/static/description/icon.png">
+                    <block title="DeepSeek AI设置" name="web_login_styles_setting_container">
+                        <setting id="deepseek_ai">
+                            <div class="row mt-4">
+                                <label string="API URL" for="ai_chat_url" class="col-lg-3 o_light_label"/>
+                                <field name="ai_chat_url" help="AI URL"/>
+                            </div>
+                            <div class="row mt-4">
+                                <label string="API KEY" for="ai_chat_api_key" class="col-lg-3 o_light_label"/>
+                                <field name="ai_chat_api_key" help="Api Key" password="True"/>
+                            </div>
+                            <div class="row mt-4">
+                                <label string="AI模型" for="ai_chat_model" class="col-lg-3 o_light_label"/>
+                                <field name="ai_chat_model" help="AI Model"/>
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+

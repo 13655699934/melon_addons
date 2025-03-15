@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem name="DeepSeekAI" id="deepseek_ai__menu_root" sequence="1"
+                  action="deepseek_ai_action"
+                  web_icon="deepseek_ai,static/description/icon.png"/>
+
+        <menuitem id="deepseek_ai__menu_p2" name="AI问答助手"
+                  parent="deepseek_ai__menu_root"
+                  action="deepseek_ai_action"
+                  sequence="10"/>
+
+        <menuitem id="menu_ai_chat_root" name="AI聊天记录" sequence="20" parent="deepseek_ai__menu_root"
+                  action="view_ai_chat_history_action"
+        />
+
+
+    </data>
+</odoo>

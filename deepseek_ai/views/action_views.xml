@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.actions.client" id="deepseek_ai_action">
+            <field name="name">DeepSeek AI助手</field>
+            <field name="tag">deepseek_ai_tag</field>
+            <field name="params">{}</field>
+        </record>
+    </data>
+</odoo>

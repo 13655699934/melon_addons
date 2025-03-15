@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI智能助手</title>
+    <script src="/deepseek_ai/static/templates/zh_CN/js/axios.min.js"></script>
+    <script src="/deepseek_ai/static/templates/zh_CN/js/pdf.min.js"></script>
+    <script src="/deepseek_ai/static/templates/zh_CN/js/mammoth.browser.min.js"></script>
+    <script src="/deepseek_ai/static/templates/zh_CN/js/tesseract.min.js"></script>
+    <script src="/deepseek_ai/static/templates/zh_CN/js/xlsx.full.min.js"></script>
+    <script src="/deepseek_ai/static/templates/zh_CN/js/marked.min.js"></script>
+    <link class="origin" rel="stylesheet" href="/deepseek_ai/static/templates/zh_CN/css/base.css">
+</head>
+<body>
+<div class="container">
+    <div class="chat-container">
+        <div class="header">
+            <div class="logo">
+                <img src="/deepseek_ai/static/templates/zh_CN/image/icon.png" alt="Logo">
+                <span>DeepSeek</span>
+            </div>
+            <button id="history-button">
+                <img src="/deepseek_ai/static/templates/zh_CN/image/history.png" alt="历史">
+            </button>
+        </div>
+        <div class="chat-box" id="chat-box"></div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="输入你的问题...">
+            <input type="file" id="file-input" multiple placeholder="文件上传...">
+            <button onclick="sendMessage()">发送</button>
+        </div>
+    </div>
+
+    <!-- 历史记录抽屉 -->
+    <div id="history-drawer">
+        <div class="drawer-header">
+            <span>历史记录（最近7天）</span>
+            <button id="close-drawer" style="background-color: #849ec0;">
+                <img style="width: 20px; height: 20px;" src="/deepseek_ai/static/templates/zh_CN/image/close.png"
+                     alt="关闭">
+            </button>
+        </div>
+        <div id="history-content"></div>
+    </div>
+</div>
+</body>
+<script>
+    let enableSearch = true;  // 默认关闭联网搜索
+    function toggleSearch() {
+        enableSearch = !enableSearch;
+        const btn = document.getElementById('toggle-search');
+        if (enableSearch) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    }
+
+    async function sendMessage() {
+        const inputField = document.getElementById('user-input');
+        const fileInput = document.getElementById('file-input');
+        const chatBox = document.getElementById('chat-box');
+        let userMessage = inputField.value.trim();
+        let files = fileInput.files;
+
+        if (!userMessage && files.length === 0) return;
+
+        // 显示用户输入
+        const userTime = new Date().toLocaleTimeString();
+        chatBox.innerHTML += `
+        <div class="message user">
+            <img src="/deepseek_ai/static/templates/zh_CN/image/user.png" alt="User">
+            <span>${userMessage}</span>
+            <span style="font-size: 10px; color: #888; margin-left: 10px;">${userTime}</span>
+        </div>`;
+        inputField.value = '';
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // 处理文件内容
+        let fileContent = '';
+        let base64File = '';
+        let fileName = '';
+        if (files.length > 0) {
+            const file = files[0];
+            try {
+                fileContent = await extractTextFromfile(file, file.type);
+                base64File = await toBase64(file);
+                fileName = file.name;
+            } catch (error) {
+                console.error("文件解析失败:", error);
+                return;
+            }
+        }
+        // **清空文件输入框**
+        fileInput.value = '';
+        // 发送 AI 请求
+        startAIStream(userMessage, fileContent, base64File, fileName);
+    }
+
+
+    function startAIStream(userMessage, fileContent, base64File, fileName) {
+        const chatBox = document.getElementById('chat-box');
+
+        const botMessageDiv = document.createElement('div');
+        botMessageDiv.classList.add('message', 'bot');
+        botMessageDiv.innerHTML = `
+        <img src="/deepseek_ai/static/templates/zh_CN/image/icon.png" alt="Bot">
+        <span id="bot-response">AI 正在思考...</span>
+        <span id="bot-time" style="font-size: 10px; color: #888; margin-left: 10px;"></span>`;
+        chatBox.appendChild(botMessageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+        const botResponseSpan = botMessageDiv.querySelector("#bot-response");
+        const botTimeSpan = botMessageDiv.querySelector("#bot-time");
+
+        const params = new URLSearchParams({
+            user_message: userMessage,
+            file_content: fileContent
+        });
+
+        const eventSource = new EventSource(`/ai/stream_chat?${params.toString()}`);
+        let fullBotMessage = "";  // ✨ 用来收集完整的 AI 回复
+        botResponseSpan.innerText = "";
+        eventSource.onmessage = function (event) {
+            if (event.data === "[DONE]") {
+                eventSource.close();
+                botTimeSpan.innerText = new Date().toLocaleTimeString();
+                createHistoryRecord(userMessage, fullBotMessage, base64File, fileName);
+                return;
+            }
+
+            try {
+                const jsonData = JSON.parse(event.data);
+                const deltaContent = jsonData.choices[0]?.delta?.content;
+                if (deltaContent) {
+                    fullBotMessage += deltaContent;
+                    // **优化：使用 requestAnimationFrame 批量更新**
+                    requestAnimationFrame(() => {
+                        botResponseSpan.innerHTML = marked.parse(fullBotMessage); // 使用 Markdown 解析器
+                        chatBox.scrollTop = chatBox.scrollHeight;
+                    });
+                }
+            } catch (e) {
+                console.error("解析数据出错:", e);
+            }
+        };
+
+        eventSource.onerror = function (err) {
+            console.error("SSE 连接错误:", err);
+            eventSource.close();
+            botResponseSpan.innerText += "\n[连接已断开]";
+        };
+    }
+
+    async function createHistoryRecord(userMessage, aiMessage, base64File = '', fileName = '') {
+        try {
+            const response = await axios.post('/ai/create_chat_history', {
+                user_message: userMessage,
+                ai_message: aiMessage,
+                annex_file: base64File,
+                annex_filename: fileName
+            });
+            console.log("创建历史记录的响应:", response.data);
+            if (response.data.result.success) {
+                console.log("历史记录创建成功");
+            } else {
+                console.error("历史记录创建失败", response.data.error);
+            }
+        } catch (error) {
+            console.error("调用后端接口失败", error);
+        }
+    }
+
+    async function extractTextFromfile(file, fileType) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+
+            reader.onload = async function (event) {
+                const fileContent = event.target.result; // 这里确保是 ArrayBuffer
+
+                if (fileType === 'application/pdf') {
+                    try {
+                        // 处理 PDF（转换为 Uint8Array）
+                        const pdfData = new Uint8Array(fileContent);
+                        const pdfjsLib = window['pdfjs-dist/build/pdf'];
+                        pdfjsLib.GlobalWorkerOptions.workerSrc = '/deepseek_ai/static/templates/zh_CN/js/pdf.worker.min.js';
+
+                        const loadingTask = pdfjsLib.getDocument({data: pdfData});
+                        const pdf = await loadingTask.promise;
+                        let text = '';
+
+                        for (let i = 1; i <= pdf.numPages; i++) {
+                            const page = await pdf.getPage(i);
+                            const textContent = await page.getTextContent();
+                            text += textContent.items.map(item => item.str).join(' ') + '\n';
+                        }
+                        resolve(text);
+                    } catch (error) {
+                        reject("PDF 解析失败: " + error);
+                    }
+                } else if (fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || fileType === 'application/msword') {
+                    try {
+                        // 使用 Mammoth.js 解析 Word 文档
+                        mammoth.extractRawText({arrayBuffer: fileContent}).then(result => {
+                            resolve(result.value);
+                        }).catch(error => {
+                            reject("Word 解析失败: " + error);
+                        });
+                    } catch (error) {
+                        reject("Word 解析失败: " + error);
+                    }
+                } else if (fileType === 'text/plain') {
+                    try {
+                        // 解析 TXT 文件（确保是 ArrayBuffer）
+                        const textDecoder = new TextDecoder("utf-8");
+                        resolve(textDecoder.decode(new Uint8Array(fileContent)));
+                    } catch (error) {
+                        reject("TXT 解析失败: " + error);
+                    }
+                } else if (fileType === 'image/png' || fileType === 'image/jpeg') {
+                    try {
+                        // 处理图片 OCR 识别
+                        const {data: {text}} = await Tesseract.recognize(fileContent, 'eng+chi_sim', {
+                            logger: m => console.log(m) // 仅用于调试，查看 OCR 进度
+                        });
+                        resolve(text);
+                    } catch (error) {
+                        reject("图片 OCR 解析失败: " + error);
+                    }
+                } else if (fileType === 'application/vnd.ms-excel' || fileType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+                    try {
+                        // 解析 Excel 文件
+                        const workbook = XLSX.read(fileContent, {type: 'array'});
+                        let text = '';
+
+                        workbook.SheetNames.forEach(sheetName => {
+                            const sheet = workbook.Sheets[sheetName];
+                            const sheetText = XLSX.utils.sheet_to_csv(sheet); // 转换为 CSV 格式
+                            text += `\n--- ${sheetName} ---\n${sheetText}\n`;
+                        });
+
+                        resolve(text);
+                    } catch (error) {
+                        reject("Excel 解析失败: " + error);
+                    }
+                } else {
+                    reject("不支持的文件类型：" + fileType);
+                }
+            };
+            // 选择正确的文件读取方式
+            if (fileType === 'application/pdf' || fileType.startsWith('application/vnd.openxmlformats-officedocument.wordprocessingml.document') || fileType === 'application/vnd.ms-excel' || fileType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+                reader.readAsArrayBuffer(file);  // 确保 PDF & Word 以 ArrayBuffer 形式读取
+            } else if (fileType === 'text/plain') {
+                reader.readAsArrayBuffer(file);  // TXT 也用 ArrayBuffer，确保 `TextDecoder` 兼容性
+            } else if (fileType === 'image/png' || fileType === 'image/jpeg') {
+                reader.readAsDataURL(file); // 图片必须以 DataURL 读取，供 OCR 解析
+            } else {
+                reader.readAsText(file);  // 其他未知格式默认转文本
+            }
+        });
+    }
+
+    // 工具函数 - 转 base64
+    function toBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                const base64Data = reader.result.split(',')[1]; // 去掉 data:xxx;base64,
+                resolve(base64Data);
+            };
+            reader.onerror = (error) => reject(error);
+        });
+    }
+
+    document.getElementById("history-button").addEventListener("click", function () {
+        document.getElementById("history-drawer").classList.toggle("open");
+        fetchChatHistory();  // 获取聊天历史
+    });
+
+    document.getElementById("close-drawer").addEventListener("click", function () {
+        document.getElementById("history-drawer").classList.remove("open");
+    });
+
+
+    async function fetchChatHistory() {
+        const response = await fetch('/ai/history', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({period: '7days'})
+        });
+        const data = await response.json();
+        renderChatHistory(data.result.history);
+    }
+
+    function renderChatHistory(history) {
+        const historyContainer = document.getElementById('history-content');
+        historyContainer.innerHTML = ''; // 清空旧数据
+        if (!history || history.length === 0) {
+            historyContainer.innerHTML = '<p style="color: gray; text-align: center;">暂无历史记录</p>';
+            return;
+        }
+
+        history.forEach(record => {
+            const chatItem = document.createElement('div');
+            chatItem.classList.add('chat-item');
+            // 用户消息
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user');
+            userMessage.innerHTML = `
+            <img src="/deepseek_ai/static/templates/zh_CN/image/user.png" alt="User" class="chat-avatar">
+            <div class="chat-bubble user-bubble">${record.message}</div>
+            <span class="chat-time">${record.create_date}</span>
+        `;
+            historyContainer.appendChild(userMessage);
+
+            // AI 回复
+            const aiMessage = document.createElement('div');
+            aiMessage.classList.add('message', 'ai');
+            aiMessage.innerHTML = `
+            <img src="/deepseek_ai/static/templates/zh_CN/image/icon.png" alt="Bot" class="chat-avatar">
+            <div class="chat-bubble ai-bubble">${marked.parse(record.ai_response)}</div>
+            <span class="chat-time">${record.create_date}</span>
+        `;
+            historyContainer.appendChild(aiMessage);
+        });
+    }
+</script>
+</body>
+</html>

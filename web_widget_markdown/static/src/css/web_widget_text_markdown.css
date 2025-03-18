@@ -1,0 +1,100 @@
+.o_field_text_markdown blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 1em 10px 0.1em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+
+/* 编辑器样式 */
+.o_field_text_markdown_editor {
+    width: 100%;
+    min-height: 120px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 8px;
+    font-family: monospace;
+}
+
+/* 只读模式样式 */
+.o_field_text_markdown_readonly {
+    padding: 8px;
+}
+
+/* Markdown 样式 */
+.markdown-preview {
+    min-height: 100px;
+    background-color: #f8f9fa;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.markdown-content h1 { font-size: 2.5rem; }
+.markdown-content h2 { font-size: 2rem; }
+.markdown-content h3 { font-size: 1.75rem; }
+.markdown-content h4 { font-size: 1.5rem; }
+.markdown-content h5 { font-size: 1.25rem; }
+.markdown-content h6 { font-size: 1rem; }
+
+.markdown-content strong {
+    font-weight: bold;
+}
+
+.markdown-content em {
+    font-style: italic;
+}
+
+.markdown-content code {
+    font-family: monospace;
+    background-color: #f0f0f0;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.markdown-content pre {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.markdown-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+    padding-left: 2rem;
+}
+
+.markdown-content blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1rem 0;
+    padding: 0.5rem 10px;
+}
+
+.markdown-content a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.markdown-content a:hover {
+    text-decoration: underline;
+}
+
+.o_field_text_markdown img {
+    max-width: 100%;
+    height: auto;
+}

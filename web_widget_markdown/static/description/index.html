@@ -1,27 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Web Widget Text Markdown</title>
+    <style>
+        .oe_container {
+            padding: 15px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            text-align: center; /* 让文本居中 */
+            max-width: 900px; /* 设置最大宽度 */
+            margin: 0 auto; /* 居中显示 */
+        }
+
+        .oe_row, .oe_span12, .feature-section {
+            text-align: left; /* 让段落内容保持正常左对齐 */
+            margin: 0 auto;
+            max-width: 800px; /* 让内容区域居中 */
+        }
+
+        .oe_demo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /*.oe_screenshot img {*/
+        /*    display: block;*/
+        /*    margin: 0 auto; !* 让图片居中 *!*/
+        /*}*/
+
+        ul {
+            text-align: center; /* 让列表文本居中 */
+            padding-left: 0;
+        }
+
+        ul li {
+            display: inline-block;
+            margin: 0 10px; /* 让列表项横向排列 */
+        }
+
+        /*.oe_container {*/
+        /*    padding: 15px;*/
+        /*    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
+        /*}*/
+
+        /*.oe_row {*/
+        /*    width: 100%;*/
+        /*    margin-top: 16px;*/
+        /*    margin-bottom: 16px;*/
+        /*}*/
+
+        /*.oe_span12 {*/
+        /*    width: 100%;*/
+        /*    margin-bottom: 32px;*/
+        /*}*/
+
+        .oe_slogan {
+            text-align: center;
+            margin-top: 32px;
+            margin-bottom: 32px;
+        }
+
+        /*.oe_demo {*/
+        /*    border: 1px solid #eee;*/
+        /*    border-radius: 4px;*/
+        /*    margin: 16px 0;*/
+        /*    padding: 16px;*/
+        /*}*/
+
+        .oe_screenshot {
+            text-align: center;
+        }
+
+        .oe_screenshot img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-section {
+            margin: 32px 0;
+            padding: 24px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .feature-item {
+            margin: 16px 0;
+        }
+
+        .feature-title {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .feature-description {
+            color: #888;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
 <section class="oe_container">
     <div class="oe_row oe_spaced" style="max-width: 800px;">
         <div class="oe_span12">
             <h2 class="oe_slogan" style="color:#e68a00; text-align: center;">
-              Widget Text Markdown
+                Web Widget Text Markdown
             </h2>
+            <h3 class="oe_slogan" style="color:#666;">
+                为 Odoo 表单字段添加 Markdown Widget支持
+            </h3>
         </div>
+
+        <!-- 功能特点部分 -->
+        <div class="feature-section">
+            <h3 style="color:#e68a00;">主要功能</h3>
+            <div class="feature-item">
+                <div class="feature-title">✨ 实时预览</div>
+                <div class="feature-description">
+                    支持 Markdown 实时编辑和预览切换，让您的文档编辑更加直观。
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-title">📝 完整语法支持</div>
+                <div class="feature-description">
+                    支持标题、列表、链接、代码块等常用 Markdown 语法。
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-title">🎨 美观的渲染效果</div>
+                <div class="feature-description">
+                    使用现代化的样式渲染 Markdown 内容，提供良好的阅读体验。
+                </div>
+            </div>
+        </div>
+
+        <!-- 示例展示部分 -->
         <div class="oe_row oe_spaced" style="max-width: 800px;">
             <div class="oe_demo">
-                <h3 class="oe_slogan">Example1</h3>
+                <h3 class="oe_slogan">应用模块</h3>
             </div>
             <div class="oe_demo oe_screenshot">
-                <img src="img3.png"/>
-                </a>
+                <img src="img3.png" alt="编辑模式示例"/>
             </div>
         </div>
+
         <div class="oe_row oe_spaced" style="max-width: 800px;">
             <div class="oe_demo">
-                <h3 class="oe_slogan">Example2</h3>
+                <h3 class="oe_slogan">预览模式</h3>
             </div>
             <div class="oe_demo oe_screenshot">
-                <img src="img2.png"/>
-                </a>
+                <img src="img2.png" alt="预览模式示例"/>
             </div>
+        </div>
+
+        <!-- 使用说明部分 -->
+        <div class="feature-section">
+            <h3 style="color:#e68a00;">使用方法</h3>
+            <div class="feature-item">
+                <div class="feature-title">1. 在字段定义中使用</div>
+                <div class="feature-description">
+                    在 Python 模型中定义字段时，设置 widget 属性为 "bootstrap_markdown"：
+                    <pre style="background:#f5f5f5;padding:10px;border-radius:4px;">
+ description = fields.Text(string="描述")</pre>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-title">2. 在视图中使用</div>
+                <div class="feature-description">
+                    在表单视图中使用 widget 属性：
+                    <pre style="background:#f5f5f5;padding:10px;border-radius:4px;">
+&lt;field name="description" widget="bootstrap_markdown"/&gt;</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- 技术支持部分 -->
+        <div class="oe_span12">
+            <h3 class="oe_slogan" style="color:#e68a00;">技术支持</h3>
+            <p style="text-align:center;">
+                如果您在使用过程中遇到任何问题，请通过以下方式联系我们：
+            </p>
+            <ul style="list-style:none;text-align:center;padding:0;">
+                <li>📧 Email: 13655699934@163.com</li>
+                <li>💬 Website: https://www.hxmelon.com</li>
+            </ul>
         </div>
     </div>
 </section>
+</body>
+</html>

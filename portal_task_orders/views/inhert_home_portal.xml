@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+        <!-- 继承原始 language_selector 视图 -->
+        <template id="inherit_language_selector" inherit_id="portal.language_selector">
+            <xpath expr="." position="replace">
+                <template id="language_selector" name="Language Selector">
+                    <!-- 清空内容 -->
+                </template>
+            </xpath>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,13 @@
+<odoo>
+    <template id="portal_my_home_task" inherit_id="portal.portal_my_home" name="Portal My Tasks">
+        <xpath expr="//div[contains(@class, 'o_portal_my_home')]//div[contains(@class, 'row')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/portal_task_orders/static/img/task.svg'"/>
+                <t t-set="title">我的任务</t>
+                <t t-set="text">查看您的任务列表</t>
+                <t t-set="url" t-value="'/my/card/task/orders'"/>
+                <t t-set="config_card" t-value="True"/>
+            </t>
+        </xpath>
+    </template>
+</odoo>

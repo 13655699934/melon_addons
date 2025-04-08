@@ -1,0 +1,35 @@
+<odoo>
+    <template id="portal_task_edit_001" name="Edit Portal Task Order">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <h2 class="mb-4">编辑任务卡</h2>
+                <form action="/my/card/task/orders/update" method="post">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <input type="hidden" name="task_id" t-att-value="task.id"/>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>任务卡名称</th>
+                                <td><input type="text" name="name" class="form-control" t-att-value="task.name"/></td>
+                                <th>任务卡编号</th>
+                                <td><input type="text" name="task_card_number" class="form-control" t-att-value="task.task_card_number"/></td>
+                            </tr>
+                            <tr>
+                                <th>项目名称</th>
+                                <td><input type="text" name="project_name" class="form-control" t-att-value="task.project_name"/></td>
+                                <th>合同编号</th>
+                                <td><input type="text" name="contract_number" class="form-control" t-att-value="task.contract_number"/></td>
+                            </tr>
+                            <tr>
+                                <th>任务说明</th>
+                                <td colspan="3"><textarea name="task_description" class="form-control"><t t-esc="task.task_description"/></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="submit" class="btn btn-success">保存</button>
+                    <a href="/my/card/task/orders" class="btn btn-secondary">取消</a>
+                </form>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- 任务卡 list 视图 -->
+    <record id="view_task_card_order_list" model="ir.ui.view">
+        <field name="name">task.card.order.list</field>
+        <field name="model">task.card.order</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="task_card_number"/>
+                <field name="project_name"/>
+                <field name="project_manager"/>
+                <field name="partner_id"/>
+                <field name="contract_number"/>
+                <field name="service_party_code"/>
+                <field name="service_party_name"/>
+                <field name="department"/>
+                <field name="task_due_date"/>
+                <field name="total_manday"/>
+                <field name="approver"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+
+
+    <!-- 任务卡 form 视图 -->
+    <record id="view_task_card_order_form" model="ir.ui.view">
+        <field name="name">task.card.order.form</field>
+        <field name="model">task.card.order</field>
+        <field name="arch" type="xml">
+            <form string="任务卡">
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <!-- 第一部分: 基本信息 -->
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="task_card_number"/>
+                            <field name="project_name"/>
+                            <field name="project_manager"/>
+                            <field name="partner_id"/>
+                        </group>
+                        <group>
+                            <field name="contract_number"/>
+                            <field name="contract_name"/>
+                            <field name="service_party_code"/>
+                            <field name="service_party_name"/>
+                            <field name="department"/>
+                        </group>
+                    </group>
+
+                    <!-- 任务时间信息 -->
+                    <group string="任务时间">
+                        <group>
+                            <field name="task_submission"/>
+                            <field name="requirement_submission_time"/>
+                            <field name="task_due_date"/>
+
+                        </group>
+                        <group>
+                              <field name="task_card_download_date"/>
+                            <field name="task_deadline"/>
+                            <field name="is_overdue"/>
+                        </group>
+                    </group>
+                    <group string="任务进度">
+                        <group>
+                            <field name="task_description"/>
+                            <field name="task_items"/>
+                            <field name="development_progress"/>
+                            <field name="progress_description"/>
+                        </group>
+                        <group>
+                            <field name="system_analyst"/>
+                            <field name="requirement_leader"/>
+                            <field name="requirement_person"/>
+                            <field name="requirement_type"/>
+                        </group>
+                    </group>
+                    <group string="附件">
+                        <field name="attachment_ids" widget="many2many_binary"/>
+                    </group>
+                    <notebook>
+                        <page string="任务清单">
+                            <field name="task_list_ids">
+                                <list>
+                                    <field name="task_item"/>
+                                    <field name="project_manager"/>
+                                    <field name="developer"/>
+                                    <field name="architect"/>
+                                    <field name="product_manager"/>
+                                    <field name="ui_ux"/>
+                                    <field name="tester"/>
+                                    <field name="ops_engineer"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- 任务卡 Kanban 视图 -->
+    <record id="view_task_card_order_kanban" model="ir.ui.view">
+        <field name="name">task.card.order.kanban</field>
+        <field name="model">task.card.order</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_view">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record">
+                            <div class="o_kanban_content">
+                                <strong t-esc="record.name.value"/>
+                                <div>
+                                    <span class="text-muted">任务编号:</span>
+                                    <span t-esc="record.task_card_number.value"/>
+                                </div>
+                                <div>
+                                    <span class="text-muted">项目:</span>
+                                    <span t-esc="record.project_name.value"/>
+                                </div>
+                                <div>
+                                    <span class="text-muted">负责人:</span>
+                                    <span t-esc="record.project_manager.value"/>
+                                </div>
+                                <div>
+                                    <span class="text-muted">截止日期:</span>
+                                    <span t-esc="record.task_deadline.value"/>
+                                </div>
+                            </div>
+                            <div class="o_kanban_footer_bottom">
+                                <span class="badge" t-att-class="'badge-' + record.state.raw_value">
+                                    <t t-esc="record.state.value"/>
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="view_task_card_order_line_list" model="ir.ui.view">
+        <field name="name">task.card.order.line.list</field>
+        <field name="model">task.card.order.line</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="task_item"/>
+                <field name="project_manager"/>
+                <field name="developer"/>
+                <field name="architect"/>
+                <field name="product_manager"/>
+                <field name="ui_ux"/>
+                <field name="tester"/>
+                <field name="ops_engineer"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_task_card_order_line_form" model="ir.ui.view">
+        <field name="name">task.card.order.line.form</field>
+        <field name="model">task.card.order.line</field>
+        <field name="arch" type="xml">
+            <form string="任务清单">
+                <sheet>
+                    <group>
+                        <field name="task_item"/>
+                        <field name="project_manager"/>
+                        <field name="developer"/>
+                        <field name="architect"/>
+                        <field name="product_manager"/>
+                        <field name="ui_ux"/>
+                        <field name="tester"/>
+                        <field name="ops_engineer"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- 任务卡 action -->
+    <record id="action_task_card_order" model="ir.actions.act_window">
+        <field name="name">任务卡</field>
+        <field name="res_model">task.card.order</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="help" type="html">
+            <p>在这里管理所有的任务卡。</p>
+        </field>
+    </record>
+
+    <!-- 任务卡菜单 -->
+    <menuitem id="menu_task_card_root" name="任务管理" sequence="10"
+      web_icon="portal_task_orders,static/description/icon.png"
+    />
+
+    <menuitem id="menu_task_card_order" name="任务卡" parent="menu_task_card_root"
+              action="action_task_card_order" sequence="10"/>
+</odoo>

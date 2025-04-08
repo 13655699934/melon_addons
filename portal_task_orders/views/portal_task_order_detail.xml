@@ -1,0 +1,122 @@
+<odoo>
+    <template id="portal_task_detail_001" name="Portal Task Order Detail">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <h2 class="mb-4">任务卡详情</h2>
+                <!-- 任务基本信息 -->
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th >任务卡名称</th>
+                            <td t-esc="task.name or ''"/>
+                            <th>任务卡编号</th>
+                            <td t-esc="task.task_card_number or ''"/>
+                        </tr>
+                        <tr>
+                            <th>项目名称</th>
+                            <td t-esc="task.project_name or ''"/>
+                            <th>合同编号</th>
+                            <td t-esc="task.contract_number or ''"/>
+                        </tr>
+                        <tr>
+                            <th>项目负责人</th>
+                            <td t-esc="task.project_manager.name or ''"/>
+                            <th>服务方负责人</th>
+                            <td t-esc="task.partner_id.name or ''"/>
+                        </tr>
+                        <tr>
+                            <th>服务方编码</th>
+                            <td t-esc="task.service_party_code or ''"/>
+                            <th>服务方名称</th>
+                            <td t-esc="task.partner_id.name or ''"/>
+                        </tr>
+                        <tr>
+                            <th>任务提出部门</th>
+                            <td t-esc="task.department or ''"/>
+                            <th>任务下发日期</th>
+                            <td t-esc="task.task_due_date or ''"/>
+                        </tr>
+                        <tr>
+                            <th>合计人天</th>
+                            <td t-esc="task.total_manday or ''"/>
+                            <th>审核人</th>
+                            <td t-esc="task.approver.name or ''"/>
+                        </tr>
+                        <tr>
+                            <th>任务说明</th>
+                            <td colspan="3" t-esc="task.task_description or ''"/>
+                        </tr>
+                        <tr>
+                            <th>状态</th>
+                            <td colspan="3">
+                                <span class="badge bg-success" t-if="task.state == 'done'">已完成</span>
+                                <span class="badge bg-warning" t-if="task.state == 'in'">进行中</span>
+                                <span class="badge bg-secondary" t-if="task.state == 'confirm'">已确认</span>
+                                <span class="badge bg-secondary" t-if="task.state == 'draft'">草稿</span>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- 附件 -->
+                <!-- 附件 -->
+                <div class="mb-4">
+                    <h4>附件文件</h4>
+                    <t t-if="task.attachment_ids">
+                        <ul class="list-unstyled">
+                            <t t-foreach="task.attachment_ids" t-as="attachment">
+                                <li>
+                                    <a t-att-href="'/web/content/%s/%s?download=true' % attachment.id" target="_blank">
+                                        <i class="fa fa-paperclip"></i>
+                                        <t t-esc="attachment.name"/>
+                                    </a>
+                                </li>
+                            </t>
+                        </ul>
+                    </t>
+                </div>
+
+                <!-- 任务清单子表 -->
+                <h4 class="mt-4">任务清单</h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead class="table-light">
+                            <tr>
+                                <th>任务项</th>
+                                <th>项目经理</th>
+                                <th>开发工程师</th>
+                                <th>架构工程师</th>
+                                <th>产品经理</th>
+                                <th>UI/UE</th>
+                                <th>测试工程师</th>
+                                <th>运维工程师</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="task.task_list_ids" t-as="task_line">
+                                <tr>
+                                    <td t-esc="task_line.task_item"/>
+                                    <td t-esc="task_line.project_manager.name or ''"/>
+                                    <td t-esc="task_line.developer.name or ''"/>
+                                    <td t-esc="task_line.architect.name or ''"/>
+                                    <td t-esc="task_line.product_manager.name or ''"/>
+                                    <td t-esc="task_line.ui_ux.name or ''"/>
+                                    <td t-esc="task_line.tester.name or ''"/>
+                                    <td t-esc="task_line.ops_engineer.name or ''"/>
+                                </tr>
+                            </t>
+                            <t t-if="not task.task_list_ids">
+                                <tr>
+                                    <td colspan="8">暂无任务清单</td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+
+                <a href="/my/card/task/orders" class="btn btn-secondary mt-3">返回列表</a>
+            </div>
+        </t>
+    </template>
+</odoo>

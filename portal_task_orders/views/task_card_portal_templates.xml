@@ -1,0 +1,124 @@
+<odoo>
+    <template id="portal_task_temp_001" name="Portal Task Orders">
+        <style>
+            .table th, .table td {
+            min-width: 120px; /* 限制最小宽度 */
+            max-width: 200px; /* 限制最大宽度 */
+            white-space: normal; /* 允许换行 */
+            word-break: break-all; /* 长单词折行 */
+            padding: 8px;
+            border: 1px solid #dee2e6;
+            }
+        </style>
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <!-- 筛选框区域 -->
+                <form method="get" action="/my/task/orders">
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-3 d-flex align-items-center flex-nowrap">
+                            <label class="me-2 fw-bold" style="min-width: 80px;">项目名称</label>
+                            <input type="text" name="project_name" class="form-control flex-grow-1"
+                                   placeholder="输入..." t-att-value="project_name or ''"/>
+                        </div>
+
+                        <div class="col-md-3 d-flex align-items-center flex-nowrap">
+                            <label class="me-2 fw-bold" style="min-width: 80px;">合同编号</label>
+                            <input type="text" name="contract_number" class="form-control flex-grow-1"
+                                   placeholder="输入..." t-att-value="contract_number or ''"/>
+                        </div>
+
+                        <div class="col-md-3 d-flex align-items-center flex-nowrap">
+                            <label class="me-2 fw-bold" style="min-width: 80px;">任务状态</label>
+                            <select name="state" class="form-select flex-grow-1">
+                                <option value="">全部</option>
+                                <option value="draft" t-att-selected="state == 'draft'">草稿</option>
+                                <option value="in" t-att-selected="state == 'in'">进行中</option>
+                                <option value="done" t-att-selected="state == 'done'">已完成</option>
+                                <option value="confirm" t-att-selected="state == 'confirm'">已确认</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 d-flex align-items-center flex-nowrap">
+                            <label class="me-2 fw-bold" style="min-width: 80px;">下发日期</label>
+                            <input type="date" name="start_date" class="form-control flex-grow-1"
+                                   t-att-value="start_date or ''"/>
+                            <input type="date" name="end_date" class="form-control flex-grow-1 ms-2"
+                                   t-att-value="end_date or ''"/>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">搜索</button>
+                </form>
+
+                <!-- 表格 -->
+                <div class="table-responsive" style="overflow-x: auto;">
+                    <table class="table table-bordered text-center" style="min-width: 3000px; white-space: nowrap;">
+                        <thead>
+                            <tr class="bg-primary text-white">
+                                <th>序号</th>
+                                <th>任务卡编号</th>
+                                <th>任务卡名称</th>
+                                <th>合同编号</th>
+                                <th>合同名称</th>
+                                <th>项目名称</th>
+                                <th>项目经理</th>
+                                <th>系统分析师</th>
+                                <th>需求提出部门</th>
+                                <th>需求提出部门领导</th>
+                                <th>需求提出人</th>
+                                <th>提出类型</th>
+                                <th>需求提出时间</th>
+                                <th>任务下发日期</th>
+                                <!--                                <th>任务说明</th>-->
+                                <th>服务商名称</th>
+                                <th>任务截止日期</th>
+                                <th>开发进度</th>
+                                <th>任务状态</th>
+                                <th>查看详情</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="sequence" t-value="0"/>  <!-- 初始化序号 -->
+                            <t t-foreach="task_cards" t-as="task">
+                                <tr>
+                                    <td t-esc="sequence"/>  <!-- 显示自增的序号 -->
+                                    <t t-set="sequence" t-value="sequence + 1"/>  <!-- 递增 -->
+                                    <td t-esc="task.task_card_number or ''"/>
+                                    <td t-esc="task.name or ''"/>
+                                    <td t-esc="task.contract_number or ''"/>
+                                    <td t-esc="task.contract_name or ''"/>
+                                    <td t-esc="task.project_name or ''"/>
+                                    <td t-esc="task.project_manager.name or ''"/>
+                                    <td t-esc="task.system_analyst.name or ''"/>
+                                    <td t-esc="task.department or ''"/>
+                                    <td t-esc="task.requirement_leader or ''"/>
+                                    <td t-esc="task.requirement_person or ''"/>
+                                    <td t-esc="task.requirement_type or ''"/>
+                                    <td t-esc="task.requirement_submission_time or ''"/>
+                                    <td t-esc="task.task_due_date or ''"/>
+                                    <!--                                    <td t-esc="task.task_description or ''"/>-->
+                                    <td t-esc="task.partner_id.name or ''"/>
+                                    <td t-esc="task.task_deadline or ''"/>
+                                    <td t-esc="task.development_progress or ''"/>
+                                    <td>
+                                        <span class="badge bg-success" t-if="task.state == 'done'">已完成</span>
+                                        <span class="badge bg-warning" t-if="task.state == 'in'">进行中</span>
+                                        <span class="badge bg-secondary" t-if="task.state == 'draft'">草稿</span>
+                                        <span class="badge bg-secondary" t-if="task.state == 'confirm'">已确认</span>
+                                    </td>
+                                    <td>
+                                        <a t-att-href="'/my/card/task/order/%s' % task.id" class="btn btn-primary">详情
+                                        </a>
+                                        <a t-att-href="'/my/card/task/orders/edit/%s' % task.id"
+                                           class="btn btn-primary">编辑
+                                        </a>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -51,7 +51,7 @@ Field Masking Widget
     'website': 'https://www.zjdtcloud.com/',
     'license': 'LGPL-3',
     'depends': ['web'],
-    'images': ['static/description/image.png'],
+    'images': ['static/description/img_1.png'],
     'data': [],
     'assets': {
         'web.assets_backend': [

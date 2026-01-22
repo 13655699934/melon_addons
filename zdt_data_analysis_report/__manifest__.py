@@ -5,7 +5,7 @@
     'author': "melon",
     'category': 'tools',
     'version': '18.0',
-    'website': "www.hxmelon.com",
+    'website': "https://www.zjdtcloud.com",
     'depends': ['base', 'hr','web'],
     'application': True,
     "images": ["static/description/img.png"],

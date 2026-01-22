@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="web_field_mask.MaskedFieldWidget" owl="1">
+
+    <!-- ✅ list/tree：纯文本展示（无边框） -->
+    <t t-if="compactMode">
+      <span class="o_field_masked o_field_masked_list"
+            t-on-mouseenter="onMouseEnter"
+            t-on-mouseleave="onMouseLeave"
+            t-att-title="props.show_on_hover ? '悬停显示原文' : ''">
+        <t t-esc="displayValue"/>
+        <button type="button"
+                class="btn btn-link p-0 ms-1 o_field_masked_btn"
+                t-on-click="onCopyOriginal"
+                title="复制完整内容">📋</button>
+      </span>
+    </t>
+
+    <!-- ✅ form/kanban：保持你原来的交互与输入框外观 -->
+    <t t-else="">
+      <div class="o_field_masked_root">
+
+        <t t-if="state.editing">
+          <div class="o_field_masked_editrow">
+            <input class="o_input o_field_masked_input"
+                   type="text"
+                   t-att-value="originalValue"
+                   t-on-input="onInput"
+                   t-on-blur="stopEdit"
+                   t-on-keydown="onKeydown"
+                   autofocus="autofocus"/>
+            <button t-if="canEdit" type="button"
+                    class="btn btn-link p-0 ms-2 o_field_masked_btn"
+                    t-on-click="stopEdit"
+                    title="退出编辑">✅</button>
+          </div>
+        </t>
+
+        <t t-else="">
+          <div class="o_field_masked_viewrow"
+               t-on-mouseenter="onMouseEnter"
+               t-on-mouseleave="onMouseLeave">
+
+            <!-- ✅ 仍然保留输入框样式（只在 form） -->
+            <div class="o_input o_field_masked_fakeinput"
+                 t-att-class="{
+                    'o_field_masked_clickable': canEdit,
+                    'o_field_masked_hovering': state.showOriginal
+                 }"
+                 t-on-click="startEdit"
+                 t-att-title="canEdit ? '点击编辑' : ''">
+              <t t-esc="displayValue"/>
+            </div>
+
+            <t t-if="canEdit">
+              <button type="button"
+                      class="btn btn-link p-0 ms-2 o_field_masked_btn"
+                      t-on-click="startEdit"
+                      title="显示原文并编辑">👁</button>
+            </t>
+
+            <button type="button"
+                    class="btn btn-link p-0 ms-2 o_field_masked_btn"
+                    t-on-click="onCopyOriginal"
+                    title="复制完整内容">📋</button>
+          </div>
+        </t>
+
+      </div>
+    </t>
+
+  </t>
+</templates>

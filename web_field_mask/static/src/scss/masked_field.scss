@@ -1,0 +1,101 @@
+/* =========================
+ * Masked Field Widget (Odoo-like)
+ * ========================= */
+
+.o_field_masked_root {
+  width: 100%;
+}
+
+.o_field_masked_viewrow,
+.o_field_masked_editrow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* 这个是“默认脱敏显示”的容器：看起来像 o_input */
+.o_field_masked_fakeinput {
+  width: 100%;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+
+  /* 模拟 o_input 外观 */
+  padding: 6px 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  background: #fff;
+  color: #212529;
+
+  /* 允许选中复制 */
+  user-select: text;
+
+  /* 长内容别顶爆 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  transition: box-shadow .15s ease, border-color .15s ease, background-color .15s ease;
+}
+
+/* 可点击进入编辑 */
+.o_field_masked_fakeinput.o_field_masked_clickable {
+  cursor: pointer;
+}
+
+.o_field_masked_fakeinput.o_field_masked_clickable:hover {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, .12);
+}
+
+/* hover 显示原文时的视觉提示（可选） */
+.o_field_masked_fakeinput.o_field_masked_hovering {
+  border-style: dashed;
+}
+
+/* 编辑态 input（明文） */
+.o_field_masked_input {
+  width: 100%;
+}
+
+/* 右侧按钮 */
+.o_field_masked_btn {
+  text-decoration: none;
+  line-height: 1;
+  opacity: .8;
+}
+
+.o_field_masked_btn:hover {
+  opacity: 1;
+}
+
+/* 暗色模式 */
+@media (prefers-color-scheme: dark) {
+  .o_field_masked_fakeinput {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #f8f9fa;
+  }
+  .o_field_masked_fakeinput.o_field_masked_clickable:hover {
+    border-color: rgba(13, 110, 253, .6);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, .18);
+  }
+}
+
+.o_kanban_view .o_list_view .o_field_masked_list {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: inherit;
+  color: inherit;
+  letter-spacing: normal;
+}
+.o_list_view .o_field_masked_btn {
+  opacity: .7;
+}
+.o_list_view .o_field_masked_btn:hover {
+  opacity: 1;
+}
+

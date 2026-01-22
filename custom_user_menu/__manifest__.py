@@ -4,6 +4,7 @@
     "version": "18.0",
     "author": "melon",
     "license": "LGPL-3",
+    'website': 'https://www.zjdtcloud.com/',
     "depends": ["web"],
     'images': ['static/description/img2.png'],
     "assets": {

@@ -6,7 +6,7 @@
         Portal 任务管理
     """,
     'author': "melon",
-    'website': "https://www.hxmelon.com/",
+    'website': 'https://www.zjdtcloud.com/',
     'category': 'tools',
     'version': '18.0',
     "images": ["static/img/img.png"],

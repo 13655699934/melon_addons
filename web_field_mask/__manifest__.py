@@ -47,7 +47,7 @@ Field Masking Widget
 - 📋 双击复制到剪贴板
 - 🎨 更友好的视觉效果
 """,
-    'author': 'hsx',
+    'author': 'Melon',
     'website': 'https://www.zjdtcloud.com/',
     'license': 'LGPL-3',
     'depends': ['web'],

@@ -6,7 +6,7 @@
     'category': '个性化/排列',
     'sequence': 10,
     'author': 'melon',
-    'website': 'http://www.melon.com',
+    'website': 'https://www.zjdtcloud.com/',
     'depends': ['base', 'web'],
     "images": ["static/description/img.png"],
     'version': '18.0',

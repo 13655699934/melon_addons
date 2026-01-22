@@ -9,7 +9,7 @@
         """,
     "category": "Tools",
     "license": 'LGPL-3',
-    "website": "https://hxmelon.com",
+    'website': 'https://www.zjdtcloud.com/',
     "summary": "Widget adds markdown support",
     "images": ["static/description/img2.png"],
     "depends": ["web", "base"],

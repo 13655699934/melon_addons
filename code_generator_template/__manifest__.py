@@ -12,7 +12,7 @@
             根据字段值控制form表单编辑与创建按钮
     """,
     'author': 'melon',
-    'website': "http://www.yourcompany.com",
+    'website': "https://www.zjdtcloud.com/",
     'license': 'LGPL-3',
     'version': '18.0',
     'category': 'Tools',

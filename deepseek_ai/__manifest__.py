@@ -7,7 +7,7 @@
     """,
 
     'author': "Melon",
-    'website': "http://www.hxmelon.com/",
+    'website': 'https://www.zjdtcloud.com/',
     'version': '0.1',
     'external_dependencies': {
         'python': ['openai'],

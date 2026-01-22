@@ -8,7 +8,7 @@
     "license": 'LGPL-3',
     "description": """该模块允许管理员跟踪用户的使用系统的所有操作过程""",
     'author': 'melon',
-    'website': "http://www.yourcompany.com",
+    'website': "https://www.zjdtcloud.com/",
     "images": ["static/description/img.png"],
     "depends": [
         'base',

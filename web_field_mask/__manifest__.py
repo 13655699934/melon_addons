@@ -63,6 +63,4 @@ Field Masking Widget
     'installable': True,
     'application': False,
     'auto_install': False,
-    'price': 9.99,
-    'currency': 'USD',
 }

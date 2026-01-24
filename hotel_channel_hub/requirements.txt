@@ -1,0 +1,19 @@
+# Odoo 18 酒店管理系统依赖
+
+# Odoo 本身（如果从PyPI安装）
+# odoo==18.0
+
+# 数据库驱动
+psycopg2-binary>=2.9.5
+
+# Python标准库（一般已包含，列出供参考）
+# datetime
+# json
+# secrets
+# logging
+
+# 注意：
+# 1. Odoo官方Docker镜像已包含大部分依赖
+# 2. 如果使用Docker，通常不需要手动安装依赖
+# 3. 如果从源码安装Odoo，请参考Odoo官方requirements.txt
+

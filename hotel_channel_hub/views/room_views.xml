@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- 房间列表视图 -->
+        <record id="view_room_list" model="ir.ui.view">
+            <field name="name">hotel.room.list</field>
+            <field name="model">hotel.room</field>
+            <field name="arch" type="xml">
+                <list string="房间列表" decoration-success="status == 'vacant'"
+                      decoration-warning="status == 'reserved'" 
+                      decoration-danger="status == 'occupied'"
+                      decoration-muted="status == 'out_of_service'">
+                    <field name="hotel_id"/>
+                    <field name="number"/>
+                    <field name="room_type_id"/>
+                    <field name="floor"/>
+                    <field name="status"/>
+                    <field name="sale_type"/>
+                    <field name="price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="currency_id" column_invisible="1"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- 房间表单视图 -->
+        <record id="view_room_form" model="ir.ui.view">
+            <field name="name">hotel.room.form</field>
+            <field name="model">hotel.room</field>
+            <field name="arch" type="xml">
+                <form string="房间">
+                    <header>
+                        <button name="action_set_vacant" type="object" string="设为空闲" 
+                                class="oe_highlight" invisible="status == 'vacant'"/>
+                        <button name="action_set_out_of_service" type="object" string="设为维修" 
+                                invisible="status == 'out_of_service'"/>
+                        <button name="action_view_orders" type="object" string="查看订单"/>
+                        <field name="status" widget="statusbar" 
+                               statusbar_visible="vacant,reserved,occupied"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_orders" type="object" class="oe_stat_button" icon="fa-file-text">
+                                <field name="order_count" widget="statinfo" string="订单"/>
+                            </button>
+                        </div>
+                        <widget name="web_ribbon" title="已停用" bg_color="text-bg-danger" invisible="active"/>
+                        <widget name="web_ribbon" title="维修中" bg_color="text-bg-warning" invisible="status != 'out_of_service'"/>
+                        <field name="active" invisible="1"/>
+                        <group>
+                            <group>
+                                <field name="number" required="1"/>
+                                <field name="hotel_id" required="1"/>
+                                <field name="room_type_id" required="1" 
+                                       domain="[('hotel_id', '=', hotel_id)]"/>
+                                <field name="company_id" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="floor"/>
+                                <field name="sale_type"/>
+                                <field name="price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="min_channel_quota"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="note" nolabel="1" placeholder="备注信息..."/>
+                        </group>
+                        <notebook>
+                            <page string="当前订单">
+                                <group>
+                                    <field name="current_order_id" readonly="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- 房间看板视图 -->
+        <record id="view_room_kanban" model="ir.ui.view">
+            <field name="name">hotel.room.kanban</field>
+            <field name="model">hotel.room</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="id"/>
+                    <field name="number"/>
+                    <field name="hotel_id"/>
+                    <field name="room_type_id"/>
+                    <field name="floor"/>
+                    <field name="status"/>
+                    <field name="sale_type"/>
+                    <field name="price"/>
+                    <field name="currency_id"/>
+                    <field name="order_count"/>
+                    <field name="active"/>
+                    <templates>
+                        <t t-name="card">
+                            <div class="oe_kanban_global_click" style="position: relative;">
+                                <!-- 动态背景 - 根据房态变化 -->
+                                <t t-set="bg_gradient" t-value="'linear-gradient(135deg, #28a745 0%, #20c997 100%)'"/>
+                                <t t-if="record.status.raw_value == 'reserved'" t-set="bg_gradient" t-value="'linear-gradient(135deg, #ffc107 0%, #ff9800 100%)'"/>
+                                <t t-if="record.status.raw_value == 'occupied'" t-set="bg_gradient" t-value="'linear-gradient(135deg, #dc3545 0%, #c82333 100%)'"/>
+                                <t t-if="record.status.raw_value == 'out_of_service'" t-set="bg_gradient" t-value="'linear-gradient(135deg, #6c757d 0%, #495057 100%)'"/>
+                                
+                                <!-- 卡片头部 -->
+                                <div t-attf-style="background: {{bg_gradient}}; padding: 20px; border-radius: 8px 8px 0 0; color: white; position: relative;">
+                                    <!-- 停用标签 -->
+                                    <div t-if="!record.active.raw_value" 
+                                         style="position: absolute; top: 10px; right: 10px; background: #000; color: white; padding: 3px 10px; border-radius: 15px; font-size: 11px;">
+                                        已停用
+                                    </div>
+                                    
+                                    <!-- 房间号和房态 -->
+                                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                                        <div style="display: flex; align-items: center;">
+                                            <div style="background: rgba(255,255,255,0.2); padding: 12px; border-radius: 50%; margin-right: 12px;">
+                                                <i class="fa fa-door-open" style="font-size: 24px;" title="房间"/>
+                                            </div>
+                                            <div>
+                                                <div style="font-size: 24px; font-weight: bold; margin-bottom: 2px;">
+                                                    <field name="number"/>
+                                                </div>
+                                                <div style="font-size: 11px; opacity: 0.9;">
+                                                    <field name="floor"/>F 楼层
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 房态标签 -->
+                                        <div style="text-align: center; background: rgba(255,255,255,0.2); padding: 8px 12px; border-radius: 8px;">
+                                            <i class="fa fa-circle" style="font-size: 8px; margin-right: 5px;" title="状态"/>
+                                            <t t-if="record.status.raw_value == 'vacant'">空闲</t>
+                                            <t t-if="record.status.raw_value == 'reserved'">已预订</t>
+                                            <t t-if="record.status.raw_value == 'occupied'">已入住</t>
+                                            <t t-if="record.status.raw_value == 'out_of_service'">维修中</t>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 价格显示 -->
+                                    <div style="text-align: center; padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.2); margin-top: 10px;">
+                                        <div style="font-size: 32px; font-weight: bold; line-height: 1;">
+                                            ¥<field name="price"/>
+                                        </div>
+                                        <div style="font-size: 11px; opacity: 0.8; margin-top: 3px;">房间价格/晚</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 卡片内容 -->
+                                <div style="padding: 15px; background: white;">
+                                    <!-- 酒店和房型 -->
+                                    <div style="margin-bottom: 12px;">
+                                        <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 8px;">
+                                            <i class="fa fa-building" style="color: #667eea; margin-right: 5px;" title="所属酒店"/>
+                                            <strong style="color: #2c3e50;"><field name="hotel_id"/></strong>
+                                        </div>
+                                        <div style="background: #f8f9fa; padding: 10px; border-radius: 5px;">
+                                            <i class="fa fa-bed" style="color: #11998e; margin-right: 5px;" title="房型"/>
+                                            <strong style="color: #2c3e50;"><field name="room_type_id"/></strong>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 售卖类型标签 -->
+                                    <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                                        <t t-if="record.sale_type.raw_value == 'both'">
+                                            <span style="flex: 1; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 6px 12px; border-radius: 15px; font-size: 11px; text-align: center;">
+                                                <i class="fa fa-desktop"/> 线上
+                                            </span>
+                                            <span style="flex: 1; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 6px 12px; border-radius: 15px; font-size: 11px; text-align: center;">
+                                                <i class="fa fa-users"/> 线下
+                                            </span>
+                                        </t>
+                                        <t t-if="record.sale_type.raw_value == 'online'">
+                                            <span style="flex: 1; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 6px 12px; border-radius: 15px; font-size: 11px; text-align: center;">
+                                                <i class="fa fa-desktop"/> 仅线上售卖
+                                            </span>
+                                        </t>
+                                        <t t-if="record.sale_type.raw_value == 'offline'">
+                                            <span style="flex: 1; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 6px 12px; border-radius: 15px; font-size: 11px; text-align: center;">
+                                                <i class="fa fa-users"/> 仅线下售卖
+                                            </span>
+                                        </t>
+                                    </div>
+                                    
+                                    <!-- 订单统计 -->
+                                    <div style="border-top: 1px solid #dee2e6; padding-top: 12px;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <div style="display: flex; align-items: center;">
+                                                <i class="fa fa-file-text-o" style="color: #667eea; margin-right: 5px; font-size: 16px;" title="订单数"/>
+                                                <span style="color: #6c757d; font-size: 13px;">历史订单</span>
+                                            </div>
+                                            <strong style="color: #667eea; font-size: 18px;"><field name="order_count"/></strong>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 状态提示 -->
+                                    <div style="margin-top: 12px; padding: 8px; border-radius: 5px;" t-attf-style="background: {{record.status.raw_value == 'vacant' ? '#d4edda' : record.status.raw_value == 'reserved' ? '#fff3cd' : record.status.raw_value == 'occupied' ? '#f8d7da' : '#e2e3e5'}};">
+                                        <div style="font-size: 11px;" t-attf-style="color: {{record.status.raw_value == 'vacant' ? '#155724' : record.status.raw_value == 'reserved' ? '#856404' : record.status.raw_value == 'occupied' ? '#721c24' : '#383d41'}}; text-align: center;">
+                                            <t t-if="record.status.raw_value == 'vacant'">
+                                                <i class="fa fa-check-circle"/> 可立即入住
+                                            </t>
+                                            <t t-if="record.status.raw_value == 'reserved'">
+                                                <i class="fa fa-clock-o"/> 客人即将到达
+                                            </t>
+                                            <t t-if="record.status.raw_value == 'occupied'">
+                                                <i class="fa fa-user"/> 客人已入住
+                                            </t>
+                                            <t t-if="record.status.raw_value == 'out_of_service'">
+                                                <i class="fa fa-wrench"/> 暂停服务中
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- 房间搜索视图 -->
+        <record id="view_room_search" model="ir.ui.view">
+            <field name="name">hotel.room.search</field>
+            <field name="model">hotel.room</field>
+            <field name="arch" type="xml">
+                <search string="搜索房间">
+                    <field name="number" string="房间号"/>
+                    <field name="hotel_id"/>
+                    <field name="room_type_id"/>
+                    <separator/>
+                    <filter string="空闲" name="filter_vacant" domain="[('status', '=', 'vacant')]"/>
+                    <filter string="已预订" name="filter_reserved" domain="[('status', '=', 'reserved')]"/>
+                    <filter string="已入住" name="filter_occupied" domain="[('status', '=', 'occupied')]"/>
+                    <filter string="维修中" name="filter_out_of_service" domain="[('status', '=', 'out_of_service')]"/>
+                    <separator/>
+                    <filter string="线上线下" name="filter_both" domain="[('sale_type', '=', 'both')]"/>
+                    <filter string="仅线上" name="filter_online" domain="[('sale_type', '=', 'online')]"/>
+                    <filter string="仅线下" name="filter_offline" domain="[('sale_type', '=', 'offline')]"/>
+                    <separator/>
+                    <filter string="启用" name="filter_active" domain="[('active', '=', True)]"/>
+                    <group expand="0" string="分组">
+                        <filter string="酒店" name="group_hotel" context="{'group_by': 'hotel_id'}"/>
+                        <filter string="房型" name="group_room_type" context="{'group_by': 'room_type_id'}"/>
+                        <filter string="楼层" name="group_floor" context="{'group_by': 'floor'}"/>
+                        <filter string="状态" name="group_status" context="{'group_by': 'status'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- 房间动作 -->
+        <record id="action_hotel_room" model="ir.actions.act_window">
+            <field name="name">房间</field>
+            <field name="res_model">hotel.room</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="context">{'search_default_filter_active': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    创建第一个房间
+                </p>
+                <p>
+                    房间是酒店的具体售卖单位，需要关联到房型
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+

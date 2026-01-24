@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>酒店数据看板 </title>
+  <!-- TailwindCSS CDN（只用于布局与美化，可替换为平台样式） -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- ECharts CDN -->
+  <script src="/hotel_channel_hub/static/templates/hotel/js/echarts.min.js"></script>
+  <!-- Day.js 用于日期处理（轻量） -->
+  <script src="/hotel_channel_hub/static/templates/hotel/js/dayjs.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body{
+      background: linear-gradient(to bottom, #f0f4f8, #e8eef5);
+      min-height: 100vh;
+      color: #333;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    }
+    
+    /* KPI 卡片样式 */
+    .kpi{
+      border-radius: 1.25rem;
+      padding: 24px 28px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      color: white;
+    }
+    
+    .kpi:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+    
+    .kpi .small{
+      font-size: 0.875rem;
+      opacity: 0.9;
+      margin-bottom: 8px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.95);
+    }
+    
+    .kpi .text-2xl{
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: white;
+      -webkit-text-fill-color: white;
+      background: none;
+    }
+    
+    /* 蓝色卡片 */
+    .kpi-blue{
+      background: linear-gradient(135deg, #5b9cfe 0%, #7db4ff 100%);
+    }
+    
+    /* 粉色卡片 */
+    .kpi-pink{
+      background: linear-gradient(135deg, #ff8a9b 0%, #ffaab8 100%);
+    }
+    
+    /* 橙色卡片 */
+    .kpi-orange{
+      background: linear-gradient(135deg, #ffb366 0%, #ffc989 100%);
+    }
+    
+    /* 青色卡片 */
+    .kpi-cyan{
+      background: linear-gradient(135deg, #4ecdc4 0%, #6eeae1 100%);
+    }
+    
+    /* 紫色卡片 */
+    .kpi-purple{
+      background: linear-gradient(135deg, #a78bfa 0%, #c4b5fd 100%);
+    }
+    
+    /* 图表卡片 */
+    .glass{
+      background: white;
+      border-radius: 1.25rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+    
+    .glass:hover{
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card{
+      border-radius: 1.25rem;
+    }
+    
+    .section-title{
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #5b9cfe;
+      font-size: 1.125rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* 控制器样式 */
+    .chip{
+      padding: 0.5rem 1rem;
+      border: 1px solid #e0e6ed;
+      border-radius: 0.75rem;
+      font-size: 0.875rem;
+      background: white;
+      color: #666;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s ease;
+    }
+    
+    .chip:hover, .chip:focus{
+      border-color: #5b9cfe;
+      box-shadow: 0 2px 8px rgba(91, 156, 254, 0.15);
+      outline: none;
+    }
+    
+    .small{
+      font-size: 0.875rem;
+      color: #999;
+      font-weight: 400;
+    }
+    
+    .badge{
+      font-weight: 600;
+      color: #5b9cfe;
+    }
+    
+    a{
+      text-decoration: none;
+      color: #5b9cfe;
+      transition: color 0.2s ease;
+    }
+    
+    a:hover{
+      color: #4a8aed;
+    }
+    
+    /* 表格样式 */
+    table{
+      border-collapse: separate;
+      border-spacing: 0;
+      width: 100%;
+    }
+    
+    thead{
+      background: linear-gradient(135deg, #f0f7ff, #e8f2ff);
+      border-radius: 0.5rem;
+    }
+    
+    thead th{
+      font-weight: 600;
+      color: #333;
+      padding: 14px 16px;
+      text-align: left;
+    }
+    
+    thead th:first-child{
+      border-radius: 0.5rem 0 0 0.5rem;
+    }
+    
+    thead th:last-child{
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+    
+    tbody tr{
+      transition: background 0.2s ease;
+    }
+    
+    tbody tr:hover{
+      background: #f8fbff;
+    }
+    
+    tbody td{
+      padding: 14px 16px;
+      border-bottom: 1px solid #f0f4f8;
+      color: #666;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="max-w-7xl mx-auto p-4 md:p-6">
+    <!-- 顶部：标题 + 控件 -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+      <div>
+        <h1 class="text-2xl md:text-3xl font-bold" style="color: #333;">酒店运营看板</h1>
+        <p class="small mt-1">按酒店与渠道维度统计：房间、房型、价格、渠道商、订单、房间状态与入住率</p>
+      </div>
+      <div class="flex flex-wrap gap-2 items-center">
+        <label class="small">时间范围：</label>
+        <select id="range" class="glass chip" onchange="bootstrap()">
+          <option value="7">近 7 天</option>
+          <option value="30">近 30 天</option>
+          <option value="90">近 90 天</option>
+        </select>
+        <label class="small">酒店：</label>
+        <select id="hotelSelect" class="glass chip" onchange="bootstrap()"></select>
+        <label class="small">统计口径：</label>
+        <select id="salesMetric" class="glass chip" onchange="renderAll()">
+          <option value="nights">间夜</option>
+          <option value="amount">销售额</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- KPI 区 -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
+      <div class="kpi kpi-blue card">
+        <div class="small">酒店数</div>
+        <div class="text-2xl font-bold" id="k_hotel_cnt">-</div>
+      </div>
+      <div class="kpi kpi-pink card">
+        <div class="small">房间数</div>
+        <div class="text-2xl font-bold" id="k_room_cnt">-</div>
+      </div>
+      <div class="kpi kpi-orange card">
+        <div class="small">入住率</div>
+        <div class="text-2xl font-bold" id="k_occ_rate">-</div>
+      </div>
+      <div class="kpi kpi-cyan card">
+        <div class="small">在住房间</div>
+        <div class="text-2xl font-bold" id="k_room_occ">-</div>
+      </div>
+      <div class="kpi kpi-purple card">
+        <div class="small">订单数</div>
+        <div class="text-2xl font-bold" id="k_order_cnt">-</div>
+      </div>
+    </div>
+
+    <!-- 图表区 -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div class="glass card p-4">
+        <div class="flex items-center justify-between mb-2">
+          <div class="section-title">房间状态分布（按酒店）</div>
+          <span class="chip" id="statusHotelName">-</span>
+        </div>
+        <div id="chartStatus" style="height:320px"></div>
+      </div>
+
+      <div class="glass card p-4 lg:col-span-2">
+        <div class="flex items-center justify-between mb-2">
+          <div class="section-title">渠道销售（按房型分组）</div>
+          <span class="chip" id="salesMetricLabel">间夜</span>
+        </div>
+        <div id="chartChannelSales" style="height:320px"></div>
+      </div>
+
+      <div class="glass card p-4 lg:col-span-2">
+        <div class="flex items-center justify-between mb-2">
+          <div class="section-title">入住率趋势</div>
+          <span class="chip" id="trendRange">-</span>
+        </div>
+        <div id="chartOccTrend" style="height:320px"></div>
+      </div>
+
+      <div class="glass card p-4">
+        <div class="section-title mb-2">平均价格（ADR，按房型）</div>
+        <div id="chartADR" style="height:320px"></div>
+      </div>
+    </div>
+
+    <!-- 订单表格 -->
+    <div class="glass card p-4 mt-4">
+      <div class="section-title mb-2">最近订单（Top 20）</div>
+      <div class="overflow-auto">
+        <table class="min-w-full text-sm">
+          <thead class="text-left">
+            <tr>
+              <th>订单号</th>
+              <th>酒店</th>
+              <th>房型/房间</th>
+              <th>渠道</th>
+              <th>入住-离店</th>
+              <th>间夜</th>
+              <th>金额</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody id="tblOrders"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="small mt-8" style="color: #999; text-align: center;">
+      <span class="badge">演示说明</span>：当前使用 <strong style="color: #5b9cfe;">丰富的模拟数据</strong> 进行展示，包含 3 家酒店、5 种房型、6 个销售渠道和 20 条最近订单。<br>
+      如需对接真实后端，请修改 JS 代码中的 <code>API_BASE</code> 与 <code>API_TOKEN</code>。
+    </div>
+  </div>
+
+  <script>
+    /****************** 可配置：API 接入参数 ******************/
+    // 注意：API_BASE 留空时，自动使用下方的丰富模拟数据
+    const API_BASE = ""; // 例："https://example.com"（留空=使用 mock 数据）
+    const API_TOKEN = ""; // 若需 Token：在请求头带 X-Token
+
+    // 推荐后端提供的汇总接口（任一不可用时，前端会自动降级为 mock）：
+    // 1) GET  /api/hotel/list                        -> {hotels:[{id,name}]}
+    // 2) GET  /api/room/status_summary?hotel_id=ID   -> {status_counts:{vacant:..,reserved:..,occupied:..,out_of_service:..}, room_total, occupied}
+    // 3) GET  /api/channel/sales_summary?hotel_id=ID&start=YYYY-MM-DD&end=YYYY-MM-DD
+    //        -> {room_types:["大床房","双床房",...], channels:["携程","美团",...], metric:"nights|amount", matrix:[[...],[...]]}
+    // 4) GET  /api/occupancy/trend?hotel_id=ID&start=&end=   -> {dates:[], rates:[]}  (0~1 小数)
+    // 5) GET  /api/price/adr_by_room_type?hotel_id=ID        -> {labels:[], adrs:[]}
+    // 6) GET  /api/order/recent?hotel_id=ID&limit=20         -> {orders:[{no,hotel,room_type,room,channel,checkin,checkout,nights,amount,status}]}
+
+    /****************** 工具函数 ******************/
+    function fmtPercent(x){
+      if(x===null||x===undefined||isNaN(x)) return "-";
+      return (x*100).toFixed(2)+"%";
+    }
+    function fmtCurrency(x){
+      return new Intl.NumberFormat('zh-CN',{style:'currency',currency:'CNY',maximumFractionDigits:0}).format(x||0)
+    }
+    async function getJSON(url){
+      if(!API_BASE){
+        // 使用 Mock
+        return mockGet(url);
+      }
+      const full = API_BASE + url;
+      const res = await fetch(full, {headers: {"Content-Type":"application/json","X-Token": API_TOKEN}});
+      if(!res.ok) throw new Error("HTTP "+res.status);
+      return await res.json();
+    }
+
+    /****************** Mock 数据（丰富的模拟数据） ******************/
+    const MOCK = (function(){
+      // 酒店列表
+      const hotels = [
+        {id:1, name:"星河酒店(总部)"},
+        {id:2, name:"星河酒店(滨江店)"},
+        {id:3, name:"星河酒店(西湖店)"}
+      ];
+      
+      // 房间状态汇总
+      function statusSummary(hotel_id){
+        const data = {
+          1: {vacant:85, reserved:42, occupied:168, out_of_service:5},  // 总部：300间房
+          2: {vacant:120, reserved:58, occupied:210, out_of_service:12}, // 滨江：400间房
+          3: {vacant:95, reserved:35, occupied:145, out_of_service:5}   // 西湖：280间房
+        };
+        const base = data[hotel_id] || data[1];
+        const room_total = Object.values(base).reduce((a,b)=>a+b,0);
+        return {status_counts:base, room_total, occupied:base.occupied};
+      }
+      
+      // 渠道销售数据
+      function channelSales(hotel_id,start,end,metric){
+        const room_types=["豪华大床房","商务双床房","行政套房","家庭房","总统套房"];
+        const channels=["携程","美团","飞猪","Booking.com","去哪儿","线下"];
+        
+        // 不同房型的基础数据（模拟真实的销售分布）
+        const baseData = {
+          1: { // 总部
+            nights: [
+              [45, 38, 28, 15, 22, 32],  // 豪华大床房
+              [52, 42, 35, 18, 28, 25],  // 商务双床房
+              [28, 22, 18, 25, 15, 12],  // 行政套房
+              [38, 32, 25, 8, 18, 29],   // 家庭房
+              [12, 8, 5, 15, 6, 4]       // 总统套房
+            ],
+            amount: [
+              [18000, 15200, 11200, 6000, 8800, 12800],  // 豪华大床房
+              [26000, 21000, 17500, 9000, 14000, 12500], // 商务双床房
+              [22400, 17600, 14400, 20000, 12000, 9600], // 行政套房
+              [26600, 22400, 17500, 5600, 12600, 20300], // 家庭房
+              [19200, 12800, 8000, 24000, 9600, 6400]    // 总统套房
+            ]
+          },
+          2: { // 滨江
+            nights: [
+              [58, 45, 35, 22, 28, 42],
+              [65, 52, 45, 25, 35, 38],
+              [35, 28, 22, 32, 18, 15],
+              [48, 38, 32, 12, 22, 35],
+              [15, 12, 8, 18, 8, 6]
+            ],
+            amount: [
+              [23200, 18000, 14000, 8800, 11200, 16800],
+              [32500, 26000, 22500, 12500, 17500, 19000],
+              [28000, 22400, 17600, 25600, 14400, 12000],
+              [33600, 26600, 22400, 8400, 15400, 24500],
+              [24000, 19200, 12800, 28800, 12800, 9600]
+            ]
+          },
+          3: { // 西湖
+            nights: [
+              [52, 42, 32, 18, 25, 38],
+              [58, 48, 38, 22, 32, 32],
+              [32, 25, 20, 28, 16, 14],
+              [42, 35, 28, 10, 20, 32],
+              [14, 10, 6, 16, 7, 5]
+            ],
+            amount: [
+              [20800, 16800, 12800, 7200, 10000, 15200],
+              [29000, 24000, 19000, 11000, 16000, 16000],
+              [25600, 20000, 16000, 22400, 12800, 11200],
+              [29400, 24500, 19600, 7000, 14000, 22400],
+              [22400, 16000, 9600, 25600, 11200, 8000]
+            ]
+          }
+        };
+        
+        const hotelData = baseData[hotel_id] || baseData[1];
+        const matrix = metric === 'amount' ? hotelData.amount : hotelData.nights;
+        
+        return {room_types, channels, metric, matrix};
+      }
+      
+      // 入住率趋势
+      function occTrend(){
+        const days=Number(document.getElementById('range').value);
+        const dates=[...Array(days)].map((_,i)=> dayjs().subtract(days-1-i,'day').format('MM-DD'));
+        // 模拟真实的波动：周末高，工作日略低
+        const rates = dates.map((_, i) => {
+          const dayOfWeek = dayjs().subtract(days-1-i,'day').day();
+          const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+          const base = isWeekend ? 0.72 : 0.58;
+          const variance = (Math.random() - 0.5) * 0.12;
+          return Math.max(0.4, Math.min(0.95, base + variance));
+        });
+        return {dates, rates};
+      }
+      
+      // 平均房价（ADR）
+      function adr(){
+        const labels=["豪华大床房","商务双床房","行政套房","家庭房","总统套房"];
+        const baseAdrs = [399, 499, 799, 699, 1599]; // 基础价格
+        const adrs = baseAdrs.map(price => price + Math.round((Math.random() - 0.5) * 50));
+        return {labels, adrs};
+      }
+      
+      // 最近订单
+      function recentOrders(hotel_id){
+        const hotel = hotels.find(h=>h.id===hotel_id) || hotels[0];
+        const roomTypes = ["豪华大床房","商务双床房","行政套房","家庭房","总统套房"];
+        const channels = ["携程","美团","飞猪","Booking.com","去哪儿","线下"];
+        const statuses = ['confirmed','checked_in','checked_out','cancelled'];
+        const statusNames = {
+          confirmed: '已确认',
+          checked_in: '已入住', 
+          checked_out: '已退房',
+          cancelled: '已取消'
+        };
+        const guestNames = ["张三","李四","王五","赵六","孙七","周八","吴九","郑十","刘一","陈二"];
+        
+        const s = (n)=> dayjs().subtract(n,'day').format('YYYY-MM-DD');
+        
+        const rows = Array.from({length: 20}, (_, i) => {
+          const roomType = roomTypes[i % roomTypes.length];
+          const channel = channels[i % channels.length];
+          const status = i < 2 ? 'cancelled' : statuses[i % 3]; // 前2个取消
+          const nightsCount = 1 + Math.floor(Math.random() * 4); // 1-4晚
+          const checkinOffset = Math.floor(Math.random() * 15) + 1; // 1-15天前
+          const basePrice = {
+            "豪华大床房": 399,
+            "商务双床房": 499,
+            "行政套房": 799,
+            "家庭房": 699,
+            "总统套房": 1599
+          }[roomType];
+          
+          return {
+            no: `HO${hotel_id}${String(2024110900 + i).slice(-8)}`,
+            hotel: hotel.name,
+            room_type: roomType,
+            room: `${Math.floor(Math.random() * 8) + 1}${String(Math.floor(Math.random() * 20) + 1).padStart(2, '0')}`,
+            channel: channel,
+            guest: guestNames[i % guestNames.length],
+            checkin: s(checkinOffset),
+            checkout: s(checkinOffset - nightsCount),
+            nights: nightsCount,
+            amount: basePrice * nightsCount + Math.floor(Math.random() * 100),
+            status: statusNames[status],
+            status_code: status
+          };
+        });
+        
+        return {orders: rows};
+      }
+      
+      return {hotels, statusSummary, channelSales, occTrend, adr, recentOrders};
+    })();
+
+    function mockGet(path){
+      // 简易路由解析
+      const url = new URL('https://mock.local'+path);
+      const p = Object.fromEntries(url.searchParams.entries());
+      if(path.startsWith('/api/hotel/list')){
+        return {hotels: MOCK.hotels};
+      }
+      if(path.startsWith('/api/room/status_summary')){
+        return MOCK.statusSummary(Number(p.hotel_id||1));
+      }
+      if(path.startsWith('/api/channel/sales_summary')){
+        const metric = (document.getElementById('salesMetric').value)||'nights';
+        return MOCK.channelSales(Number(p.hotel_id||1), p.start, p.end, metric);
+      }
+      if(path.startsWith('/api/occupancy/trend')){
+        return MOCK.occTrend();
+      }
+      if(path.startsWith('/api/price/adr_by_room_type')){
+        return MOCK.adr();
+      }
+      if(path.startsWith('/api/order/recent')){
+        return MOCK.recentOrders(Number(p.hotel_id||1));
+      }
+      return {};
+    }
+
+    /****************** 渲染逻辑 ******************/
+    let charts = {};
+    function ensureCharts(){
+      charts.status = charts.status || echarts.init(document.getElementById('chartStatus'));
+      charts.sales  = charts.sales  || echarts.init(document.getElementById('chartChannelSales'));
+      charts.trend  = charts.trend  || echarts.init(document.getElementById('chartOccTrend'));
+      charts.adr    = charts.adr    || echarts.init(document.getElementById('chartADR'));
+      window.addEventListener('resize', ()=>{Object.values(charts).forEach(c=>c.resize())});
+    }
+
+    async function bootstrap(){
+      ensureCharts();
+      const range = Number(document.getElementById('range').value);
+      const {hotels} = await getJSON('/api/hotel/list');
+      const sel = document.getElementById('hotelSelect');
+      sel.innerHTML = hotels.map(h=>`<option value="${h.id}">${h.name}</option>`).join('');
+      if(!sel.value && hotels[0]) sel.value = hotels[0].id;
+      document.getElementById('k_hotel_cnt').innerText = hotels.length;
+      document.getElementById('trendRange').innerText = `近 ${range} 天`;
+      renderAll();
+    }
+
+    async function renderAll(){
+      const hotelId = Number(document.getElementById('hotelSelect').value||1);
+      const range = Number(document.getElementById('range').value);
+      const start = dayjs().subtract(range-1,'day').format('YYYY-MM-DD');
+      const end   = dayjs().format('YYYY-MM-DD');
+
+      // 房间状态
+      const stat = await getJSON(`/api/room/status_summary?hotel_id=${hotelId}`);
+      const statusCounts = stat.status_counts || {vacant:0,reserved:0,occupied:0,out_of_service:0};
+      const statusData = [
+        {name:'可售', value: statusCounts.vacant||0},
+        {name:'已预订', value: statusCounts.reserved||0},
+        {name:'在住', value: statusCounts.occupied||0},
+        {name:'停用', value: statusCounts.out_of_service||0}
+      ];
+      document.getElementById('statusHotelName').innerText = document.querySelector(`#hotelSelect option[value="${hotelId}"]`).textContent;
+      document.getElementById('k_room_cnt').innerText = stat.room_total ?? '-';
+      document.getElementById('k_room_occ').innerText = stat.occupied ?? '-';
+      const occRate = (stat.room_total>0) ? (stat.occupied / stat.room_total) : 0;
+      document.getElementById('k_occ_rate').innerText = fmtPercent(occRate);
+      charts.status.setOption({
+        tooltip:{trigger:'item'},
+        legend:{top:0,textStyle:{color:'#666'}},
+        color:['#5b9cfe','#ff8a9b','#4ecdc4','#ffb366','#a78bfa'],
+        series:[{
+          type:'pie',
+          radius:['45%','75%'],
+          label:{
+            color:'#666',
+            fontWeight:500,
+            formatter: '{b}\n{d}%'
+          },
+          data: statusData
+        }]
+      });
+
+      // 渠道销售
+      const metric = document.getElementById('salesMetric').value;
+      document.getElementById('salesMetricLabel').innerText = metric==='amount' ? '销售额' : '间夜';
+      const sales = await getJSON(`/api/channel/sales_summary?hotel_id=${hotelId}&start=${start}&end=${end}&metric=${metric}`);
+      const roomTypes = sales.room_types || [];
+      const channels = sales.channels || [];
+      const matrix   = sales.matrix || [];
+      const series = channels.map((ch,idx)=>({
+        type:'bar', name: ch, stack:'sum', emphasis:{focus:'series'},
+        data: matrix.map(row=> row[idx] || 0 )
+      }));
+      charts.sales.setOption({
+        tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+        legend:{top:0,textStyle:{color:'#666'}},
+        color:['#5b9cfe','#a78bfa','#ff8a9b','#ffb366','#4ecdc4'],
+        grid:{left:50,right:30,bottom:40,top:50},
+        xAxis:{
+          type:'category',
+          data:roomTypes,
+          axisLabel:{color:'#666'},
+          axisLine:{lineStyle:{color:'#e8eef5'}},
+          axisTick:{show:false}
+        },
+        yAxis:{
+          type:'value',
+          axisLabel:{color:'#666'},
+          splitLine:{lineStyle:{color:'#e8eef5',type:'dashed'}}
+        },
+        series
+      });
+
+      // 入住率趋势
+      const trend = await getJSON(`/api/occupancy/trend?hotel_id=${hotelId}&start=${start}&end=${end}`);
+      charts.trend.setOption({
+        tooltip:{trigger:'axis'},
+        grid:{left:50,right:30,bottom:40,top:40},
+        xAxis:{
+          type:'category',
+          data:trend.dates||[],
+          axisLabel:{color:'#666'},
+          axisLine:{lineStyle:{color:'#e8eef5'}},
+          axisTick:{show:false}
+        },
+        yAxis:{
+          type:'value',
+          min:0,
+          max:1,
+          axisLabel:{formatter:(v)=> (v*100)+'%', color:'#666'},
+          splitLine:{lineStyle:{color:'#e8eef5',type:'dashed'}}
+        },
+        series:[{
+          type:'line',
+          areaStyle:{
+            color:{
+              type:'linear',
+              x:0,y:0,x2:0,y2:1,
+              colorStops:[
+                {offset:0,color:'rgba(91,156,254,0.4)'},
+                {offset:1,color:'rgba(91,156,254,0.05)'}
+              ]
+            }
+          },
+          smooth:true,
+          lineStyle:{color:'#5b9cfe', width:2},
+          itemStyle:{color:'#5b9cfe'},
+          symbol:'circle',
+          symbolSize:6,
+          data:(trend.rates||[]).map(v=>Number(v))
+        }]
+      });
+
+      // ADR
+      const adr = await getJSON(`/api/price/adr_by_room_type?hotel_id=${hotelId}`);
+      charts.adr.setOption({
+        tooltip:{trigger:'axis'},
+        grid:{left:50,right:30,bottom:60,top:40},
+        xAxis:{
+          type:'category',
+          data:adr.labels||[],
+          axisLabel:{color:'#666', rotate:30},
+          axisLine:{lineStyle:{color:'#e8eef5'}},
+          axisTick:{show:false}
+        },
+        yAxis:{
+          type:'value',
+          axisLabel:{formatter:(v)=>'¥'+v, color:'#666'},
+          splitLine:{lineStyle:{color:'#e8eef5',type:'dashed'}}
+        },
+        series:[{
+          type:'bar',
+          itemStyle:{
+            color:{
+              type:'linear',
+              x:0,y:0,x2:0,y2:1,
+              colorStops:[
+                {offset:0,color:'#5b9cfe'},
+                {offset:1,color:'#a78bfa'}
+              ]
+            },
+            borderRadius:[6,6,0,0]
+          },
+          barWidth:'40%',
+          data: (adr.adrs||[])
+        }]
+      });
+
+      // 订单表
+      const orders = await getJSON(`/api/order/recent?hotel_id=${hotelId}&limit=20`);
+      document.getElementById('k_order_cnt').innerText = (orders.orders||[]).length;
+      renderOrders(orders.orders||[]);
+    }
+
+    function renderOrders(rows){
+      const tbody = document.getElementById('tblOrders');
+      if(!rows.length){
+        tbody.innerHTML = `<tr><td colspan="8" class="py-3 text-center text-slate-400">暂无数据</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = rows.map(r=>{
+        const roomLabel = r.room ? `${r.room_type||''}/${r.room}` : (r.room_type||'-');
+        const statusCode = r.status_code || r.status;
+        const statusColors = {confirmed:'#5b9cfe',checked_in:'#4ecdc4',checked_out:'#999',cancelled:'#ff8a9b'};
+        const statusColor = statusColors[statusCode] || '#999';
+        const statusText = r.status || '-';
+        return `<tr>
+          <td><span style="color:#5b9cfe;font-weight:500">${r.no||'-'}</span></td>
+          <td>${r.hotel||'-'}</td>
+          <td>${roomLabel}</td>
+          <td>${r.channel||'-'}</td>
+          <td style="color:#999">${(r.checkin||'').slice(5)} → ${(r.checkout||'').slice(5)}</td>
+          <td><span style="font-weight:600;color:#5b9cfe">${r.nights||0}</span></td>
+          <td><span style="font-weight:600;color:#4ecdc4">${fmtCurrency(r.amount||0)}</span></td>
+          <td><span style="display:inline-block;padding:0.35rem 0.85rem;border-radius:1rem;font-size:0.75rem;font-weight:500;background:${statusColor}15;color:${statusColor}">${statusText}</span></td>
+        </tr>`;
+      }).join('');
+    }
+
+    // 启动
+    (async function(){
+      await bootstrap();
+    })();
+  </script>
+</body>
+</html>

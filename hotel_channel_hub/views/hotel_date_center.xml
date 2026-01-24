@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.actions.client" id="action_data_center_hotel">
+            <field name="name">数据中心</field>
+            <field name="tag">center_data_hotel_tags</field>
+            <field name="params">{}</field>
+        </record>
+
+<!--        <menuitem id="menu_data_center_hotel" sequence="1" action="data_center_hotel"-->
+<!--                  name="数据中心"-->
+<!--                  web_icon="data_center_group,static/description/icon.png"/>-->
+    </data>
+</odoo>

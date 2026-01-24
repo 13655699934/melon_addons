@@ -1,0 +1,15 @@
+注意：这是一个图标占位文件。
+
+在实际使用时，请替换为真实的PNG图标文件：
+- 文件名：icon.png
+- 尺寸：建议 256x256 像素
+- 格式：PNG
+- 主题：酒店相关图标（如建筑物、床位等）
+
+可以从以下网站获取免费图标：
+- https://www.flaticon.com/
+- https://icons8.com/
+- https://www.iconfinder.com/
+
+或使用Odoo默认图标。
+

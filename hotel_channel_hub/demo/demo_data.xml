@@ -1,0 +1,1741 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- ==================== 酒店数据 (5家) ==================== -->
+        <record id="demo_hotel_1" model="hotel.hotel">
+            <field name="name">星河酒店(总部)</field>
+            <field name="code">HOTEL001</field>
+            <field name="address">杭州市西湖区文三路123号</field>
+            <field name="city">杭州</field>
+            <field name="state">浙江</field>
+            <field name="contact_name">张经理</field>
+            <field name="phone">0571-88888888</field>
+            <field name="email">manager1@xinghe.com</field>
+            <field name="star_rating">5</field>
+            <field name="opening_date">2020-01-01</field>
+            <field name="active" eval="True"/>
+            <field name="image_1920" type="base64">iVBORw0KGgoAAAANSUhEUgAAAMgAAAC0CAYAAADKXzZSAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAvvSURBVHic7d1PqF1VHsbxb2KTWqMxGmKiMRoTTdT4J1FjNGpiYjQxGhOjiYmJiYmJiYnRxGhiNDExMZqYmBhNjCZGE6OJidHEaGI0MZoYTYwmRhOjidHEaGL+nPd98K6s3b3vvvfe+95z7rn3fD+w4HDO2fvsdX7svdbe6+y9RUREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREZHRmzfoBgzCwoULZ1133XV/HXQ7+uA/Dz/88PeDboRIST8HXh50I/pg3qAbIAIwb9ANEBGZKiWIiDgliBQxLhVERGagBJGBW7RokU8PuhnSW0qQYTIP+ALY1WzZH/gV+AjYPMB2SY/0vYJ06uLFi2N48eLFh4EdgG3A18DDwKdLliwZcPP64sxhw4aZbQf8qpEPsQ1Y1Xz/deCjrVu3Drh5Ul9NLUGIBBERERERERERERERERERERERERERERERERGRKuqZSQ+cc84503e6cMklUyb2TK3OwJdeeunGlj+69NJLS+f96quvnsp3t99++4zyQO/e99SpU1e1/PnCCy9sK//+++8fbinzxhtvbEV5tm3b1rPyPffWW2+1t/HGG28c+fj19vCKk046ac6///vf/876PfTQQ9OW05vnt99++xr92Zf9ZOr8/I0bN87/8MMPfwFcBxwJzAfWAfcBRwBvAL+ZMmXKNBW/T5Yvv/xyO88bb7zRyvjNN9+siNdOnz59L6/84x//mFGnPXr06B/y/zZv3tzTeZk+ffrSnj17VgE3N38f+uSTT05Yv379O/m0Tz311Ip8f/bs2T/n+2+88cZLLcfv9NNP399S5sQTTzxo2rRpCyZNmrTo119/Xbp06dKP161b905U57nnnnts+1luu+22m/vxd9LRRx/90XnnnbcSuAk4DTgQ2AE8Dvykr3Dsc+WVV57Sv//N+/e///3V6dOnn1PwX7feeusfZ/OeL7/88g4XXnjh1Qqw3rjwwgs/evbZZze0/Pzll19ucBxu3rxZFaSHLrroouc+/PDDT1p+fv/998+c63t+5plnfl9+ZtKfXq9RrV27dp2yc+fOC5ctW7Z+x44dt2/fvv2E7du3L+vV+86aNevbnTt3XrB8+fI1O3bsuGz79u1Ld+zYsXy+WL169RvLly9/qD3f6tWr39i6deuSmTNnLh10u0VEdGnXFl10Z/fr0m6uL+0OOuigt44//vgvV6xY8c4JJ5zwUUtZ7e3tl6rdZU99dcdVgsi0OnXTTZo0aSHt1eTjTzzxxGPO5/Z9v5SuAOs3pf9M6bQvvu/ypUuXbtHpHqGDBx3gwvbt22cyKhx99NFfHHbYYT/MJo/zOfyO8887I+jZvfjii8/mxxsvvPDC2r686TN6e+23t8w8rnzyySd3ve+++x5/+eWXz5w3b17L7Y8jATj++OOX7Ny587wlS5as3rVr18V77bXXVuAmAA4//PDPP/jgg3Pbyz3mmGM+XbFixSfxDJ944olF0TzdbVAF6T3tg5Tvg5z00ksv/f3Pf/7zHX/84x/POvnkkx948MEHP7rtttvWANxxxx3PMf4Fzg8//LB86tSp3wHce++9b03n8Pz99ttv59v99ttv/+O8887byP93DcePp59++pJHH330hYWzlPTRUP8LGT9+/D9OdOvWrU+eccYZ91988cU//P73v/+HQUFXZ7gceOCBPxx00EH/mjdv3vdx3gceeODdtWvXHlFQ5oADDvgxf75p06YjWsrMnz//B+fPhmYfpLVj/s0337yvz9pHvPjii8/p06t3+umnu47TJV99xbV1+qMDL730Un4cvnLp0qWLnnrqqZfvuuuux8b3HZj333//1X51o/r11lvvF/yzCn/fzz77bPE99923+Zpr6nNOLrvssvZjzp49+90evfQ3uuRtn6/vf/rpp97fde/evVdFJ3a2Ofvss/85UPCRKU/f7r/wwgu/c5wuqO973XXXPXDppZfec8YZZ6waPX/+BVJJDyxatGjlXp9Np/vrq/uyNm/ebPWTt2uMbvj8scce+yzPt2HDhjO15VE3XXf5+73yyiuvTp06dX385YSUmHr5x5mfPXv288BZL7/88jq//PDDDy/44YcfblyyZMl9xx577OopMt4FHLx48eJT3n///W/j8uvXr9/90ksvPd1gveW+nN3d5JO3x/dNp5hnn33WHVb9f/v27eu1dK/oNupll1127WGHHfb5IYcc8sf2clOnTl3Qp69v1lpvK8edd97Z/OlPf3r4D3/4w+v/+c9/VgEnHHjgge9ceuml4zEEoIMGHdAyO+j/9w+z/+3vv/9+76RJk5Zv37798lmzZn03ffr0Y/ObO8C/A/z/H+ZUf/fTw7uBY+6///6/33PPPTeddtppX4yfBx588MHPAGbxHx6AL7/8cq/bbrvtAcYvAd+fNGnSjVOnTr3jmWee+SgMn9k888wzZ0f5Gf3tt98utOT/9NNPP81rH1x88cV/Bm7K/n733Xe/4HjuVUiJL774ot+vL0LnjDPOOLd///JfffXV6zfffPOd/rvHH3/8laNHj/4v45cy7+ePc8UVV6w+6qijPv/6669XPvroo/fGZd988031tHpg1I+Db7zxxlWvvfbavu1/fP311x/VnEgvee+999Zbb7314fvvv//pz5577qX55513d14mb+t9wMYLL7zwwVtuueVPd99991MPPfTQS11e+oorrjhx0003fX7ttdduevLJJ9+88cYb/9Ve5pFHHnl+8eLFF40fP/6C+LnHHnvspffff3///fff2LJ/k/nxxx/n77nnnl995513Xr7vvvvWP/300x+eccYZl9xzzz1b7rzzzj2+RGPHjv1yzpw5x0f5r4Ij3nvvvQXXXHPNqnvvvXfdQw899F9f5uGHH/6/4IuB+Pfrvvvuuyj6r+88/fTTzm90999//4N/+ctfHr377rs3P/jgg+8+9thjL951111PNnbsWL///9u5e6dVdCCAY0+w2PgCVlYWVtr4AlZWVlbaWGnjC1hZWVlpZWVlZWVlZaWVlZWVVlZWVv48g89lZ5k/gd1dmf0fw11ucc/MnXtO7pw5EWQ/ZUWJ+L25zpw587wsy6tN6gN+HbPyoPv9e/wdf//zY3fJF2/RmvJZy8vLz8bjcbP9Ov93+P3kySaf//h7gF2IrFbDtTHGl23uH6a2Pl/0ufv0JRMn7fb96f+xn3uj3/5a63dMef7n/v0Bs1++evrtX/H73fv5bfEPAAAAAAAAAAAA4H/2u3e9H/f76v1+/68n4p/2fe+Pnn88xVfr9a8n2tv5fr/fsJBj74vs0ecgAObxZjn0gX+vFSWDgRrADa93aAWJIH0Xe9F9R83H+11xMmj76e1hhewwEaQfpPf5fT4e3/vZa/0wcfQT7RH4YaTPBem/IXMYeq42A/uF+q+fN7H13/b8mV+zs/2+wVEiiPH9i95U8wlqbY8x/urvHd6tB+SHw+HLfd/X/xFCjDGuG8qXZdnuuvuOsGmDPUK81Vrf9L/v/XfcN89OfQwhhE0sVylzbe4fQvhW+m++67v70JG9p/WwH+O8/0P8vgAAAAAAAAAAAPy9a23WDN0N1tqsP/6o/Xl/n/3Z/Pz++2/uo88B+p+vfgzwU92bfOkH+wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+znd2hx7RZS7GZQAAAABJRU5ErkJggg==</field>
+        </record>
+
+        <record id="demo_hotel_2" model="hotel.hotel">
+            <field name="name">星河酒店(滨江店)</field>
+            <field name="code">HOTEL002</field>
+            <field name="address">杭州市滨江区江南大道456号</field>
+            <field name="city">杭州</field>
+            <field name="state">浙江</field>
+            <field name="contact_name">李经理</field>
+            <field name="phone">0571-66666666</field>
+            <field name="email">manager2@xinghe.com</field>
+            <field name="star_rating">5</field>
+            <field name="opening_date">2021-03-15</field>
+            <field name="active" eval="True"/>
+            <field name="image_1920" type="base64">iVBORw0KGgoAAAANSUhEUgAAAMgAAAC0CAYAAADKXzZSAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAvvSURBVHic7d1PbBxVHsDx30xs03acOG2cOG2cOG0cf3AcJ04bJ04bJ04bJ04bJ04bJ04bJ04bJ04bJ04bJ04bJ04bJ04bJ04bJ04bJ04bJ07bf/Zzftk7M+vM7uzOzs7u7O77SUY67p2Zt+/N7++8N2/mPREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREZHJNmPYDRiGmTNnTl522WV/G3Y7huCfN9xwwz+G3QiRitqA14fdSAc+BLYC80xZAz4D9gGbh900kXo/B14ZdiMc2AG8AiwE5gFzje2zzW2RoZkx7AZIF2qCiDhShIgMQEkQGblYOYiITJGSICJOKUIGIiSIiAybkkREGoliQ0eQSCyN7uHvkZKnG7hhttCVJAmbE7Y1p3aSk4R7NW1JMQ0S5bw/xmz8usTaIc2UCBER5ZXOc9I5j9+fM/a8PUE03v8s8v1fhLLy2f4/5qTUQEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREfGIVEiJN7HfHVffVjLv3/+d89f0hVY4/+xPv/pT4lKLv/rTr67p+r/bt28v7fnz4+Mfhz3+8vdff9J01fe/+y/5bf3v/+n+b+Dnxo+NHx8fn3j//fePeW3qUdfdEaJWO378+MTp06cnzp49+wNwJXApsAg4COwG3gPeAfYsWbKk6Wbc6ksv3XPLX/+6e7rj9cKePbx86aVP9eu1/f/1a7/+3rvv8sYbb/wD+BkwE1gCbAXeAN4Edr///vsnunmNq3feaau8X3/9te/f/+rVsqz169f/dHx8fPvKlSvf/Oyzz77qdb+PPfZY31/b6/XXX/fGx8d/fPvtt98D3jPeuxT4BfA88Hpxw4YN/2n1xSo1QSTCo0eu3sYzd3/xo48+WhG4j/j/fHGOe3E7fxr2eKiPcf/+/aWyb775Zr88bpofE/vkk0+sOsd1113ntz/44INLvY/yW3V+/l7j32/vvvvunJ+//6P99tuTJTfccMMv/f+nTp36uvxz48aNS/z7e/zxx9fF/n/ttdemPf5jjz12rfe+x48f/zz3t/+enn/++UteeumlH/0drFq16vj27dvftj+5br/99pdee+2158477zzfc3Lp0qWnV65ceQr4M/ABMOudd975PvbYY2+13YDV69ePXXPNNY/Pnj179yOPPHLqrbfe+rjVCv/EE0/UPd6wYcPuXbt2be70dcJ+/etfv3bFFVc8dO655263b583b95K//7111//SbvH+u1vf/vuW2+99VqZX/VC5cqVK2+59957d3Z6/9IuNUFq7bjhhhv2Hzx48BeL58+/7777vvnySy8vfO+9937y07/8Jf+aCatvXXbZj/b9I3D69deXZ8tvvPHG73/72+f23L59+6NPPfXUpxs2bLjlvvvu++GHH77IVxIALr74YvN+bwBeCvzt/bvvvlvmtz9bvHjxZb/61a9enT9//kfmCvDnP//5LvO+33e/e9WOAE+Z25YuXfrmb37zm+/NbUuWLLm+/H/OnDmXz5kz58vnnntun/nb+Z/97GcDqai77rqrv1f86D7ggQcea/Q+P/7449/97Gc/+8P8+fP3ANvMl+PSOI9fvnz5GwsXLvz3FVdcceT000+/bfHixdvmzZu3+IEHHvj0jDPOOAT87NChQ/PqH+uiiy7av2rVqqPHjh07snLlyiOrV68+dvHFF+9v8BL4sTHuzDPP3PrEE0+80/o3bN+jjz66Zfny5TffdNNN+/btM9+0N956663XTp8+XX64b9++Z77++uvvgmBjjz/++PwFCxY8tHDhwv3XXnvtX1euXPnWFVdcsfW22247ecYZZ+z93ve+99HKlSvfXLdu3W777p977rmz5s2b969vv/1218aNG//2jW98Y3P5+oceeujYF1988Zv169fve+2113ZdccUVrz311FPPlY+df/75p5YuXXro0Ucf3fGzn/3sz8ePHz99+vTp04899tjJc88998t58+adnjlz5rnl45155pm7TzvttNPLli07+Zvf/Ob17du3Xz1//vzNd99996uPPPLI0RtuuOH1O+6446tzz13xzJw5k15OatgNcLUC3HvrrVd9u/fe26aP97Hvfe97h4CDwP0Pzpw5s/Rz43jzzTfnPvLII/fVHrfv/1TlOJ9//vmL/fvPPvts/d/G/7+69NJLjwC/q//v/xN1SxP9+ytXrvy4dv+8edT//P1p//XOX/7yvcuXL39y/Pz/tXTp0qfeeeedH5+89NJLnyl/33DDDVWNwZj//1++fPn95e+5c+cuX7hw4aXlz7POumvOnDlzj5s/Pzl27GlO/vbbx8p/1q5dW2vc//vLwW+99dY/bb756KOf2+e6devKVyy/8Zw0/t/x7LNP1h7fxMGXXnrp0e9///sn+G8r4y+++OJT5W+z/N9+yymn2Hf77bdfbW5/6623nl6yZMmpd955Z79939VXX/1x8HuVJkj5e69d+9CKFSu+fPPNN/cFwcPl/e9///sn/OPr1q37dMWKFQfvv//+z5cuXToxd+7cz4AD77//3y8D8+bN+/KMM85YAFD+PuWUU5bNmjXra+Azc/+x4BgzZ8700+hC8/XPzO+5w4YNGy4zb1u8ePEX5mufA/xhw4Z/1l6jn//85+WF8LnSA+V96afSBJlG119//XeA79l7PPXUU/ee85F3fYfsqHPOZdddd90H3Hjjjb9fsmTJ4VWrVh1tvQC0b8+ePTeffvrpL5x77rlbt2zZsvqMM844dOONN75d3n/eeefVHl+9Zk39e9W/v3Hjxl/ePXfuvNrb9+3b94vTTjtto/m/0e+xbNmyU4Ddixc3bDI888YGJZI8v/+2bfVtgD/84Q/+QfvmU089df8pp5xy2Pz9M/P/f37iif/U7v/888/nxV4ffPLJJ//dtP9dd9210f/p/fdPbNiw4Q1gH/DK9u1PXWrv+cMf/rD2vevq668/FQQb3759+x/N38YOHNW/77nnnuD+xx//b+0FdvPmzefPnDnzP1dfffXWe++993l72/Hjx/1jV1111eb169f/4/bbb//qrLPOOvLHP/7xA3P34Ztu+l+D+tFHH9317bfffm5uO/XUU783t31cf7+fffzxR/5P//9zzz03r/bm//f555/vMmUdsG+76aabvvR/rl+//qP33nvvlO3bW/cK3nbbbVcAHwE/rP/bnXfe+bm5X+3vFQQ7vvzyy7sWL1789HPPPfeDt956a06jQsBtt922pnz/Z5555oPyn3vvvXe5/3v//v1Tm+qSixJkmiVHmr5/X//Uo48+uvLdd989YOdcvHjxl3fffferQA9RxNi3b1/5WuWXaH08cODAD+bMmXPYfIm/BP7n/fv3z6n/v/b1nD176sv4zTmz/fjll1+e47fLbdtaPdell17amP/+++/nl99cf/3KCy644Itbb731tdqb//CHP3xm/7QfO/64/1OO1/jh8uXL55b7jh8/vmT27NnNHvv7Tz755MwLL7zw+TvuuOPo1VdfPffcc889bP5vv/766w/Vvn/+/PlLzG3l70TdZV99LX73u9+t/On/vvLKK5c1e/EyP/rRj74eP378c+A2c5vf2/T888+X/b/mK3uo9vd67bXXlgV/t1tv7fgEY+dNJPMk6PD4xgV32//vPfPMM8qzAd8sP/c70M0f9//r9Pgy/b3llWoXPpPkFeccc/Oxr776KvpFqftNJP3cQf/t2rUrt/wecMeNN974xZNPPvnoF1988dXixYvXmrt/Zdx3dsSx++6//69lp/qbb765t/aOMWbPnj23fJ0feuihF2ofv/baa/evWbNmTbnv8ccff/m6666r7xT45x133BGtVzVr1qwF5ffdu3e/XG4/dqyaTPnuu+8ubPE/y+zZ9W/76quvFv3v5/vPnj17xv6//X8fR46sX/7qq7e98MK1r7++ZsPll5/5y7PPXvz666//4667Lvvyyy9n79mz5wXgtd+d79Yv/6zVq1c/d+TIkZ/OmDFjYt++fS/98Y//K//QUaNrf3Gvvvpmtz9///6Xjh79x09mzpz56ZYtr5vnWPDXZ599dsdF//f0q1at+njr1q3Xzp49+9CBAZ8V6fxTX7j/5K03PvtsYrrnfkpPPPywv//SSy/91T13l4+P19Uh+vmKCb6Y0+tS+49PP/20r+N49dVX+zqOVatWRY/de++9dd+v+X1r6xDl4+rqEOXjxo8ftx8379+4ceMp5XFz2+EYN2zYsNg+/q6rr176+OOPn9eoz6H29Rre/nztsf5P+zWt+xmrrUOY29bZ25XvY0bptXHnbMp1hC6Uzfazr2e1vv369Yy2xyuvvOL7P/fe+96i+lkQ/fiMRkpY5+mn/fZ5eo/99/XXXx+zv0f1HmXNYfPmzf6m2s4H4++6D/a999575eXXX3+9bx+nPW+7f9977z1/S+1xv+FnuPXWW/3W50SUj7vuuuvWevt+t2rvt7n20mLFFcSv7YuwbzfjwQcftHsLx+3tJWNb2fHfqPPBfv2rrrrqSvv2Vvfvov/x/PPPL+9X+7k3+j5d+PDhw/5W+372/cyU/S9lPvnk+Pj4bPP7e+7/WW++Wf73eZTjx4+PfffSSy/Vc42fc+LEmAnbv3z58r9v3rz5fy+/8MJf7Pv5O+23x+3tx4wfO3Z84vjx4xO2ffv2PW7fz69DNG5D9PmcKF8f+//99//bv1Vbg7Cf0/rs+++/Xz/fqN2lzp43Z84c+/WO/syx16z+vS+++GJTU1nGPv3009qvu/ndrO3xwH1t3U0Ek1qH6PXzEhEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREZFh+T8YjO2YOmNa5QAAAABJRU5ErkJggg==</field>
+        </record>
+
+        <record id="demo_hotel_3" model="hotel.hotel">
+            <field name="name">星河酒店(西湖店)</field>
+            <field name="code">HOTEL003</field>
+            <field name="address">杭州市西湖区南山路789号</field>
+            <field name="city">杭州</field>
+            <field name="state">浙江</field>
+            <field name="contact_name">王经理</field>
+            <field name="phone">0571-77777777</field>
+            <field name="email">manager3@xinghe.com</field>
+            <field name="star_rating">4</field>
+            <field name="opening_date">2021-06-01</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_hotel_4" model="hotel.hotel">
+            <field name="name">星河酒店(萧山店)</field>
+            <field name="code">HOTEL004</field>
+            <field name="address">杭州市萧山区市心路101号</field>
+            <field name="city">杭州</field>
+            <field name="state">浙江</field>
+            <field name="contact_name">赵经理</field>
+            <field name="phone">0571-55555555</field>
+            <field name="email">manager4@xinghe.com</field>
+            <field name="star_rating">4</field>
+            <field name="opening_date">2022-01-01</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_hotel_5" model="hotel.hotel">
+            <field name="name">星河酒店(上海店)</field>
+            <field name="code">HOTEL005</field>
+            <field name="address">上海市浦东新区陆家嘴路202号</field>
+            <field name="city">上海</field>
+            <field name="state">上海</field>
+            <field name="contact_name">孙经理</field>
+            <field name="phone">021-99999999</field>
+            <field name="email">manager5@xinghe.com</field>
+            <field name="star_rating">5</field>
+            <field name="opening_date">2022-05-01</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <!-- ==================== 房型数据 (8种) ==================== -->
+        <!-- 注意：如果 hotel_id 不是必填字段，可以不指定。这里为了演示，所有房型都关联到第一家酒店 -->
+        <record id="demo_room_type_1" model="hotel.room.type">
+            <field name="name">经济单人房</field>
+            <field name="code">RT001</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="bed_type">single</field>
+            <field name="max_occupancy">1</field>
+            <field name="area">18</field>
+            <field name="base_price">199.00</field>
+            <field name="has_breakfast" eval="False"/>
+            <field name="has_wifi" eval="True"/>
+            <field name="has_window" eval="True"/>
+            <field name="cancellation_policy">1day</field>
+            <field name="description">经济实惠的单人房</field>
+        </record>
+
+        <record id="demo_room_type_2" model="hotel.room.type">
+            <field name="name">舒适大床房</field>
+            <field name="code">RT002</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="bed_type">king</field>
+            <field name="max_occupancy">2</field>
+            <field name="area">25</field>
+            <field name="base_price">299.00</field>
+            <field name="has_breakfast" eval="True"/>
+            <field name="breakfast_count">1</field>
+            <field name="has_wifi" eval="True"/>
+            <field name="has_window" eval="True"/>
+            <field name="cancellation_policy">1day</field>
+            <field name="description">舒适温馨的大床房</field>
+        </record>
+
+        <record id="demo_room_type_3" model="hotel.room.type">
+            <field name="name">豪华大床房</field>
+            <field name="code">RT003</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="bed_type">king</field>
+            <field name="max_occupancy">2</field>
+            <field name="area">32</field>
+            <field name="base_price">399.00</field>
+            <field name="has_breakfast" eval="True"/>
+            <field name="breakfast_count">2</field>
+            <field name="has_wifi" eval="True"/>
+            <field name="has_window" eval="True"/>
+            <field name="cancellation_policy">1day</field>
+            <field name="description">豪华大床房，配备高级床品</field>
+        </record>
+
+        <record id="demo_room_type_4" model="hotel.room.type">
+            <field name="name">商务双床房</field>
+            <field name="code">RT004</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="bed_type">double</field>
+            <field name="max_occupancy">2</field>
+            <field name="area">35</field>
+            <field name="base_price">449.00</field>
+            <field name="has_breakfast" eval="True"/>
+            <field name="breakfast_count">2</field>
+            <field name="has_wifi" eval="True"/>
+            <field name="has_window" eval="True"/>
+            <field name="cancellation_policy">1day</field>
+            <field name="description">商务双床房，适合商务出行</field>
+        </record>
+
+        <record id="demo_room_type_5" model="hotel.room.type">
+            <field name="name">行政套房</field>
+            <field name="code">RT005</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="bed_type">suite</field>
+            <field name="max_occupancy">3</field>
+            <field name="area">55</field>
+            <field name="base_price">799.00</field>
+            <field name="has_breakfast" eval="True"/>
+            <field name="breakfast_count">2</field>
+            <field name="has_wifi" eval="True"/>
+            <field name="has_window" eval="True"/>
+            <field name="cancellation_policy">3day</field>
+            <field name="description">行政套房，带独立客厅</field>
+        </record>
+
+        <record id="demo_room_type_6" model="hotel.room.type">
+            <field name="name">家庭房</field>
+            <field name="code">RT006</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="bed_type">king</field>
+            <field name="max_occupancy">3</field>
+            <field name="area">45</field>
+            <field name="base_price">699.00</field>
+            <field name="has_breakfast" eval="True"/>
+            <field name="breakfast_count">3</field>
+            <field name="has_wifi" eval="True"/>
+            <field name="has_window" eval="True"/>
+            <field name="cancellation_policy">1day</field>
+            <field name="description">家庭房，适合全家出游</field>
+        </record>
+
+        <record id="demo_room_type_7" model="hotel.room.type">
+            <field name="name">总统套房</field>
+            <field name="code">RT007</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="bed_type">suite</field>
+            <field name="max_occupancy">4</field>
+            <field name="area">88</field>
+            <field name="base_price">1599.00</field>
+            <field name="has_breakfast" eval="True"/>
+            <field name="breakfast_count">4</field>
+            <field name="has_wifi" eval="True"/>
+            <field name="has_window" eval="True"/>
+            <field name="cancellation_policy">7day</field>
+            <field name="description">总统套房，尊享奢华体验</field>
+        </record>
+
+        <record id="demo_room_type_8" model="hotel.room.type">
+            <field name="name">蜜月套房</field>
+            <field name="code">RT008</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="bed_type">suite</field>
+            <field name="max_occupancy">2</field>
+            <field name="area">68</field>
+            <field name="base_price">1299.00</field>
+            <field name="has_breakfast" eval="True"/>
+            <field name="breakfast_count">2</field>
+            <field name="has_wifi" eval="True"/>
+            <field name="has_window" eval="True"/>
+            <field name="cancellation_policy">3day</field>
+            <field name="description">蜜月套房，浪漫温馨</field>
+        </record>
+
+        <!-- ==================== 渠道数据 (6个) ==================== -->
+        <record id="demo_channel_1" model="hotel.channel">
+            <field name="name">携程旅行</field>
+            <field name="code">CH001</field>
+            <field name="enterprise_key">CTRIP_ENTERPRISE_001</field>
+            <field name="callback_url">https://api.ctrip.com/callback</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_channel_2" model="hotel.channel">
+            <field name="name">美团酒店</field>
+            <field name="code">CH002</field>
+            <field name="enterprise_key">MEITUAN_ENTERPRISE_001</field>
+            <field name="callback_url">https://api.meituan.com/callback</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_channel_3" model="hotel.channel">
+            <field name="name">飞猪旅行</field>
+            <field name="code">CH003</field>
+            <field name="enterprise_key">FLIGGY_ENTERPRISE_001</field>
+            <field name="callback_url">https://api.fliggy.com/callback</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_channel_4" model="hotel.channel">
+            <field name="name">Booking.com</field>
+            <field name="code">CH004</field>
+            <field name="enterprise_key">BOOKING_ENTERPRISE_001</field>
+            <field name="callback_url">https://api.booking.com/callback</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_channel_5" model="hotel.channel">
+            <field name="name">去哪儿网</field>
+            <field name="code">CH005</field>
+            <field name="enterprise_key">QUNAR_ENTERPRISE_001</field>
+            <field name="callback_url">https://api.qunar.com/callback</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_channel_6" model="hotel.channel">
+            <field name="name">艺龙旅行</field>
+            <field name="code">CH006</field>
+            <field name="enterprise_key">ELONG_ENTERPRISE_001</field>
+            <field name="callback_url">https://api.elong.com/callback</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <!-- ==================== 房间数据 (100个) ==================== -->
+
+        <!-- ==================== 房间数据 (100个) ==================== -->
+
+        <record id="demo_room_1" model="hotel.room">
+            <field name="number">301</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="floor">3</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">181.09</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_2" model="hotel.room">
+            <field name="number">302</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="floor">3</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">275.08</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_3" model="hotel.room">
+            <field name="number">303</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_3"/>
+            <field name="floor">3</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">371.07</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_4" model="hotel.room">
+            <field name="number">304</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="floor">3</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">online</field>
+            <field name="price">422.06</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_5" model="hotel.room">
+            <field name="number">401</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_5"/>
+            <field name="floor">4</field>
+            <field name="status">occupied</field>
+            <field name="sale_type">offline</field>
+            <field name="price">759.05</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_6" model="hotel.room">
+            <field name="number">402</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_6"/>
+            <field name="floor">4</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">671.04</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_7" model="hotel.room">
+            <field name="number">403</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_7"/>
+            <field name="floor">4</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">1551.03</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_8" model="hotel.room">
+            <field name="number">404</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_8"/>
+            <field name="floor">4</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">offline</field>
+            <field name="price">1273.02</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_9" model="hotel.room">
+            <field name="number">501</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="floor">5</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">197.01</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_10" model="hotel.room">
+            <field name="number">502</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="floor">5</field>
+            <field name="status">occupied</field>
+            <field name="sale_type">online</field>
+            <field name="price">299.0</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_11" model="hotel.room">
+            <field name="number">503</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_3"/>
+            <field name="floor">5</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">402.99</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_12" model="hotel.room">
+            <field name="number">504</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="floor">5</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">both</field>
+            <field name="price">457.98</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_13" model="hotel.room">
+            <field name="number">601</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_5"/>
+            <field name="floor">6</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">822.97</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_14" model="hotel.room">
+            <field name="number">602</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_6"/>
+            <field name="floor">6</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">726.96</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_15" model="hotel.room">
+            <field name="number">603</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_7"/>
+            <field name="floor">6</field>
+            <field name="status">occupied</field>
+            <field name="sale_type">both</field>
+            <field name="price">1678.95</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_16" model="hotel.room">
+            <field name="number">604</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_8"/>
+            <field name="floor">6</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">online</field>
+            <field name="price">1376.94</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_17" model="hotel.room">
+            <field name="number">701</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="floor">7</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">212.93</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_18" model="hotel.room">
+            <field name="number">702</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="floor">7</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">322.92</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_19" model="hotel.room">
+            <field name="number">703</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_3"/>
+            <field name="floor">7</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">434.91</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_20" model="hotel.room">
+            <field name="number">704</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="floor">7</field>
+            <field name="status">out_of_service</field>
+            <field name="sale_type">offline</field>
+            <field name="price">493.9</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_21" model="hotel.room">
+            <field name="number">801</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="floor">8</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">179.1</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_22" model="hotel.room">
+            <field name="number">802</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="floor">8</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">272.09</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_23" model="hotel.room">
+            <field name="number">803</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_3"/>
+            <field name="floor">8</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">367.08</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_24" model="hotel.room">
+            <field name="number">804</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="floor">8</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">both</field>
+            <field name="price">417.57</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_25" model="hotel.room">
+            <field name="number">901</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_5"/>
+            <field name="floor">9</field>
+            <field name="status">occupied</field>
+            <field name="sale_type">online</field>
+            <field name="price">751.06</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_26" model="hotel.room">
+            <field name="number">902</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_6"/>
+            <field name="floor">9</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">664.05</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_27" model="hotel.room">
+            <field name="number">903</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_7"/>
+            <field name="floor">9</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">1535.04</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_28" model="hotel.room">
+            <field name="number">904</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_8"/>
+            <field name="floor">9</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">online</field>
+            <field name="price">1260.03</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_29" model="hotel.room">
+            <field name="number">1001</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="floor">10</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">195.02</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_30" model="hotel.room">
+            <field name="number">1002</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="floor">10</field>
+            <field name="status">occupied</field>
+            <field name="sale_type">both</field>
+            <field name="price">296.01</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_31" model="hotel.room">
+            <field name="number">1003</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_3"/>
+            <field name="floor">10</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">399.0</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_32" model="hotel.room">
+            <field name="number">1004</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="floor">10</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">offline</field>
+            <field name="price">453.49</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_33" model="hotel.room">
+            <field name="number">1101</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_5"/>
+            <field name="floor">11</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">814.98</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_34" model="hotel.room">
+            <field name="number">1102</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_6"/>
+            <field name="floor">11</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">719.97</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_35" model="hotel.room">
+            <field name="number">1103</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_7"/>
+            <field name="floor">11</field>
+            <field name="status">occupied</field>
+            <field name="sale_type">offline</field>
+            <field name="price">1662.96</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_36" model="hotel.room">
+            <field name="number">1104</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_8"/>
+            <field name="floor">11</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">both</field>
+            <field name="price">1363.95</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_37" model="hotel.room">
+            <field name="number">1201</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="floor">12</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">210.94</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_38" model="hotel.room">
+            <field name="number">1202</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="floor">12</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">319.93</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_39" model="hotel.room">
+            <field name="number">1203</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_3"/>
+            <field name="floor">12</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">430.92</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_40" model="hotel.room">
+            <field name="number">1204</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="floor">12</field>
+            <field name="status">out_of_service</field>
+            <field name="sale_type">online</field>
+            <field name="price">489.41</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_41" model="hotel.room">
+            <field name="number">1301</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="floor">13</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">218.9</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_42" model="hotel.room">
+            <field name="number">1302</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="floor">13</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">269.1</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_43" model="hotel.room">
+            <field name="number">1303</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_3"/>
+            <field name="floor">13</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">363.09</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_44" model="hotel.room">
+            <field name="number">1304</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="floor">13</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">offline</field>
+            <field name="price">413.08</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_45" model="hotel.room">
+            <field name="number">1401</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_5"/>
+            <field name="floor">14</field>
+            <field name="status">occupied</field>
+            <field name="sale_type">both</field>
+            <field name="price">743.07</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_46" model="hotel.room">
+            <field name="number">1402</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_6"/>
+            <field name="floor">14</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">657.06</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_47" model="hotel.room">
+            <field name="number">1403</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_7"/>
+            <field name="floor">14</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">1519.05</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_48" model="hotel.room">
+            <field name="number">1404</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_8"/>
+            <field name="floor">14</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">both</field>
+            <field name="price">1247.04</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_49" model="hotel.room">
+            <field name="number">1501</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="floor">15</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">193.03</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_50" model="hotel.room">
+            <field name="number">1502</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="floor">15</field>
+            <field name="status">occupied</field>
+            <field name="sale_type">offline</field>
+            <field name="price">293.02</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_51" model="hotel.room">
+            <field name="number">1503</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_3"/>
+            <field name="floor">15</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">395.01</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_52" model="hotel.room">
+            <field name="number">1504</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="floor">15</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">online</field>
+            <field name="price">449.0</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_53" model="hotel.room">
+            <field name="number">1601</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_5"/>
+            <field name="floor">16</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">806.99</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_54" model="hotel.room">
+            <field name="number">1602</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_6"/>
+            <field name="floor">16</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">712.98</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_55" model="hotel.room">
+            <field name="number">1603</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_7"/>
+            <field name="floor">16</field>
+            <field name="status">occupied</field>
+            <field name="sale_type">online</field>
+            <field name="price">1646.97</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_56" model="hotel.room">
+            <field name="number">1604</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_8"/>
+            <field name="floor">16</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">offline</field>
+            <field name="price">1350.96</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_57" model="hotel.room">
+            <field name="number">1701</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="floor">17</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">208.95</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_58" model="hotel.room">
+            <field name="number">1702</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="floor">17</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">316.94</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_59" model="hotel.room">
+            <field name="number">1703</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_3"/>
+            <field name="floor">17</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">426.93</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_60" model="hotel.room">
+            <field name="number">1704</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="floor">17</field>
+            <field name="status">out_of_service</field>
+            <field name="sale_type">both</field>
+            <field name="price">484.92</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_61" model="hotel.room">
+            <field name="number">1801</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="floor">18</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">216.91</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_62" model="hotel.room">
+            <field name="number">1802</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="floor">18</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">328.9</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_63" model="hotel.room">
+            <field name="number">1803</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_3"/>
+            <field name="floor">18</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">359.1</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_64" model="hotel.room">
+            <field name="number">1804</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="floor">18</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">online</field>
+            <field name="price">408.59</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_65" model="hotel.room">
+            <field name="number">1901</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_5"/>
+            <field name="floor">19</field>
+            <field name="status">occupied</field>
+            <field name="sale_type">offline</field>
+            <field name="price">735.08</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_66" model="hotel.room">
+            <field name="number">1902</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_6"/>
+            <field name="floor">19</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">650.07</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_67" model="hotel.room">
+            <field name="number">1903</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_7"/>
+            <field name="floor">19</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">1503.06</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_68" model="hotel.room">
+            <field name="number">1904</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_8"/>
+            <field name="floor">19</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">offline</field>
+            <field name="price">1234.05</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_69" model="hotel.room">
+            <field name="number">2001</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="floor">20</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">191.04</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_70" model="hotel.room">
+            <field name="number">2002</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="floor">20</field>
+            <field name="status">occupied</field>
+            <field name="sale_type">online</field>
+            <field name="price">290.03</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_71" model="hotel.room">
+            <field name="number">2003</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_3"/>
+            <field name="floor">20</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">391.02</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_72" model="hotel.room">
+            <field name="number">2004</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="floor">20</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">both</field>
+            <field name="price">444.51</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_73" model="hotel.room">
+            <field name="number">2101</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_5"/>
+            <field name="floor">21</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">799.0</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_74" model="hotel.room">
+            <field name="number">2102</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_6"/>
+            <field name="floor">21</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">705.99</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_75" model="hotel.room">
+            <field name="number">2103</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_7"/>
+            <field name="floor">21</field>
+            <field name="status">occupied</field>
+            <field name="sale_type">both</field>
+            <field name="price">1630.98</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_76" model="hotel.room">
+            <field name="number">2104</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_8"/>
+            <field name="floor">21</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">online</field>
+            <field name="price">1337.97</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_77" model="hotel.room">
+            <field name="number">2201</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="floor">22</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">206.96</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_78" model="hotel.room">
+            <field name="number">2202</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="floor">22</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">313.95</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_79" model="hotel.room">
+            <field name="number">2203</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_3"/>
+            <field name="floor">22</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">422.94</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_80" model="hotel.room">
+            <field name="number">2204</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="floor">22</field>
+            <field name="status">out_of_service</field>
+            <field name="sale_type">offline</field>
+            <field name="price">480.43</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_81" model="hotel.room">
+            <field name="number">2301</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="floor">23</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">214.92</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_82" model="hotel.room">
+            <field name="number">2302</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="floor">23</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">325.91</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_83" model="hotel.room">
+            <field name="number">2303</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_3"/>
+            <field name="floor">23</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">438.9</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_84" model="hotel.room">
+            <field name="number">2304</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="floor">23</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">both</field>
+            <field name="price">404.1</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_85" model="hotel.room">
+            <field name="number">2401</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_5"/>
+            <field name="floor">24</field>
+            <field name="status">occupied</field>
+            <field name="sale_type">online</field>
+            <field name="price">727.09</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_86" model="hotel.room">
+            <field name="number">2402</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_6"/>
+            <field name="floor">24</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">643.08</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_87" model="hotel.room">
+            <field name="number">2403</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_7"/>
+            <field name="floor">24</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">1487.07</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_88" model="hotel.room">
+            <field name="number">2404</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_8"/>
+            <field name="floor">24</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">online</field>
+            <field name="price">1221.06</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_89" model="hotel.room">
+            <field name="number">2501</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="floor">25</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">189.05</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_90" model="hotel.room">
+            <field name="number">2502</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="floor">25</field>
+            <field name="status">occupied</field>
+            <field name="sale_type">both</field>
+            <field name="price">287.04</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_91" model="hotel.room">
+            <field name="number">2503</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_3"/>
+            <field name="floor">25</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">387.03</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_92" model="hotel.room">
+            <field name="number">2504</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="floor">25</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">offline</field>
+            <field name="price">440.02</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_93" model="hotel.room">
+            <field name="number">2601</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_5"/>
+            <field name="floor">26</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">791.01</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_94" model="hotel.room">
+            <field name="number">2602</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_6"/>
+            <field name="floor">26</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">699.0</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_95" model="hotel.room">
+            <field name="number">2603</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_7"/>
+            <field name="floor">26</field>
+            <field name="status">occupied</field>
+            <field name="sale_type">offline</field>
+            <field name="price">1614.99</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_96" model="hotel.room">
+            <field name="number">2604</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_8"/>
+            <field name="floor">26</field>
+            <field name="status">reserved</field>
+            <field name="sale_type">both</field>
+            <field name="price">1324.98</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_97" model="hotel.room">
+            <field name="number">2701</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="floor">27</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">online</field>
+            <field name="price">204.97</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_98" model="hotel.room">
+            <field name="number">2702</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="floor">27</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">offline</field>
+            <field name="price">310.96</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_99" model="hotel.room">
+            <field name="number">2703</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_3"/>
+            <field name="floor">27</field>
+            <field name="status">vacant</field>
+            <field name="sale_type">both</field>
+            <field name="price">418.95</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="demo_room_100" model="hotel.room">
+            <field name="number">2704</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="floor">27</field>
+            <field name="status">out_of_service</field>
+            <field name="sale_type">online</field>
+            <field name="price">475.94</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <!-- ==================== 订单数据 (20个示例) ==================== -->
+        <record id="demo_order_1" model="hotel.order">
+            <field name="name">HO202511090001</field>
+            <field name="channel_id" ref="demo_channel_1"/>
+            <field name="channel_order_no">CT20251109000001</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_1"/>
+            <field name="room_type_id" ref="demo_room_type_1"/>
+            <field name="guest_name">王小明</field>
+            <field name="guest_phone">13800138001</field>
+            <field name="guest_email">wangxm@example.com</field>
+            <field name="check_in" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=3)).strftime('%Y-%m-%d')"/>
+            <field name="nights">2</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">199.00</field>
+            <field name="total_price">398.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">confirmed</field>
+        </record>
+
+        <record id="demo_order_2" model="hotel.order">
+            <field name="name">HO202511090002</field>
+            <field name="channel_id" ref="demo_channel_2"/>
+            <field name="channel_order_no">MT20251109000002</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_10"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="guest_name">李芳</field>
+            <field name="guest_phone">13800138002</field>
+            <field name="check_in" eval="(DateTime.now() + timedelta(days=2)).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=4)).strftime('%Y-%m-%d')"/>
+            <field name="nights">2</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">299.00</field>
+            <field name="total_price">598.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">confirmed</field>
+        </record>
+
+        <record id="demo_order_3" model="hotel.order">
+            <field name="name">HO202511090003</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_25"/>
+            <field name="room_type_id" ref="demo_room_type_5"/>
+            <field name="guest_name">张三</field>
+            <field name="guest_phone">13800138003</field>
+            <field name="check_in" eval="(DateTime.now() + timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=7)).strftime('%Y-%m-%d')"/>
+            <field name="nights">2</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">799.00</field>
+            <field name="total_price">1598.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">draft</field>
+            <field name="note">前台预订，等待确认</field>
+        </record>
+
+        <record id="demo_order_4" model="hotel.order">
+            <field name="name">HO202511090004</field>
+            <field name="channel_id" ref="demo_channel_3"/>
+            <field name="channel_order_no">FG20251109000004</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_45"/>
+            <field name="room_type_id" ref="demo_room_type_5"/>
+            <field name="guest_name">赵六</field>
+            <field name="guest_phone">13800138004</field>
+            <field name="check_in" eval="(DateTime.now() + timedelta(days=3)).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="nights">2</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">799.00</field>
+            <field name="total_price">1598.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">confirmed</field>
+        </record>
+
+        <record id="demo_order_5" model="hotel.order">
+            <field name="name">HO202511090005</field>
+            <field name="channel_id" ref="demo_channel_4"/>
+            <field name="channel_order_no">BK20251109000005</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_65"/>
+            <field name="room_type_id" ref="demo_room_type_5"/>
+            <field name="guest_name">孙七</field>
+            <field name="guest_phone">13800138005</field>
+            <field name="check_in" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=2)).strftime('%Y-%m-%d')"/>
+            <field name="nights">1</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">799.00</field>
+            <field name="total_price">799.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">confirmed</field>
+        </record>
+
+        <record id="demo_order_6" model="hotel.order">
+            <field name="name">HO202511090006</field>
+            <field name="channel_id" ref="demo_channel_1"/>
+            <field name="channel_order_no">CT20251109000006</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_85"/>
+            <field name="room_type_id" ref="demo_room_type_5"/>
+            <field name="guest_name">周八</field>
+            <field name="guest_phone">13800138006</field>
+            <field name="check_in" eval="(DateTime.now() + timedelta(days=4)).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=6)).strftime('%Y-%m-%d')"/>
+            <field name="nights">2</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">799.00</field>
+            <field name="total_price">1598.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">confirmed</field>
+        </record>
+
+        <record id="demo_order_7" model="hotel.order">
+            <field name="name">HO202511090007</field>
+            <field name="channel_id" ref="demo_channel_2"/>
+            <field name="channel_order_no">MT20251109000007</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_5"/>
+            <field name="room_type_id" ref="demo_room_type_5"/>
+            <field name="guest_name">吴九</field>
+            <field name="guest_phone">13800138007</field>
+            <field name="check_in" eval="(DateTime.now()).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=3)).strftime('%Y-%m-%d')"/>
+            <field name="nights">3</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">799.00</field>
+            <field name="total_price">2397.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">checked_in</field>
+        </record>
+
+        <record id="demo_order_8" model="hotel.order">
+            <field name="name">HO202511090008</field>
+            <field name="channel_id" ref="demo_channel_5"/>
+            <field name="channel_order_no">QN20251109000008</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_30"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="guest_name">郑十</field>
+            <field name="guest_phone">13800138008</field>
+            <field name="check_in" eval="(DateTime.now() - timedelta(days=2)).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now()).strftime('%Y-%m-%d')"/>
+            <field name="nights">2</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">299.00</field>
+            <field name="total_price">598.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">checked_out</field>
+        </record>
+
+        <record id="demo_order_9" model="hotel.order">
+            <field name="name">HO202511090009</field>
+            <field name="channel_id" ref="demo_channel_3"/>
+            <field name="channel_order_no">FG20251109000009</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_50"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="guest_name">刘一</field>
+            <field name="guest_phone">13800138009</field>
+            <field name="check_in" eval="(DateTime.now()).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d')"/>
+            <field name="nights">1</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">299.00</field>
+            <field name="total_price">299.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">checked_in</field>
+        </record>
+
+        <record id="demo_order_10" model="hotel.order">
+            <field name="name">HO202511090010</field>
+            <field name="channel_id" ref="demo_channel_6"/>
+            <field name="channel_order_no">EL20251109000010</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_70"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="guest_name">陈二</field>
+            <field name="guest_phone">13800138010</field>
+            <field name="check_in" eval="(DateTime.now()).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=2)).strftime('%Y-%m-%d')"/>
+            <field name="nights">2</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">299.00</field>
+            <field name="total_price">598.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">checked_in</field>
+        </record>
+
+        <record id="demo_order_11" model="hotel.order">
+            <field name="name">HO202511090011</field>
+            <field name="channel_id" ref="demo_channel_1"/>
+            <field name="channel_order_no">CT20251109000011</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_90"/>
+            <field name="room_type_id" ref="demo_room_type_2"/>
+            <field name="guest_name">钱五</field>
+            <field name="guest_phone">13800138011</field>
+            <field name="check_in" eval="(DateTime.now()).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=3)).strftime('%Y-%m-%d')"/>
+            <field name="nights">3</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">299.00</field>
+            <field name="total_price">897.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">checked_in</field>
+        </record>
+
+        <record id="demo_order_12" model="hotel.order">
+            <field name="name">HO202511090012</field>
+            <field name="channel_id" ref="demo_channel_2"/>
+            <field name="channel_order_no">MT20251109000012</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_15"/>
+            <field name="room_type_id" ref="demo_room_type_7"/>
+            <field name="guest_name">孟六</field>
+            <field name="guest_phone">13800138012</field>
+            <field name="check_in" eval="(DateTime.now()).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d')"/>
+            <field name="nights">1</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">1599.00</field>
+            <field name="total_price">1599.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">checked_in</field>
+        </record>
+
+        <record id="demo_order_13" model="hotel.order">
+            <field name="name">HO202511090013</field>
+            <field name="channel_id" ref="demo_channel_4"/>
+            <field name="channel_order_no">BK20251109000013</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_35"/>
+            <field name="room_type_id" ref="demo_room_type_7"/>
+            <field name="guest_name">齐七</field>
+            <field name="guest_phone">13800138013</field>
+            <field name="check_in" eval="(DateTime.now()).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=2)).strftime('%Y-%m-%d')"/>
+            <field name="nights">2</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">1599.00</field>
+            <field name="total_price">3198.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">checked_in</field>
+        </record>
+
+        <record id="demo_order_14" model="hotel.order">
+            <field name="name">HO202511090014</field>
+            <field name="channel_id" ref="demo_channel_3"/>
+            <field name="channel_order_no">FG20251109000014</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_55"/>
+            <field name="room_type_id" ref="demo_room_type_7"/>
+            <field name="guest_name">卫八</field>
+            <field name="guest_phone">13800138014</field>
+            <field name="check_in" eval="(DateTime.now()).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d')"/>
+            <field name="nights">1</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">1599.00</field>
+            <field name="total_price">1599.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">checked_in</field>
+        </record>
+
+        <record id="demo_order_15" model="hotel.order">
+            <field name="name">HO202511090015</field>
+            <field name="channel_id" ref="demo_channel_5"/>
+            <field name="channel_order_no">QN20251109000015</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_75"/>
+            <field name="room_type_id" ref="demo_room_type_7"/>
+            <field name="guest_name">冯九</field>
+            <field name="guest_phone">13800138015</field>
+            <field name="check_in" eval="(DateTime.now()).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=3)).strftime('%Y-%m-%d')"/>
+            <field name="nights">3</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">1599.00</field>
+            <field name="total_price">4797.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">checked_in</field>
+        </record>
+
+        <record id="demo_order_16" model="hotel.order">
+            <field name="name">HO202511090016</field>
+            <field name="channel_id" ref="demo_channel_6"/>
+            <field name="channel_order_no">EL20251109000016</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_95"/>
+            <field name="room_type_id" ref="demo_room_type_7"/>
+            <field name="guest_name">陶十</field>
+            <field name="guest_phone">13800138016</field>
+            <field name="check_in" eval="(DateTime.now()).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=2)).strftime('%Y-%m-%d')"/>
+            <field name="nights">2</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">1599.00</field>
+            <field name="total_price">3198.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">checked_in</field>
+        </record>
+
+        <record id="demo_order_17" model="hotel.order">
+            <field name="name">HO202511090017</field>
+            <field name="channel_id" ref="demo_channel_1"/>
+            <field name="channel_order_no">CT20251109000017</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_4"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="guest_name">黄一</field>
+            <field name="guest_phone">13800138017</field>
+            <field name="check_in" eval="(DateTime.now() + timedelta(days=2)).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=4)).strftime('%Y-%m-%d')"/>
+            <field name="nights">2</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">449.00</field>
+            <field name="total_price">898.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">confirmed</field>
+        </record>
+
+        <record id="demo_order_18" model="hotel.order">
+            <field name="name">HO202511090018</field>
+            <field name="channel_id" ref="demo_channel_2"/>
+            <field name="channel_order_no">MT20251109000018</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_24"/>
+            <field name="room_type_id" ref="demo_room_type_4"/>
+            <field name="guest_name">许二</field>
+            <field name="guest_phone">13800138018</field>
+            <field name="check_in" eval="(DateTime.now() + timedelta(days=3)).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="nights">2</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">449.00</field>
+            <field name="total_price">898.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">confirmed</field>
+        </record>
+
+        <record id="demo_order_19" model="hotel.order">
+            <field name="name">HO202511090019</field>
+            <field name="channel_id" ref="demo_channel_1"/>
+            <field name="channel_order_no">CT20251109000019</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_8"/>
+            <field name="room_type_id" ref="demo_room_type_8"/>
+            <field name="guest_name">范三</field>
+            <field name="guest_phone">13800138019</field>
+            <field name="check_in" eval="(DateTime.now() + timedelta(days=6)).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=8)).strftime('%Y-%m-%d')"/>
+            <field name="nights">2</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">1299.00</field>
+            <field name="total_price">2598.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">confirmed</field>
+        </record>
+
+        <record id="demo_order_20" model="hotel.order">
+            <field name="name">HO202511090020</field>
+            <field name="hotel_id" ref="demo_hotel_1"/>
+            <field name="room_id" ref="demo_room_48"/>
+            <field name="room_type_id" ref="demo_room_type_8"/>
+            <field name="guest_name">白四</field>
+            <field name="guest_phone">13800138020</field>
+            <field name="check_in" eval="(DateTime.now() + timedelta(days=7)).strftime('%Y-%m-%d')"/>
+            <field name="check_out" eval="(DateTime.now() + timedelta(days=9)).strftime('%Y-%m-%d')"/>
+            <field name="nights">2</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">1299.00</field>
+            <field name="total_price">2598.00</field>
+            <field name="currency_id" ref="base.CNY"/>
+            <field name="state">draft</field>
+            <field name="note">线下预订</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # PostgreSQL 数据库
+  postgres:
+    image: postgres:14
+    container_name: hotel_postgres
+    environment:
+      POSTGRES_DB: odoo
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - hotel_network
+
+  # Odoo 18
+  odoo:
+    image: odoo:18.0
+    container_name: hotel_odoo
+    depends_on:
+      - postgres
+    ports:
+      - "8069:8069"
+      - "8072:8072"  # longpolling
+    volumes:
+      # 将模块挂载到extra-addons
+      - ./:/mnt/extra-addons/hotel_channel_hub
+      # Odoo数据目录
+      - odoo_data:/var/lib/odoo
+      # 配置文件（可选）
+      - ./odoo.conf:/etc/odoo/odoo.conf
+    environment:
+      - HOST=postgres
+      - PORT=5432
+      - USER=odoo
+      - PASSWORD=odoo
+    command: --addons-path=/mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons --dev=all
+    restart: unless-stopped
+    networks:
+      - hotel_network
+
+volumes:
+  postgres_data:
+    driver: local
+  odoo_data:
+    driver: local
+
+networks:
+  hotel_network:
+    driver: bridge
+

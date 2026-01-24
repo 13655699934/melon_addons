@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <t t-name="templates_center_hotel_tag">
+        <iframe marginheight="0" marginwidth="0" width="100%" height="100%" src="/hotel/data/center/index" frameborder="0"
+                allowfullscreen="True"></iframe>
+    </t>
+
+
+</template>

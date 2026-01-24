@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- 渠道列表视图 -->
+        <record id="view_channel_list" model="ir.ui.view">
+            <field name="name">hotel.channel.list</field>
+            <field name="model">hotel.channel</field>
+            <field name="arch" type="xml">
+                <list string="渠道列表">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="enterprise_key"/>
+                    <field name="last_sync_date"/>
+                    <field name="order_count"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- 渠道看板视图 -->
+        <record id="view_channel_kanban" model="ir.ui.view">
+            <field name="name">hotel.channel.kanban</field>
+            <field name="model">hotel.channel</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="enterprise_key"/>
+                    <field name="callback_url"/>
+                    <field name="last_sync_date"/>
+                    <field name="order_count"/>
+                    <field name="sync_log_count"/>
+                    <field name="active"/>
+                    <templates>
+                        <t t-name="card">
+                            <div class="oe_kanban_global_click" style="position: relative;">
+                                <!-- 卡片头部 -->
+                                <div style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); padding: 20px; border-radius: 8px 8px 0 0; color: white; position: relative;">
+                                    <!-- 状态标签 -->
+                                    <div t-if="!record.active.raw_value" 
+                                         style="position: absolute; top: 10px; right: 10px; background: #dc3545; color: white; padding: 3px 10px; border-radius: 15px; font-size: 11px;">
+                                        已停用
+                                    </div>
+                                    <div t-if="record.active.raw_value" 
+                                         style="position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.3); color: white; padding: 3px 10px; border-radius: 15px; font-size: 11px;">
+                                        ✓ 运行中
+                                    </div>
+                                    
+                                    <!-- 渠道图标和名称 -->
+                                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                        <div style="background: rgba(255,255,255,0.2); padding: 12px; border-radius: 50%; margin-right: 12px;">
+                                            <i class="fa fa-globe" style="font-size: 28px;" title="渠道"/>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 3px;">
+                                                <field name="name"/>
+                                            </div>
+                                            <div style="font-size: 12px; opacity: 0.9;">
+                                                <field name="code"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 企业标识 -->
+                                    <div style="background: rgba(255,255,255,0.15); padding: 8px 12px; border-radius: 5px; font-size: 11px; margin-top: 10px;">
+                                        <i class="fa fa-key" style="margin-right: 5px;" title="企业标识"/>
+                                        <field name="enterprise_key"/>
+                                    </div>
+                                </div>
+                                
+                                <!-- 卡片内容 -->
+                                <div style="padding: 15px; background: white;">
+                                    <!-- 统计信息 -->
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 15px; border-radius: 8px; text-align: center; color: white;">
+                                            <i class="fa fa-file-text-o" style="font-size: 20px; margin-bottom: 5px;" title="订单数"/>
+                                            <div style="font-size: 24px; font-weight: bold;">
+                                                <field name="order_count"/>
+                                            </div>
+                                            <div style="font-size: 11px; opacity: 0.9;">订单数</div>
+                                        </div>
+                                        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 15px; border-radius: 8px; text-align: center; color: white;">
+                                            <i class="fa fa-list-alt" style="font-size: 20px; margin-bottom: 5px;" title="日志数"/>
+                                            <div style="font-size: 24px; font-weight: bold;">
+                                                <field name="sync_log_count"/>
+                                            </div>
+                                            <div style="font-size: 11px; opacity: 0.9;">同步日志</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 最近同步时间 -->
+                                    <div style="background: #f8f9fa; padding: 12px; border-radius: 5px; margin-bottom: 12px;">
+                                        <div style="display: flex; align-items: center; color: #6c757d; font-size: 12px;">
+                                            <i class="fa fa-clock-o" style="margin-right: 8px; color: #11998e; font-size: 16px;" title="最近同步"/>
+                                            <div style="flex: 1;">
+                                                <div style="font-weight: bold; color: #2c3e50; margin-bottom: 2px;">最近同步</div>
+                                                <t t-if="record.last_sync_date.raw_value">
+                                                    <field name="last_sync_date" widget="relative"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span style="color: #dc3545;">从未同步</span>
+                                                </t>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 回调URL -->
+                                    <div t-if="record.callback_url.raw_value" style="margin-bottom: 10px;">
+                                        <div style="font-size: 11px; color: #6c757d; margin-bottom: 3px;">
+                                            <i class="fa fa-link" style="margin-right: 5px;" title="回调URL"/>
+                                            回调URL
+                                        </div>
+                                        <div style="background: #e3f2fd; padding: 8px; border-radius: 4px; font-size: 11px; color: #1976d2; word-break: break-all;">
+                                            <field name="callback_url"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 操作按钮 -->
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-top: 12px; border-top: 1px solid #dee2e6;">
+                                        <button name="action_view_orders" type="object" 
+                                                style="background: #667eea; color: white; border: none; padding: 8px; border-radius: 5px; font-size: 12px; cursor: pointer;">
+                                            <i class="fa fa-list"/> 查看订单
+                                        </button>
+                                        <button name="action_view_sync_logs" type="object" 
+                                                style="background: #11998e; color: white; border: none; padding: 8px; border-radius: 5px; font-size: 12px; cursor: pointer;">
+                                            <i class="fa fa-history"/> 查看日志
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- 渠道表单视图 -->
+        <record id="view_channel_form" model="ir.ui.view">
+            <field name="name">hotel.channel.form</field>
+            <field name="model">hotel.channel</field>
+            <field name="arch" type="xml">
+                <form string="渠道">
+                    <header>
+                        <button name="action_generate_token" type="object" string="重新生成Token" 
+                                class="oe_highlight" groups="base.group_system"/>
+                        <button name="action_view_orders" type="object" string="查看订单"/>
+                        <button name="action_view_sync_logs" type="object" string="查看日志"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_orders" type="object" class="oe_stat_button" icon="fa-file-text">
+                                <field name="order_count" widget="statinfo" string="订单"/>
+                            </button>
+                            <button name="action_view_sync_logs" type="object" class="oe_stat_button" icon="fa-list">
+                                <field name="sync_log_count" widget="statinfo" string="日志"/>
+                            </button>
+                        </div>
+                        <widget name="web_ribbon" title="已停用" bg_color="text-bg-danger" invisible="active"/>
+                        <field name="active" invisible="1"/>
+                        <group>
+                            <group>
+                                <field name="name" required="1"/>
+                                <field name="code" required="1"/>
+                                <field name="enterprise_key" required="1"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                            <group>
+                                <field name="callback_url" widget="url"/>
+                                <field name="last_sync_date" readonly="1"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Token信息" groups="base.group_system">
+                                <group>
+                                    <group>
+                                        <field name="token" readonly="1" password="True"/>
+                                        <field name="token_expiry" readonly="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="webhook_secret" password="True"/>
+                                    </group>
+                                </group>
+                                <div class="alert alert-info" role="alert">
+                                    <p><strong>提示：</strong></p>
+                                    <ul>
+                                        <li>Token用于API认证，请妥善保管</li>
+                                        <li>Token有效期为1年，过期后需要重新生成</li>
+                                        <li>使用"重新生成Token"按钮可以手动轮换Token</li>
+                                    </ul>
+                                </div>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- 渠道搜索视图 -->
+        <record id="view_channel_search" model="ir.ui.view">
+            <field name="name">hotel.channel.search</field>
+            <field name="model">hotel.channel</field>
+            <field name="arch" type="xml">
+                <search string="搜索渠道">
+                    <field name="name" string="渠道" filter_domain="['|', ('name', 'ilike', self), ('code', 'ilike', self)]"/>
+                    <field name="enterprise_key"/>
+                    <separator/>
+                    <filter string="启用" name="filter_active" domain="[('active', '=', True)]"/>
+                    <filter string="已停用" name="filter_inactive" domain="[('active', '=', False)]"/>
+                    <group expand="0" string="分组">
+                        <filter string="公司" name="group_company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- 渠道动作 -->
+        <record id="action_hotel_channel" model="ir.actions.act_window">
+            <field name="name">渠道</field>
+            <field name="res_model">hotel.channel</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="context">{'search_default_filter_active': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    创建第一个渠道
+                </p>
+                <p>
+                    渠道是对接第三方销售平台的入口，每个渠道有独立的Token用于API认证
+                </p>
+            </field>
+        </record>
+
+        <!-- 渠道映射列表视图 -->
+        <record id="view_channel_mapping_list" model="ir.ui.view">
+            <field name="name">hotel.channel.mapping.list</field>
+            <field name="model">hotel.channel.mapping</field>
+            <field name="arch" type="xml">
+                <list string="渠道映射列表">
+                    <field name="channel_id"/>
+                    <field name="hotel_id"/>
+                    <field name="room_type_id"/>
+                    <field name="room_id"/>
+                    <field name="channel_product_id"/>
+                    <field name="pricing_strategy"/>
+                    <field name="price_adjustment"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- 渠道映射表单视图 -->
+        <record id="view_channel_mapping_form" model="ir.ui.view">
+            <field name="name">hotel.channel.mapping.form</field>
+            <field name="model">hotel.channel.mapping</field>
+            <field name="arch" type="xml">
+                <form string="渠道映射">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="channel_id" required="1"/>
+                                <field name="hotel_id" required="1"/>
+                                <field name="room_type_id" domain="[('hotel_id', '=', hotel_id)]"/>
+                                <field name="room_id" domain="[('hotel_id', '=', hotel_id)]"/>
+                                <field name="company_id" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="channel_product_id" required="1"/>
+                                <field name="channel_room_type_id"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <group string="定价策略">
+                            <group>
+                                <field name="pricing_strategy"/>
+                                <field name="price_adjustment" 
+                                       invisible="pricing_strategy == 'base'"/>
+                                <field name="price_adjustment_percent" 
+                                       invisible="pricing_strategy not in ['markup', 'discount']"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- 渠道映射搜索视图 -->
+        <record id="view_channel_mapping_search" model="ir.ui.view">
+            <field name="name">hotel.channel.mapping.search</field>
+            <field name="model">hotel.channel.mapping</field>
+            <field name="arch" type="xml">
+                <search string="搜索渠道映射">
+                    <field name="channel_id"/>
+                    <field name="hotel_id"/>
+                    <field name="room_type_id"/>
+                    <field name="room_id"/>
+                    <separator/>
+                    <filter string="启用" name="filter_active" domain="[('active', '=', True)]"/>
+                    <group expand="0" string="分组">
+                        <filter string="渠道" name="group_channel" context="{'group_by': 'channel_id'}"/>
+                        <filter string="酒店" name="group_hotel" context="{'group_by': 'hotel_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- 渠道映射动作 -->
+        <record id="action_hotel_channel_mapping" model="ir.actions.act_window">
+            <field name="name">渠道映射</field>
+            <field name="res_model">hotel.channel.mapping</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'search_default_filter_active': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    创建第一个渠道映射
+                </p>
+                <p>
+                    渠道映射用于关联酒店房间与渠道商品，并设置定价策略
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- 应用类别 -->
+        <record id="module_category_hotel" model="ir.module.category">
+            <field name="name">酒店管理</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <!-- 用户组 -->
+        
+        <!-- 前台用户 -->
+        <record id="group_front_desk_user" model="res.groups">
+            <field name="name">前台用户</field>
+            <field name="category_id" ref="module_category_hotel"/>
+            <field name="comment">可查看和操作订单，查看房间信息</field>
+        </record>
+
+        <!-- 渠道经理 -->
+        <record id="group_channel_manager" model="res.groups">
+            <field name="name">渠道经理</field>
+            <field name="category_id" ref="module_category_hotel"/>
+            <field name="implied_ids" eval="[(4, ref('group_front_desk_user'))]"/>
+            <field name="comment">管理渠道、映射和订单</field>
+        </record>
+
+        <!-- 酒店经理 -->
+        <record id="group_hotel_manager" model="res.groups">
+            <field name="name">酒店经理</field>
+            <field name="category_id" ref="module_category_hotel"/>
+            <field name="implied_ids" eval="[(4, ref('group_channel_manager'))]"/>
+            <field name="comment">完整的酒店管理权限</field>
+        </record>
+
+        <!-- API客户端 -->
+        <record id="group_api_client" model="res.groups">
+            <field name="name">API客户端</field>
+            <field name="category_id" ref="module_category_hotel"/>
+            <field name="comment">仅API访问权限，不能登录后台</field>
+        </record>
+
+    </data>
+</odoo>
+

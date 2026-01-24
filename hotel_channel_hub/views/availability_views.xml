@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- 库存列表视图 -->
+        <record id="view_availability_list" model="ir.ui.view">
+            <field name="name">hotel.room.availability.list</field>
+            <field name="model">hotel.room.availability</field>
+            <field name="arch" type="xml">
+                <list string="库存与价格" decoration-danger="available_quota &lt;= 0"
+                      decoration-warning="available_quota &lt;= 3 and available_quota &gt; 0"
+                      editable="bottom">
+                    <field name="date"/>
+                    <field name="hotel_id"/>
+                    <field name="room_type_id"/>
+                    <field name="room_id"/>
+                    <field name="total_quota"/>
+                    <field name="sold_quota"/>
+                    <field name="available_quota" readonly="1"/>
+                    <field name="price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="currency_id" column_invisible="1"/>
+                    <field name="is_open" widget="boolean_toggle"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- 库存表单视图 -->
+        <record id="view_availability_form" model="ir.ui.view">
+            <field name="name">hotel.room.availability.form</field>
+            <field name="model">hotel.room.availability</field>
+            <field name="arch" type="xml">
+                <form string="库存与价格">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date" required="1"/>
+                                <field name="hotel_id" required="1"/>
+                                <field name="room_type_id" domain="[('hotel_id', '=', hotel_id)]"/>
+                                <field name="room_id" domain="[('hotel_id', '=', hotel_id)]"/>
+                                <field name="company_id" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="total_quota"/>
+                                <field name="sold_quota"/>
+                                <field name="available_quota" readonly="1"/>
+                                <field name="price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="is_open" widget="boolean_toggle"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- 库存搜索视图 -->
+        <record id="view_availability_search" model="ir.ui.view">
+            <field name="name">hotel.room.availability.search</field>
+            <field name="model">hotel.room.availability</field>
+            <field name="arch" type="xml">
+                <search string="搜索库存">
+                    <field name="hotel_id"/>
+                    <field name="room_type_id"/>
+                    <field name="room_id"/>
+                    <field name="date"/>
+                    <separator/>
+                    <filter string="开放售卖" name="filter_open" domain="[('is_open', '=', True)]"/>
+                    <filter string="关闭售卖" name="filter_closed" domain="[('is_open', '=', False)]"/>
+                    <separator/>
+                    <filter string="库存不足" name="filter_low_stock" domain="[('available_quota', '&lt;=', 3)]"/>
+                    <filter string="已售罄" name="filter_sold_out" domain="[('available_quota', '&lt;=', 0)]"/>
+                    <separator/>
+                    <filter string="今天" name="filter_today" domain="[('date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string="未来7天" name="filter_week" 
+                            domain="[('date', '&gt;=', context_today().strftime('%Y-%m-%d')),
+                                     ('date', '&lt;=', (context_today() + datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="未来30天" name="filter_month" 
+                            domain="[('date', '&gt;=', context_today().strftime('%Y-%m-%d')),
+                                     ('date', '&lt;=', (context_today() + datetime.timedelta(days=30)).strftime('%Y-%m-%d'))]"/>
+                    <group expand="0" string="分组">
+                        <filter string="酒店" name="group_hotel" context="{'group_by': 'hotel_id'}"/>
+                        <filter string="房型" name="group_room_type" context="{'group_by': 'room_type_id'}"/>
+                        <filter string="日期" name="group_date" context="{'group_by': 'date:day'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- 库存动作 -->
+        <record id="action_hotel_room_availability" model="ir.actions.act_window">
+            <field name="name">库存与价格</field>
+            <field name="res_model">hotel.room.availability</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'search_default_filter_open': 1, 'search_default_filter_week': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    设置房间库存与价格
+                </p>
+                <p>
+                    库存与价格管理用于控制每日的房间售卖数量和价格
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+

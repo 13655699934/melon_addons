@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- 订单列表视图 -->
+        <record id="view_order_list" model="ir.ui.view">
+            <field name="name">hotel.order.list</field>
+            <field name="model">hotel.order</field>
+            <field name="arch" type="xml">
+                <list string="订单列表" decoration-info="state == 'draft'"
+                      decoration-success="state == 'confirmed'" 
+                      decoration-warning="state == 'checked_in'"
+                      decoration-muted="state in ['checked_out', 'cancelled']">
+                    <field name="name"/>
+                    <field name="guest_name"/>
+                    <field name="hotel_id"/>
+                    <field name="room_id"/>
+                    <field name="check_in"/>
+                    <field name="check_out"/>
+                    <field name="nights"/>
+                    <field name="total_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="currency_id" column_invisible="1"/>
+                    <field name="source"/>
+                    <field name="channel_id"/>
+                    <field name="state" widget="badge" 
+                           decoration-info="state == 'draft'"
+                           decoration-success="state == 'confirmed'"
+                           decoration-warning="state == 'checked_in'"
+                           decoration-muted="state in ['checked_out', 'cancelled']"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- 订单表单视图 -->
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">hotel.order.form</field>
+            <field name="model">hotel.order</field>
+            <field name="arch" type="xml">
+                <form string="订单">
+                    <header>
+                        <button name="action_confirm" type="object" string="确认订单" 
+                                class="oe_highlight" invisible="state != 'draft'"/>
+                        <button name="action_checkin" type="object" string="办理入住" 
+                                class="oe_highlight" invisible="state != 'confirmed'"/>
+                        <button name="action_checkout" type="object" string="办理退房" 
+                                class="oe_highlight" invisible="state != 'checked_in'"/>
+                        <button name="action_cancel" type="object" string="取消订单" 
+                                invisible="state not in ['draft', 'confirmed']"/>
+                        <button name="action_clone_book" type="object" string="一键复刻" 
+                                class="btn-secondary"/>
+                        <field name="state" widget="statusbar" 
+                               statusbar_visible="draft,confirmed,checked_in,checked_out"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="基本信息">
+                                <field name="hotel_id" required="1"/>
+                                <field name="room_type_id" domain="[('hotel_id', '=', hotel_id)]"/>
+                                <field name="room_id" domain="[('hotel_id', '=', hotel_id)]"/>
+                                <field name="company_id" invisible="1"/>
+                            </group>
+                            <group string="渠道信息">
+                                <field name="source" readonly="1"/>
+                                <field name="channel_id"/>
+                                <field name="channel_order_no"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="预订人信息">
+                                <field name="guest_name" required="1"/>
+                                <field name="guest_phone" required="1"/>
+                                <field name="guest_email" widget="email"/>
+                                <field name="guest_id_number"/>
+                                <field name="partner_id"/>
+                            </group>
+                            <group string="日期与价格">
+                                <field name="check_in" required="1"/>
+                                <field name="check_out" required="1"/>
+                                <field name="nights" readonly="1"/>
+                                <field name="quantity"/>
+                                <field name="unit_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="total_price" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="备注">
+                                <field name="note" nolabel="1" placeholder="订单备注..."/>
+                            </page>
+                            <page string="时间记录" invisible="state == 'draft'">
+                                <group>
+                                    <group>
+                                        <field name="confirmed_date" readonly="1"/>
+                                        <field name="checkin_date" readonly="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="checkout_date" readonly="1"/>
+                                        <field name="cancelled_date" readonly="1"/>
+                                    </group>
+                                </group>
+                                <field name="cancel_reason" invisible="state != 'cancelled'"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- 订单日历视图 -->
+        <record id="view_order_calendar" model="ir.ui.view">
+            <field name="name">hotel.order.calendar</field>
+            <field name="model">hotel.order</field>
+            <field name="arch" type="xml">
+                <calendar string="订单日历" date_start="check_in" date_stop="check_out" 
+                          color="hotel_id" mode="month">
+                    <field name="name"/>
+                    <field name="guest_name"/>
+                    <field name="room_id"/>
+                    <field name="state"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- 订单看板视图 -->
+        <record id="view_order_kanban" model="ir.ui.view">
+            <field name="name">hotel.order.kanban</field>
+            <field name="model">hotel.order</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state" class="o_kanban_small_column">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="guest_name"/>
+                    <field name="guest_phone"/>
+                    <field name="hotel_id"/>
+                    <field name="room_id"/>
+                    <field name="room_type_id"/>
+                    <field name="check_in"/>
+                    <field name="check_out"/>
+                    <field name="nights"/>
+                    <field name="quantity"/>
+                    <field name="total_price"/>
+                    <field name="currency_id"/>
+                    <field name="state"/>
+                    <field name="source"/>
+                    <field name="channel_id"/>
+                    <templates>
+                        <t t-name="card">
+                            <div class="oe_kanban_global_click" style="margin-bottom: 8px;">
+                                <!-- 动态背景 - 根据订单状态变化 -->
+                                <t t-set="bg_gradient" t-value="'linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)'"/>
+                                <t t-if="record.state.raw_value == 'confirmed'" t-set="bg_gradient" t-value="'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'"/>
+                                <t t-if="record.state.raw_value == 'checked_in'" t-set="bg_gradient" t-value="'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)'"/>
+                                <t t-if="record.state.raw_value == 'checked_out'" t-set="bg_gradient" t-value="'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)'"/>
+                                <t t-if="record.state.raw_value == 'cancelled'" t-set="bg_gradient" t-value="'linear-gradient(135deg, #d7d2cc 0%, #304352 100%)'"/>
+                                
+                                <!-- 卡片头部 -->
+                                <div t-attf-style="background: {{bg_gradient}}; padding: 15px; border-radius: 8px 8px 0 0; position: relative;">
+                                    <!-- 订单号 -->
+                                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                        <div style="font-size: 16px; font-weight: bold; color: #2c3e50;">
+                                            <i class="fa fa-file-text" style="margin-right: 5px;" title="订单"/>
+                                            <field name="name"/>
+                                        </div>
+                                        <!-- 来源标签 -->
+                                        <div style="display: flex; gap: 5px; align-items: center;">
+                                            <t t-if="record.source.raw_value == 'online'">
+                                                <span style="background: rgba(103,126,234,0.9); color: white; padding: 3px 8px; border-radius: 10px; font-size: 10px;">
+                                                    <i class="fa fa-desktop"/> 线上
+                                                </span>
+                                            </t>
+                                            <t t-if="record.source.raw_value == 'offline'">
+                                                <span style="background: rgba(245,87,108,0.9); color: white; padding: 3px 8px; border-radius: 10px; font-size: 10px;">
+                                                    <i class="fa fa-users"/> 线下
+                                                </span>
+                                            </t>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 客人信息 -->
+                                    <div style="display: flex; align-items: center; background: rgba(255,255,255,0.3); padding: 8px 10px; border-radius: 5px; margin-bottom: 8px;">
+                                        <i class="fa fa-user-circle" style="font-size: 20px; margin-right: 8px; color: #2c3e50;" title="客人"/>
+                                        <div style="flex: 1;">
+                                            <div style="font-weight: bold; color: #2c3e50; font-size: 14px;">
+                                                <field name="guest_name"/>
+                                            </div>
+                                            <div t-if="record.guest_phone.raw_value" style="font-size: 11px; color: #495057;">
+                                                <i class="fa fa-phone" style="font-size: 10px;"/> <field name="guest_phone"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 日期范围 -->
+                                    <div style="background: rgba(255,255,255,0.4); padding: 10px; border-radius: 5px; text-align: center;">
+                                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                            <div style="text-align: center;">
+                                                <div style="font-size: 10px; color: #495057; margin-bottom: 2px;">入住</div>
+                                                <div style="font-size: 13px; font-weight: bold; color: #2c3e50;">
+                                                    <field name="check_in"/>
+                                                </div>
+                                            </div>
+                                            <div style="padding: 0 5px;">
+                                                <i class="fa fa-arrow-right" style="color: #2c3e50;"/>
+                                            </div>
+                                            <div style="text-align: center;">
+                                                <div style="font-size: 10px; color: #495057; margin-bottom: 2px;">离店</div>
+                                                <div style="font-size: 13px; font-weight: bold; color: #2c3e50;">
+                                                    <field name="check_out"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="margin-top: 5px; font-size: 12px; color: #2c3e50;">
+                                            <i class="fa fa-moon-o"/> 共 <strong><field name="nights"/></strong> 晚
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 卡片内容 -->
+                                <div style="padding: 12px; background: white; border-radius: 0 0 8px 8px;">
+                                    <!-- 酒店和房间 -->
+                                    <div style="margin-bottom: 10px;">
+                                        <div style="display: flex; align-items: center; margin-bottom: 6px; padding: 6px; background: #f8f9fa; border-radius: 4px;">
+                                            <i class="fa fa-building" style="color: #667eea; margin-right: 6px; width: 16px;" title="酒店"/>
+                                            <span style="color: #2c3e50; font-size: 12px; font-weight: 500;">
+                                                <field name="hotel_id"/>
+                                            </span>
+                                        </div>
+                                        <div style="display: flex; align-items: center; padding: 6px; background: #f8f9fa; border-radius: 4px;">
+                                            <i class="fa fa-bed" style="color: #11998e; margin-right: 6px; width: 16px;" title="房间"/>
+                                            <span style="color: #2c3e50; font-size: 12px;">
+                                                <t t-if="record.room_id.raw_value">
+                                                    <field name="room_id"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <field name="room_type_id"/> × <field name="quantity"/>间
+                                                </t>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 渠道信息 -->
+                                    <div t-if="record.channel_id.raw_value" style="margin-bottom: 10px;">
+                                        <div style="display: flex; align-items: center; padding: 6px; background: #e3f2fd; border-radius: 4px;">
+                                            <i class="fa fa-globe" style="color: #1976d2; margin-right: 6px; width: 16px;" title="渠道"/>
+                                            <span style="color: #1565c0; font-size: 11px; font-weight: 500;">
+                                                <field name="channel_id"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 价格 -->
+                                    <div style="border-top: 2px solid #e9ecef; padding-top: 10px; margin-top: 10px;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <span style="color: #6c757d; font-size: 12px;">订单金额</span>
+                                            <div style="text-align: right;">
+                                                <div style="font-size: 20px; font-weight: bold; color: #e74c3c;">
+                                                    ¥<field name="total_price"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- 订单搜索视图 -->
+        <record id="view_order_search" model="ir.ui.view">
+            <field name="name">hotel.order.search</field>
+            <field name="model">hotel.order</field>
+            <field name="arch" type="xml">
+                <search string="搜索订单">
+                    <field name="name" string="订单号"/>
+                    <field name="guest_name" string="预订人"/>
+                    <field name="guest_phone" string="手机号"/>
+                    <field name="hotel_id"/>
+                    <field name="room_id"/>
+                    <field name="channel_id"/>
+                    <separator/>
+                    <filter string="草稿" name="filter_draft" domain="[('state', '=', 'draft')]"/>
+                    <filter string="已确认" name="filter_confirmed" domain="[('state', '=', 'confirmed')]"/>
+                    <filter string="已入住" name="filter_checked_in" domain="[('state', '=', 'checked_in')]"/>
+                    <filter string="已退房" name="filter_checked_out" domain="[('state', '=', 'checked_out')]"/>
+                    <filter string="已取消" name="filter_cancelled" domain="[('state', '=', 'cancelled')]"/>
+                    <separator/>
+                    <filter string="线上订单" name="filter_online" domain="[('source', '=', 'online')]"/>
+                    <filter string="线下订单" name="filter_offline" domain="[('source', '=', 'offline')]"/>
+                    <separator/>
+                    <filter string="今日入住" name="filter_today_checkin" 
+                            domain="[('check_in', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string="今日离店" name="filter_today_checkout" 
+                            domain="[('check_out', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string="本周" name="filter_this_week" 
+                            domain="[('check_in', '&gt;=', (context_today() - datetime.timedelta(days=context_today().weekday())).strftime('%Y-%m-%d')),
+                                     ('check_in', '&lt;=', (context_today() + datetime.timedelta(days=6-context_today().weekday())).strftime('%Y-%m-%d'))]"/>
+                    <separator/>
+                    <filter string="创建日期" name="filter_create_date" date="create_date"/>
+                    <filter string="入住日期" name="filter_check_in" date="check_in"/>
+                    <group expand="0" string="分组">
+                        <filter string="酒店" name="group_hotel" context="{'group_by': 'hotel_id'}"/>
+                        <filter string="渠道" name="group_channel" context="{'group_by': 'channel_id'}"/>
+                        <filter string="状态" name="group_state" context="{'group_by': 'state'}"/>
+                        <filter string="入住日期" name="group_check_in" context="{'group_by': 'check_in:day'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- 订单动作 -->
+        <record id="action_hotel_order" model="ir.actions.act_window">
+            <field name="name">订单</field>
+            <field name="res_model">hotel.order</field>
+            <field name="view_mode">list,kanban,form,calendar</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    创建第一个订单
+                </p>
+                <p>
+                    订单可以来自线上渠道或线下前台，支持完整的入住流程管理
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+

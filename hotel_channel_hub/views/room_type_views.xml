@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- 房型列表视图 -->
+        <record id="view_room_type_list" model="ir.ui.view">
+            <field name="name">hotel.room.type.list</field>
+            <field name="model">hotel.room.type</field>
+            <field name="arch" type="xml">
+                <list string="房型列表">
+                    <field name="sequence" widget="handle"/>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="hotel_id"/>
+                    <field name="bed_type"/>
+                    <field name="max_occupancy"/>
+                    <field name="base_price"/>
+                    <field name="has_breakfast"/>
+                    <field name="room_count"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- 房型看板视图 -->
+        <record id="view_room_type_kanban" model="ir.ui.view">
+            <field name="name">hotel.room.type.kanban</field>
+            <field name="model">hotel.room.type</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="hotel_id"/>
+                    <field name="bed_type"/>
+                    <field name="max_occupancy"/>
+                    <field name="area"/>
+                    <field name="base_price"/>
+                    <field name="currency_id"/>
+                    <field name="has_breakfast"/>
+                    <field name="has_wifi"/>
+                    <field name="has_window"/>
+                    <field name="room_count"/>
+                    <field name="cancellation_policy"/>
+                    <field name="active"/>
+                    <templates>
+                        <t t-name="card">
+                            <div class="oe_kanban_global_click" style="position: relative;">
+                                <!-- 卡片头部 -->
+                                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 8px 8px 0 0; color: white; position: relative;">
+                                    <!-- 状态标签 -->
+                                    <div t-if="!record.active.raw_value" 
+                                         style="position: absolute; top: 10px; right: 10px; background: #dc3545; color: white; padding: 3px 10px; border-radius: 15px; font-size: 11px;">
+                                        已停用
+                                    </div>
+                                    
+                                    <!-- 房型图标和名称 -->
+                                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                        <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 50%; margin-right: 12px;">
+                                            <i class="fa fa-bed" style="font-size: 24px;" title="房型"/>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 3px;">
+                                                <field name="name"/>
+                                            </div>
+                                            <div style="font-size: 12px; opacity: 0.9;">
+                                                <field name="code"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 价格 -->
+                                    <div style="text-align: center; padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.2);">
+                                        <div style="font-size: 28px; font-weight: bold;">
+                                            ¥<field name="base_price"/>
+                                        </div>
+                                        <div style="font-size: 12px; opacity: 0.8;">基础价格/晚</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 卡片内容 -->
+                                <div style="padding: 15px; background: white;">
+                                    <!-- 酒店信息 -->
+                                    <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
+                                        <i class="fa fa-building" style="color: #667eea; margin-right: 5px;" title="所属酒店"/>
+                                        <strong><field name="hotel_id"/></strong>
+                                    </div>
+                                    
+                                    <!-- 房型详情 -->
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+                                        <div style="display: flex; align-items: center; color: #6c757d; font-size: 13px;">
+                                            <i class="fa fa-users" style="margin-right: 5px; width: 16px;" title="可住人数"/>
+                                            最多<strong style="color: #2c3e50; margin: 0 3px;"><field name="max_occupancy"/></strong>人
+                                        </div>
+                                        <div t-if="record.area.raw_value" style="display: flex; align-items: center; color: #6c757d; font-size: 13px;">
+                                            <i class="fa fa-arrows-alt" style="margin-right: 5px; width: 16px;" title="面积"/>
+                                            <strong style="color: #2c3e50; margin-right: 3px;"><field name="area"/></strong>㎡
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 床型 -->
+                                    <div style="margin-bottom: 10px;">
+                                        <span style="background: #e3f2fd; color: #1976d2; padding: 4px 12px; border-radius: 15px; font-size: 12px;">
+                                            <i class="fa fa-bed" style="margin-right: 3px;"/>
+                                            <t t-if="record.bed_type.raw_value == 'single'">单床</t>
+                                            <t t-if="record.bed_type.raw_value == 'double'">双床</t>
+                                            <t t-if="record.bed_type.raw_value == 'king'">大床</t>
+                                            <t t-if="record.bed_type.raw_value == 'suite'">套房</t>
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- 设施图标 -->
+                                    <div style="display: flex; gap: 15px; margin-bottom: 12px; padding: 10px; background: #f8f9fa; border-radius: 5px;">
+                                        <div t-if="record.has_breakfast.raw_value" style="text-align: center; color: #28a745;" title="含早餐">
+                                            <i class="fa fa-cutlery" style="font-size: 16px;"/>
+                                            <div style="font-size: 10px; margin-top: 2px;">早餐</div>
+                                        </div>
+                                        <div t-if="record.has_wifi.raw_value" style="text-align: center; color: #17a2b8;" title="含WiFi">
+                                            <i class="fa fa-wifi" style="font-size: 16px;"/>
+                                            <div style="font-size: 10px; margin-top: 2px;">WiFi</div>
+                                        </div>
+                                        <div t-if="record.has_window.raw_value" style="text-align: center; color: #ffc107;" title="有窗">
+                                            <i class="fa fa-sun-o" style="font-size: 16px;"/>
+                                            <div style="font-size: 10px; margin-top: 2px;">有窗</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 取消政策 -->
+                                    <div style="font-size: 12px; color: #6c757d; margin-bottom: 10px;">
+                                        <i class="fa fa-info-circle" style="margin-right: 5px;" title="取消政策"/>
+                                        <t t-if="record.cancellation_policy.raw_value == 'free'">免费取消</t>
+                                        <t t-if="record.cancellation_policy.raw_value == '1day'">提前1天可取消</t>
+                                        <t t-if="record.cancellation_policy.raw_value == '3day'">提前3天可取消</t>
+                                        <t t-if="record.cancellation_policy.raw_value == '7day'">提前7天可取消</t>
+                                        <t t-if="record.cancellation_policy.raw_value == 'no_cancel'">不可取消</t>
+                                    </div>
+                                    
+                                    <!-- 房间数统计 -->
+                                    <div style="border-top: 1px solid #dee2e6; padding-top: 10px;">
+                                        <div style="display: flex; justify-content: center; align-items: center;">
+                                            <i class="fa fa-home" style="color: #667eea; margin-right: 5px;" title="房间数"/>
+                                            <strong style="color: #667eea; font-size: 16px;"><field name="room_count"/></strong>
+                                            <span style="color: #6c757d; margin-left: 5px; font-size: 13px;">间房</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- 房型表单视图 -->
+        <record id="view_room_type_form" model="ir.ui.view">
+            <field name="name">hotel.room.type.form</field>
+            <field name="model">hotel.room.type</field>
+            <field name="arch" type="xml">
+                <form string="房型">
+                    <header>
+                        <button name="action_view_rooms" type="object" string="查看房间" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_rooms" type="object" class="oe_stat_button" icon="fa-bed">
+                                <field name="room_count" widget="statinfo" string="房间"/>
+                            </button>
+                        </div>
+                        <widget name="web_ribbon" title="已停用" bg_color="text-bg-danger" invisible="active"/>
+                        <field name="active" invisible="1"/>
+                        <group>
+                            <group>
+                                <field name="name" required="1"/>
+                                <field name="code" required="1"/>
+                                <field name="hotel_id" required="1"/>
+                                <field name="sequence"/>
+                                <field name="company_id" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="bed_type"/>
+                                <field name="max_occupancy"/>
+                                <field name="area"/>
+                                <field name="floor_range"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="价格与规则">
+                                <group>
+                                    <group>
+                                        <field name="base_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="cancellation_policy"/>
+                                    </group>
+                                    <group>
+                                        <field name="has_breakfast"/>
+                                        <field name="breakfast_count" invisible="not has_breakfast"/>
+                                        <field name="has_wifi"/>
+                                        <field name="has_window"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="描述">
+                                <group>
+                                    <field name="description" nolabel="1" placeholder="房型描述..."/>
+                                    <field name="facilities" nolabel="1" placeholder="设施说明..."/>
+                                </group>
+                            </page>
+                            <page string="房间列表">
+                                <field name="room_ids">
+                                    <list>
+                                        <field name="number"/>
+                                        <field name="floor"/>
+                                        <field name="status"/>
+                                        <field name="sale_type"/>
+                                        <field name="price"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- 房型搜索视图 -->
+        <record id="view_room_type_search" model="ir.ui.view">
+            <field name="name">hotel.room.type.search</field>
+            <field name="model">hotel.room.type</field>
+            <field name="arch" type="xml">
+                <search string="搜索房型">
+                    <field name="name" string="房型" filter_domain="['|', ('name', 'ilike', self), ('code', 'ilike', self)]"/>
+                    <field name="hotel_id"/>
+                    <field name="bed_type"/>
+                    <separator/>
+                    <filter string="启用" name="filter_active" domain="[('active', '=', True)]"/>
+                    <filter string="已停用" name="filter_inactive" domain="[('active', '=', False)]"/>
+                    <separator/>
+                    <filter string="含早餐" name="filter_breakfast" domain="[('has_breakfast', '=', True)]"/>
+                    <group expand="0" string="分组">
+                        <filter string="酒店" name="group_hotel" context="{'group_by': 'hotel_id'}"/>
+                        <filter string="床型" name="group_bed_type" context="{'group_by': 'bed_type'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- 房型动作 -->
+        <record id="action_hotel_room_type" model="ir.actions.act_window">
+            <field name="name">房型</field>
+            <field name="res_model">hotel.room.type</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="context">{'search_default_filter_active': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    创建第一个房型
+                </p>
+                <p>
+                    房型是房间的类型定义，包含基础价格、床型、设施等信息
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+

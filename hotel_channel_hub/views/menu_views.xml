@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- 顶级菜单 -->
+        <menuitem id="menu_hotel_root"
+                  name="酒店管理"
+                  sequence="10"
+                  web_icon="hotel_channel_hub,static/description/inst_icon.png"
+                  groups="group_front_desk_user"/>
+
+        <!-- 看板菜单 -->
+        <menuitem id="menu_hotel_dashboard"
+                  name="数据看板"
+                  parent="menu_hotel_root"
+                  sequence="1"
+                  action="action_data_center_hotel"/>
+
+        <!-- 订单菜单 -->
+        <menuitem id="menu_hotel_orders"
+                  name="订单管理"
+                  parent="menu_hotel_root"
+                  sequence="10"/>
+
+        <menuitem id="menu_hotel_order"
+                  name="订单"
+                  parent="menu_hotel_orders"
+                  sequence="1"
+                  action="action_hotel_order"/>
+
+        <!-- 酒店菜单 -->
+        <menuitem id="menu_hotel_info"
+                  name="酒店信息"
+                  parent="menu_hotel_root"
+                  sequence="20"/>
+
+        <menuitem id="menu_hotel_hotel"
+                  name="酒店"
+                  parent="menu_hotel_info"
+                  sequence="1"
+                  action="action_hotel_hotel"/>
+
+        <menuitem id="menu_hotel_room_type"
+                  name="房型"
+                  parent="menu_hotel_info"
+                  sequence="2"
+                  action="action_hotel_room_type"/>
+
+        <menuitem id="menu_hotel_room"
+                  name="房间"
+                  parent="menu_hotel_info"
+                  sequence="3"
+                  action="action_hotel_room"/>
+
+        <menuitem id="menu_hotel_availability"
+                  name="库存与价格"
+                  parent="menu_hotel_info"
+                  sequence="4"
+                  action="action_hotel_room_availability"/>
+
+        <!-- 渠道菜单 -->
+        <menuitem id="menu_hotel_channels"
+                  name="渠道管理"
+                  parent="menu_hotel_root"
+                  sequence="30"
+                  groups="group_channel_manager"/>
+
+        <menuitem id="menu_hotel_channel"
+                  name="渠道"
+                  parent="menu_hotel_channels"
+                  sequence="1"
+                  action="action_hotel_channel"/>
+
+        <menuitem id="menu_hotel_channel_mapping"
+                  name="渠道映射"
+                  parent="menu_hotel_channels"
+                  sequence="2"
+                  action="action_hotel_channel_mapping"/>
+
+        <!-- 消息与日志 -->
+        <menuitem id="menu_hotel_logs"
+                  name="消息与日志"
+                  parent="menu_hotel_root"
+                  sequence="40"/>
+
+        <menuitem id="menu_hotel_sync_log"
+                  name="同步日志"
+                  parent="menu_hotel_logs"
+                  sequence="1"
+                  action="action_hotel_sync_log"/>
+
+        <!-- 配置菜单 -->
+        <menuitem id="menu_hotel_config"
+                  name="配置"
+                  parent="menu_hotel_root"
+                  sequence="90"
+                  groups="group_hotel_manager"/>
+
+    </data>
+</odoo>
+

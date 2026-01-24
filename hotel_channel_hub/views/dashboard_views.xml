@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- 订单分析动作 - 使用已有的订单模型 -->
+        <record id="action_hotel_dashboard" model="ir.actions.act_window">
+            <field name="name">数据看板</field>
+            <field name="res_model">hotel.order</field>
+            <field name="view_mode">graph,pivot</field>
+            <field name="domain">[('state', 'in', ['confirmed', 'checked_in', 'checked_out'])]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- 订单统计视图 - 图表 -->
+        <record id="view_order_graph" model="ir.ui.view">
+            <field name="name">hotel.order.graph</field>
+            <field name="model">hotel.order</field>
+            <field name="arch" type="xml">
+                <graph string="订单统计" type="bar">
+                    <field name="hotel_id"/>
+                    <field name="total_price" type="measure"/>
+                    <field name="quantity" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- 订单统计视图 - 透视表 -->
+        <record id="view_order_pivot" model="ir.ui.view">
+            <field name="name">hotel.order.pivot</field>
+            <field name="model">hotel.order</field>
+            <field name="arch" type="xml">
+                <pivot string="订单分析">
+                    <field name="hotel_id" type="row"/>
+                    <field name="check_in" type="col" interval="month"/>
+                    <field name="total_price" type="measure"/>
+                    <field name="nights" type="measure"/>
+                    <field name="quantity" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!-- 订单统计动作 -->
+        <record id="action_hotel_order_analysis" model="ir.actions.act_window">
+            <field name="name">订单分析</field>
+            <field name="res_model">hotel.order</field>
+            <field name="view_mode">graph,pivot</field>
+            <field name="domain">[('state', 'in', ['confirmed', 'checked_in', 'checked_out'])]</field>
+            <field name="context">{}</field>
+        </record>
+
+    </data>
+</odoo>
+

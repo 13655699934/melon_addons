@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- 订单确认单报表 -->
+        <record id="action_report_hotel_order" model="ir.actions.report">
+            <field name="name">订单确认单</field>
+            <field name="model">hotel.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hotel_channel_hub.report_hotel_order_document</field>
+            <field name="report_file">hotel_channel_hub.report_hotel_order_document</field>
+            <field name="binding_model_id" ref="model_hotel_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>
+

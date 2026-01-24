@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- 酒店列表视图 -->
+        <record id="view_hotel_list" model="ir.ui.view">
+            <field name="name">hotel.hotel.list</field>
+            <field name="model">hotel.hotel</field>
+            <field name="arch" type="xml">
+                <list string="酒店列表">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="city"/>
+                    <field name="star_rating"/>
+                    <field name="phone"/>
+                    <field name="room_count"/>
+                    <field name="room_type_count"/>
+                    <field name="order_count"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- 酒店 Kanban 视图 -->
+        <record id="view_hotel_kanban" model="ir.ui.view">
+            <field name="name">hotel.hotel.kanban</field>
+            <field name="model">hotel.hotel</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="city"/>
+                    <field name="address"/>
+                    <field name="star_rating"/>
+                    <field name="phone"/>
+                    <field name="room_count"/>
+                    <field name="room_type_count"/>
+                    <field name="order_count"/>
+                    <field name="active"/>
+                    <field name="image_128"/>
+                    <templates>
+                        <t t-name="card">
+                            <div class="oe_kanban_global_click" style="position: relative;">
+                                <!-- 图片背景 -->
+                                <div class="o_kanban_image" style="position: relative; height: 180px; overflow: hidden; background: #f0f0f0;">
+                                    <t t-if="record.image_128.raw_value">
+                                        <img t-attf-src="/web/image/hotel.hotel/{{record.id.raw_value}}/image_128" 
+                                             alt="Hotel" 
+                                             style="width: 100%; height: 100%; object-fit: cover;"/>
+                                    </t>
+                                    <t t-else="">
+                                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 48px; color: #ccc; background: linear-gradient(135deg, #FAFBFC 0%, #E6F3FF 100%);">
+                                            <i class="fa fa-building-o" style="color: #8FA8C2;"/>
+                                        </div>
+                                    </t>
+                                    <!-- 星级显示在图片上方 -->
+                                    <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); padding: 5px 10px; border-radius: 15px;">
+                                        <t t-if="record.star_rating.raw_value">
+                                            <!-- 显示实心星星 -->
+                                            <t t-if="record.star_rating.raw_value == '5'">
+                                                <i class="fa fa-star" style="color: #ffc107; font-size: 14px;" title="五星"/>
+                                                <i class="fa fa-star" style="color: #ffc107; font-size: 14px;" title="五星"/>
+                                                <i class="fa fa-star" style="color: #ffc107; font-size: 14px;" title="五星"/>
+                                                <i class="fa fa-star" style="color: #ffc107; font-size: 14px;" title="五星"/>
+                                                <i class="fa fa-star" style="color: #ffc107; font-size: 14px;" title="五星"/>
+                                            </t>
+                                            <t t-if="record.star_rating.raw_value == '4'">
+                                                <i class="fa fa-star" style="color: #ffc107; font-size: 14px;" title="四星"/>
+                                                <i class="fa fa-star" style="color: #ffc107; font-size: 14px;" title="四星"/>
+                                                <i class="fa fa-star" style="color: #ffc107; font-size: 14px;" title="四星"/>
+                                                <i class="fa fa-star" style="color: #ffc107; font-size: 14px;" title="四星"/>
+                                                <i class="fa fa-star-o" style="color: #ffc107; font-size: 14px;" title="四星"/>
+                                            </t>
+                                            <t t-if="record.star_rating.raw_value == '3'">
+                                                <i class="fa fa-star" style="color: #ffc107; font-size: 14px;" title="三星"/>
+                                                <i class="fa fa-star" style="color: #ffc107; font-size: 14px;" title="三星"/>
+                                                <i class="fa fa-star" style="color: #ffc107; font-size: 14px;" title="三星"/>
+                                                <i class="fa fa-star-o" style="color: #ffc107; font-size: 14px;" title="三星"/>
+                                                <i class="fa fa-star-o" style="color: #ffc107; font-size: 14px;" title="三星"/>
+                                            </t>
+                                            <t t-if="record.star_rating.raw_value == '2'">
+                                                <i class="fa fa-star" style="color: #ffc107; font-size: 14px;" title="二星"/>
+                                                <i class="fa fa-star" style="color: #ffc107; font-size: 14px;" title="二星"/>
+                                                <i class="fa fa-star-o" style="color: #ffc107; font-size: 14px;" title="二星"/>
+                                                <i class="fa fa-star-o" style="color: #ffc107; font-size: 14px;" title="二星"/>
+                                                <i class="fa fa-star-o" style="color: #ffc107; font-size: 14px;" title="二星"/>
+                                            </t>
+                                            <t t-if="record.star_rating.raw_value == '1'">
+                                                <i class="fa fa-star" style="color: #ffc107; font-size: 14px;" title="一星"/>
+                                                <i class="fa fa-star-o" style="color: #ffc107; font-size: 14px;" title="一星"/>
+                                                <i class="fa fa-star-o" style="color: #ffc107; font-size: 14px;" title="一星"/>
+                                                <i class="fa fa-star-o" style="color: #ffc107; font-size: 14px;" title="一星"/>
+                                                <i class="fa fa-star-o" style="color: #ffc107; font-size: 14px;" title="一星"/>
+                                            </t>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="color: #fff; font-size: 12px;">未评级</span>
+                                        </t>
+                                    </div>
+                                    <!-- 状态标签 -->
+                                    <div t-if="!record.active.raw_value" 
+                                         style="position: absolute; top: 10px; left: 10px; background: #dc3545; color: white; padding: 3px 10px; border-radius: 3px; font-size: 11px;">
+                                        已停用
+                                    </div>
+                                </div>
+                                
+                                <!-- 酒店信息 -->
+                                <div class="o_kanban_details" style="padding: 15px;">
+                                    <div class="o_kanban_record_top">
+                                        <div class="o_kanban_record_title">
+                                            <strong style="font-size: 16px; color: #2c3e50;">
+                                                <field name="name"/>
+                                            </strong>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="o_kanban_record_body" style="margin-top: 8px;">
+                                        <div style="color: #7f8c8d; font-size: 13px; margin-bottom: 5px;">
+                                            <i class="fa fa-tag" style="width: 16px;" title="酒店编码"/> 
+                                            <field name="code"/>
+                                        </div>
+                                        <div t-if="record.city.raw_value" style="color: #7f8c8d; font-size: 13px; margin-bottom: 5px;">
+                                            <i class="fa fa-map-marker" style="width: 16px;" title="城市"/> 
+                                            <field name="city"/>
+                                        </div>
+                                        <div t-if="record.phone.raw_value" style="color: #7f8c8d; font-size: 13px; margin-bottom: 5px;">
+                                            <i class="fa fa-phone" style="width: 16px;" title="电话"/> 
+                                            <field name="phone"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="o_kanban_record_bottom" style="margin-top: 12px; padding-top: 10px; border-top: 1px solid #ecf0f1;">
+                                        <div class="oe_kanban_bottom_left" style="display: flex; gap: 15px;">
+                                            <span style="color: #3498db; font-size: 13px;">
+                                                <i class="fa fa-bed" title="房间数"/> 
+                                                <strong><field name="room_count"/></strong> 房间
+                                            </span>
+                                            <span style="color: #e74c3c; font-size: 13px;">
+                                                <i class="fa fa-home" title="房型数"/> 
+                                                <strong><field name="room_type_count"/></strong> 房型
+                                            </span>
+                                            <span style="color: #27ae60; font-size: 13px;">
+                                                <i class="fa fa-file-text-o" title="订单数"/> 
+                                                <strong><field name="order_count"/></strong> 订单
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- 酒店表单视图 -->
+        <record id="view_hotel_form" model="ir.ui.view">
+            <field name="name">hotel.hotel.form</field>
+            <field name="model">hotel.hotel</field>
+            <field name="arch" type="xml">
+                <form string="酒店">
+                    <header>
+                        <button name="action_view_rooms" type="object" string="查看房间" class="oe_highlight"/>
+                        <button name="action_view_orders" type="object" string="查看订单"/>
+                    </header>
+                    <sheet>
+                        <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_rooms" type="object" class="oe_stat_button" icon="fa-bed">
+                                <field name="room_count" widget="statinfo" string="房间"/>
+                            </button>
+                            <button name="action_view_orders" type="object" class="oe_stat_button" icon="fa-file-text">
+                                <field name="order_count" widget="statinfo" string="订单"/>
+                            </button>
+                        </div>
+                        <widget name="web_ribbon" title="已停用" bg_color="text-bg-danger" invisible="active"/>
+                        <field name="active" invisible="1"/>
+                        <group>
+                            <group>
+                                <field name="name" required="1"/>
+                                <field name="code" required="1"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="star_rating"/>
+                                <field name="opening_date"/>
+                            </group>
+                            <group>
+                                <field name="contact_name"/>
+                                <field name="phone"/>
+                                <field name="email" widget="email"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="地址信息">
+                                <group>
+                                    <group>
+                                        <field name="address"/>
+                                        <field name="city"/>
+                                        <field name="state"/>
+                                        <field name="zip_code"/>
+                                        <field name="country_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="latitude"/>
+                                        <field name="longitude"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="房型">
+                                <field name="room_type_ids">
+                                    <list>
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="code"/>
+                                        <field name="name"/>
+                                        <field name="bed_type"/>
+                                        <field name="base_price"/>
+                                        <field name="room_count"/>
+                                        <field name="active"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="房间">
+                                <field name="room_ids">
+                                    <list>
+                                        <field name="number"/>
+                                        <field name="room_type_id"/>
+                                        <field name="floor"/>
+                                        <field name="status"/>
+                                        <field name="sale_type"/>
+                                        <field name="price"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- 酒店搜索视图 -->
+        <record id="view_hotel_search" model="ir.ui.view">
+            <field name="name">hotel.hotel.search</field>
+            <field name="model">hotel.hotel</field>
+            <field name="arch" type="xml">
+                <search string="搜索酒店">
+                    <field name="name" string="酒店" filter_domain="['|', ('name', 'ilike', self), ('code', 'ilike', self)]"/>
+                    <field name="city"/>
+                    <field name="state"/>
+                    <separator/>
+                    <filter string="启用" name="filter_active" domain="[('active', '=', True)]"/>
+                    <filter string="已停用" name="filter_inactive" domain="[('active', '=', False)]"/>
+                    <separator/>
+                    <filter string="五星" name="filter_5star" domain="[('star_rating', '=', '5')]"/>
+                    <filter string="四星" name="filter_4star" domain="[('star_rating', '=', '4')]"/>
+                    <group expand="0" string="分组">
+                        <filter string="城市" name="group_city" context="{'group_by': 'city'}"/>
+                        <filter string="星级" name="group_star" context="{'group_by': 'star_rating'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- 酒店动作 -->
+        <record id="action_hotel_hotel" model="ir.actions.act_window">
+            <field name="name">酒店</field>
+            <field name="res_model">hotel.hotel</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="context">{'search_default_filter_active': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    创建第一个酒店
+                </p>
+                <p>
+                    点击"新建"按钮开始添加酒店信息
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+

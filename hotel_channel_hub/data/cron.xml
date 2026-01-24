@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- 定时任务：检查库存预警 -->
+<!--        <record id="ir_cron_check_availability_alert" model="ir.cron">-->
+<!--            <field name="name">酒店管理: 检查库存预警</field>-->
+<!--            <field name="model_id" ref="hotel_channel_hub.model_hotel_room_availability"/>-->
+<!--            <field name="state">code</field>-->
+<!--            <field name="code">model._cron_check_availability_alert()</field>-->
+<!--            <field name="interval_number">1</field>-->
+<!--            <field name="interval_type">hours</field>-->
+<!--            <field name="numbercall">-1</field>-->
+<!--            <field name="active" eval="False"/>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; 定时任务：清理过期日志 &ndash;&gt;-->
+<!--        <record id="ir_cron_clean_old_logs" model="ir.cron">-->
+<!--            <field name="name">酒店管理: 清理过期日志</field>-->
+<!--            <field name="model_id" ref="hotel_channel_hub.model_hotel_sync_log"/>-->
+<!--            <field name="state">code</field>-->
+<!--            <field name="code">model._cron_clean_old_logs()</field>-->
+<!--            <field name="interval_number">1</field>-->
+<!--            <field name="interval_type">days</field>-->
+<!--            <field name="numbercall">-1</field>-->
+<!--            <field name="active" eval="False"/>-->
+<!--        </record>-->
+
+    </data>
+</odoo>
+

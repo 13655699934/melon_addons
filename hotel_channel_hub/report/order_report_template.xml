@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- 订单确认单模板 -->
+        <template id="report_hotel_order_document">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            
+                            <!-- 标题 -->
+                            <h2 class="text-center">
+                                <span>订单确认单</span>
+                            </h2>
+                            
+                            <!-- 订单信息 -->
+                            <div class="row mt32 mb32">
+                                <div class="col-6">
+                                    <strong>订单号：</strong>
+                                    <span t-field="o.name"/>
+                                </div>
+                                <div class="col-6">
+                                    <strong>订单状态：</strong>
+                                    <span t-field="o.state"/>
+                                </div>
+                            </div>
+                            
+                            <!-- 酒店信息 -->
+                            <div class="row mb32">
+                                <div class="col-12">
+                                    <h4>酒店信息</h4>
+                                    <table class="table table-sm">
+                                        <tr>
+                                            <td><strong>酒店名称：</strong></td>
+                                            <td><span t-field="o.hotel_id.name"/></td>
+                                            <td><strong>星级：</strong></td>
+                                            <td><span t-field="o.hotel_id.star_rating"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>地址：</strong></td>
+                                            <td colspan="3"><span t-field="o.hotel_id.address"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>联系电话：</strong></td>
+                                            <td><span t-field="o.hotel_id.phone"/></td>
+                                            <td><strong>房间号：</strong></td>
+                                            <td><span t-field="o.room_id.number"/></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- 预订人信息 -->
+                            <div class="row mb32">
+                                <div class="col-12">
+                                    <h4>预订人信息</h4>
+                                    <table class="table table-sm">
+                                        <tr>
+                                            <td><strong>姓名：</strong></td>
+                                            <td><span t-field="o.guest_name"/></td>
+                                            <td><strong>手机号：</strong></td>
+                                            <td><span t-field="o.guest_phone"/></td>
+                                        </tr>
+                                        <tr t-if="o.guest_email">
+                                            <td><strong>邮箱：</strong></td>
+                                            <td colspan="3"><span t-field="o.guest_email"/></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- 入住信息 -->
+                            <div class="row mb32">
+                                <div class="col-12">
+                                    <h4>入住信息</h4>
+                                    <table class="table table-sm">
+                                        <tr>
+                                            <td><strong>房型：</strong></td>
+                                            <td><span t-field="o.room_type_id.name"/></td>
+                                            <td><strong>数量：</strong></td>
+                                            <td><span t-field="o.quantity"/> 间</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>入住日期：</strong></td>
+                                            <td><span t-field="o.check_in"/></td>
+                                            <td><strong>离店日期：</strong></td>
+                                            <td><span t-field="o.check_out"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>间夜数：</strong></td>
+                                            <td><span t-field="o.nights"/> 晚</td>
+                                            <td><strong>单价：</strong></td>
+                                            <td><span t-field="o.unit_price" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- 费用明细 -->
+                            <div class="row mb32">
+                                <div class="col-12">
+                                    <h4>费用明细</h4>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>项目</th>
+                                                <th class="text-right">单价</th>
+                                                <th class="text-right">数量</th>
+                                                <th class="text-right">间夜</th>
+                                                <th class="text-right">金额</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>房费</td>
+                                                <td class="text-right">
+                                                    <span t-field="o.unit_price" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                </td>
+                                                <td class="text-right"><span t-field="o.quantity"/></td>
+                                                <td class="text-right"><span t-field="o.nights"/></td>
+                                                <td class="text-right">
+                                                    <span t-field="o.total_price" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="4" class="text-right"><strong>总计：</strong></td>
+                                                <td class="text-right">
+                                                    <strong>
+                                                        <span t-field="o.total_price" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- 备注 -->
+                            <div class="row mb32" t-if="o.note">
+                                <div class="col-12">
+                                    <h4>备注</h4>
+                                    <p><span t-field="o.note"/></p>
+                                </div>
+                            </div>
+                            
+                            <!-- 二维码 -->
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.name, 200, 200)" 
+                                         style="width:200px;height:200px"/>
+                                    <p class="text-muted">扫码查询订单</p>
+                                </div>
+                            </div>
+                            
+                            <div class="oe_structure"/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>
+

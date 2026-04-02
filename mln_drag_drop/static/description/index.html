@@ -1,132 +1,141 @@
-<section class="oe_container">
+<!--
+  App Store note: do not rely on oe_dark / theme CSS for colors — the store uses a
+  light layout without Odoo backend styles. Use inline colors so text stays readable.
+-->
+<section class="oe_container" style="background:#ffffff;color:#1f2937;padding:20px 12px;">
     <div class="oe_row oe_spaced">
         <div class="oe_span4 text-center">
             <img src="icon.png"
                  alt="mln Drag Drop Gallery"
                  style="max-width:140px;width:100%;height:auto;border-radius:16px;box-shadow:0 8px 24px rgba(15,118,110,0.25);"/>
-            <p class="text-muted small" style="margin-top:8px;">Module icon</p>
+            <p style="margin-top:8px;font-size:0.875rem;color:#6b7280;">Module icon</p>
         </div>
         <div class="oe_span8">
             <h2 class="oe_slogan" style="color:#0f766e;text-align:left;margin-top:0;">mln · Drag Drop Image Gallery</h2>
-            <p style="font-size:1.05rem;line-height:1.55;color:black;">
+            <p style="font-size:1.05rem;line-height:1.6;color:#111827;">
                 <strong>Odoo 18</strong> backend forms: <strong>One2many multi-image</strong> in one place —
                 <strong>batch upload</strong> (drag in several images or multi-select in the file dialog),
                 <strong>zoom preview</strong> (click a thumbnail for a full-screen lightbox; close with Esc, backdrop, or the close control),
                 <strong>download</strong> (per-image button bottom-left; toolbar <strong>Download all (ZIP)</strong> for saved lines only).
-                Use <code>widget="drag_drop_images"</code> in the view; the child model needs an image field and optional <code>name</code> for file name / title.
+                Use <code style="background:#e5e7eb;color:#111827;padding:2px 6px;border-radius:4px;font-size:0.9em;">widget="drag_drop_images"</code> in the view; the child model needs an image field and optional <code style="background:#e5e7eb;color:#111827;padding:2px 6px;border-radius:4px;font-size:0.9em;">name</code> for file name / title.
             </p>
         </div>
     </div>
 </section>
 
-<section class="oe_container oe_dark">
+<section class="oe_container" style="background:#f3f4f6;color:#111827;padding:24px 12px;border-radius:0;">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h3 style="margin-top:0;">Core features · Upload · Preview · Download</h3>
+            <h3 style="margin-top:0;color:#111827;font-size:1.25rem;">Core features · Upload · Preview · Download</h3>
             <div class="oe_row">
-                <div class="oe_span4">
-                    <h4 style="color:#a7f3d0;font-size:1rem;">Batch upload</h4>
-                    <p style="font-size:0.9rem;line-height:1.55;color:#ccc;">
-                        <strong>Drag</strong> multiple images into the dashed area, or click <strong>Drag or Upload</strong> and <strong>multi-select</strong> in the file dialog;
-                        each image creates one child line. On upload, the <strong>original file name</strong> is written to child <code>name</code> (define that field on the child model) for list display and download names.
-                    </p>
+                <div class="oe_span4" style="margin-bottom:16px;">
+                    <div style="background:#ffffff;border:1px solid #e5e7eb;border-radius:10px;padding:14px;height:100%;">
+                        <h4 style="color:#0f766e;font-size:1rem;margin-top:0;">Batch upload</h4>
+                        <p style="font-size:0.9rem;line-height:1.55;color:#374151;margin:0;">
+                            <strong style="color:#111827;">Drag</strong> multiple images into the dashed area, or click <strong style="color:#111827;">Drag or Upload</strong> and <strong style="color:#111827;">multi-select</strong> in the file dialog;
+                            each image creates one child line. On upload, the <strong style="color:#111827;">original file name</strong> is written to child <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">name</code> (define that field on the child model) for list display and download names.
+                        </p>
+                    </div>
                 </div>
-                <div class="oe_span4">
-                    <h4 style="color:#a7f3d0;font-size:1rem;">Zoom preview</h4>
-                    <p style="font-size:0.9rem;line-height:1.55;color:#ccc;">
-                        Click the <strong>thumbnail</strong> to open a dark overlay lightbox; the large image scales to the window.
-                        Close with <strong>Esc</strong>, clicking the <strong>backdrop</strong>, or the <strong>×</strong> control. Optional <code>enable_zoom</code> adds a slight hover zoom effect.
-                    </p>
+                <div class="oe_span4" style="margin-bottom:16px;">
+                    <div style="background:#ffffff;border:1px solid #e5e7eb;border-radius:10px;padding:14px;height:100%;">
+                        <h4 style="color:#0f766e;font-size:1rem;margin-top:0;">Zoom preview</h4>
+                        <p style="font-size:0.9rem;line-height:1.55;color:#374151;margin:0;">
+                            Click the <strong style="color:#111827;">thumbnail</strong> to open a dark overlay lightbox; the large image scales to the window.
+                            Close with <strong style="color:#111827;">Esc</strong>, clicking the <strong style="color:#111827;">backdrop</strong>, or the <strong style="color:#111827;">×</strong> control. Optional <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">enable_zoom</code> adds a slight hover zoom effect.
+                        </p>
+                    </div>
                 </div>
-                <div class="oe_span4">
-                    <h4 style="color:#a7f3d0;font-size:1rem;">Download</h4>
-                    <p style="font-size:0.9rem;line-height:1.55;color:#ccc;">
-                        <strong>Single:</strong> green circular button bottom-left; triggers save on the current page, same tab (same-origin <code>/web/image</code>).<br/>
-                        <strong>Bulk:</strong> toolbar <strong>Download all (ZIP)</strong> only packs <strong>saved</strong> child lines; save the parent form first. ZIP entry names prefer child line <code>name</code>.
-                    </p>
+                <div class="oe_span4" style="margin-bottom:16px;">
+                    <div style="background:#ffffff;border:1px solid #e5e7eb;border-radius:10px;padding:14px;height:100%;">
+                        <h4 style="color:#0f766e;font-size:1rem;margin-top:0;">Download</h4>
+                        <p style="font-size:0.9rem;line-height:1.55;color:#374151;margin:0;">
+                            <strong style="color:#111827;">Single:</strong> green circular button bottom-left; triggers save on the current page, same tab (same-origin <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">/web/image</code>).<br/>
+                            <strong style="color:#111827;">Bulk:</strong> toolbar <strong style="color:#111827;">Download all (ZIP)</strong> only packs <strong style="color:#111827;">saved</strong> child lines; save the parent form first. ZIP entry names prefer child line <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">name</code>.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="oe_container oe_dark">
+<section class="oe_container" style="background:#ffffff;color:#111827;padding:24px 12px;">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h3 style="margin-top:0;">Screenshots</h3>
-            <p style="font-size:0.9rem;color:#ccc;">
-                The images below use the bundled <code>screenshot_1.png</code> / <code>screenshot_2.png</code>.
-                Replace them with <strong>real screenshots</strong> before publishing (suggested: batch upload area, lightbox, single download and ZIP), width about 560–900px, PNG or JPG.
+            <h3 style="margin-top:0;color:#111827;">Screenshots</h3>
+            <p style="font-size:0.95rem;line-height:1.55;color:#4b5563;">
+                Screenshots are shipped as <code style="background:#e5e7eb;padding:2px 6px;border-radius:4px;">screenshot_2.png</code> and <code style="background:#e5e7eb;padding:2px 6px;border-radius:4px;">screenshot_2.png</code> in this folder. Replace them before publishing if you want different captures (about 560–900px wide, PNG or JPG).
             </p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h4 style="color:#eee;">Figure 1 · Gallery: upload / download / ZIP</h4>
-            <div class="oe_demo oe_screenshot">
-                <img src="demo2.png" alt="mln multi-image drag-drop, ZIP batch download, single download" style="width:100%;max-width:900px;height:auto;border-radius:8px;border:1px solid rgba(255,255,255,0.15);"/>
+            <h4 style="color:#111827;font-size:1.05rem;">Figure 1 · Gallery: upload / download / ZIP</h4>
+            <div class="oe_demo oe_screenshot" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:8px;">
+                <img src="screenshot_1.png" alt="mln multi-image drag-drop, ZIP batch download, single download" style="width:100%;max-width:900px;height:auto;border-radius:6px;display:block;margin:0 auto;"/>
             </div>
-            <p style="font-size:0.85rem;color:#bbb;">
-                Typical layout: toolbar <strong>Download all (ZIP)</strong>, per-image download bottom-left / delete × top-right, caption below, <strong>Drag or Upload</strong> on the right with multi-select.
+            <p style="font-size:0.875rem;line-height:1.5;color:#6b7280;">
+                Typical layout: toolbar <strong style="color:#374151;">Download all (ZIP)</strong>, per-image download bottom-left / delete × top-right, caption below, <strong style="color:#374151;">Drag or Upload</strong> on the right with multi-select.
             </p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h4 style="color:#eee;">Figure 2 · Alongside other form fields (sample layout)</h4>
-            <div class="oe_demo oe_screenshot">
-                <img src="demo2.png" alt="mln drag-drop widget layout in a form" style="width:100%;max-width:900px;height:auto;border-radius:8px;border:1px solid rgba(255,255,255,0.15);"/>
+            <h4 style="color:#111827;font-size:1.05rem;">Figure 2 · Alongside other form fields (sample layout)</h4>
+            <div class="oe_demo oe_screenshot" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:8px;">
+                <img src="screenshot_2.png" alt="mln drag-drop widget layout in a form" style="width:100%;max-width:900px;height:auto;border-radius:6px;display:block;margin:0 auto;"/>
             </div>
-            <p style="font-size:0.85rem;color:#bbb;">Works next to Char, Many2one, etc.; suitable for service photos, product attachments, work order galleries, and similar.</p>
+            <p style="font-size:0.875rem;line-height:1.5;color:#6b7280;">Works next to Char, Many2one, etc.; suitable for service photos, product attachments, work order galleries, and similar.</p>
         </div>
     </div>
 </section>
 
-<section class="oe_container">
+<section class="oe_container" style="background:#f3f4f6;color:#111827;padding:24px 12px;">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h3>Overview</h3>
-            <ul style="line-height:1.7;font-size:0.98rem;">
-                <li><strong>Widget:</strong> <code>drag_drop_images</code> for <strong>One2many</strong> fields.</li>
-                <li><strong>Batch upload:</strong> multi-file drag-and-drop or file input <code>multiple</code>; creates one child row per image; child <code>name</code> recommended for captions (widget marks <code>name</code> writable so values are not lost on save).</li>
-                <li><strong>Zoom preview:</strong> click thumbnail for lightbox; Esc and backdrop to close.</li>
-                <li><strong>Download:</strong> single image without a new tab; bulk ZIP via server route (requires saved child rows and read access).</li>
-                <li><strong>Child model:</strong> needs a binary / image field (often <code>image_1920</code>); optional derived thumbnail as <code>previewImage</code> to avoid invalid RPC fields.</li>
-                <li><strong>Theme compatibility:</strong> delete, download, and ZIP controls prefer <code>&lt;span role="button"&gt;</code> to reduce themes hiding small <code>&lt;button&gt;</code> elements.</li>
-                <li><strong>Built-in demo:</strong> menu <strong>mln Drag Drop → Demo</strong> to try drag, preview, download, and ZIP immediately.</li>
+            <h3 style="margin-top:0;color:#111827;">Overview</h3>
+            <ul style="line-height:1.7;font-size:0.98rem;color:#374151;padding-left:1.25rem;">
+                <li style="margin-bottom:6px;"><strong style="color:#111827;">Widget:</strong> <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">drag_drop_images</code> for <strong style="color:#111827;">One2many</strong> fields.</li>
+                <li style="margin-bottom:6px;"><strong style="color:#111827;">Batch upload:</strong> multi-file drag-and-drop or file input <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">multiple</code>; one child row per image; child <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">name</code> recommended for captions.</li>
+                <li style="margin-bottom:6px;"><strong style="color:#111827;">Zoom preview:</strong> click thumbnail for lightbox; Esc and backdrop to close.</li>
+                <li style="margin-bottom:6px;"><strong style="color:#111827;">Download:</strong> single image without a new tab; bulk ZIP via server (saved child rows, read access).</li>
+                <li style="margin-bottom:6px;"><strong style="color:#111827;">Child model:</strong> binary / image field (often <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">image_1920</code>); optional <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">previewImage</code> for thumbnails.</li>
+                <li style="margin-bottom:6px;"><strong style="color:#111827;">Theme compatibility:</strong> controls use <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">span role="button"</code> where possible.</li>
+                <li style="margin-bottom:6px;"><strong style="color:#111827;">Built-in demo:</strong> menu <strong style="color:#111827;">mln Drag Drop → Demo</strong>.</li>
             </ul>
         </div>
     </div>
 </section>
 
-<section class="oe_container oe_dark">
+<section class="oe_container" style="background:#ffffff;color:#111827;padding:24px 12px;">
     <div class="oe_row oe_spaced">
         <div class="oe_span6">
-            <h3>Use cases</h3>
-            <ul style="line-height:1.65;font-size:0.95rem;color:#ddd;">
+            <h3 style="color:#111827;">Use cases</h3>
+            <ul style="line-height:1.65;font-size:0.95rem;color:#374151;">
                 <li>Multi-image entry with on-screen zoom to check details</li>
                 <li>Handing images to customers or warehouse (single or ZIP)</li>
                 <li>Mostly XML/UI changes with minimal Python business logic</li>
             </ul>
         </div>
         <div class="oe_span6">
-            <h3>Technical</h3>
-            <ul style="line-height:1.65;font-size:0.95rem;color:#ddd;">
-                <li><strong>Odoo:</strong> 18.0</li>
-                <li><strong>Depends:</strong> <code>web</code></li>
-                <li><strong>License:</strong> LGPL-3</li>
-                <li><strong>Author:</strong> mln</li>
+            <h3 style="color:#111827;">Technical</h3>
+            <ul style="line-height:1.65;font-size:0.95rem;color:#374151;">
+                <li><strong style="color:#111827;">Odoo:</strong> 18.0</li>
+                <li><strong style="color:#111827;">Depends:</strong> <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">web</code></li>
+                <li><strong style="color:#111827;">License:</strong> LGPL-3</li>
+                <li><strong style="color:#111827;">Author:</strong> mln</li>
             </ul>
         </div>
     </div>
 </section>
 
-<section class="oe_container">
+<section class="oe_container" style="background:#f3f4f6;color:#111827;padding:24px 12px;">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h3>Quick start · XML example</h3>
-            <p>Child model with an image field (example <code>image_1920</code>) and <code>name</code> (recommended for title and download name):</p>
-            <pre style="background:#f4f4f4;border:1px solid #e0e0e0;border-radius:8px;padding:14px;overflow:auto;font-size:12px;line-height:1.45;">
+            <h3 style="margin-top:0;color:#111827;">Quick start · XML example</h3>
+            <p style="color:#374151;">Child model with an image field (example <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">image_1920</code>) and <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">name</code> (recommended):</p>
+            <pre style="background:#ffffff;border:1px solid #d1d5db;border-radius:8px;padding:14px;overflow:auto;font-size:12px;line-height:1.45;color:#111827;">
 &lt;field name="line_ids"
        widget="drag_drop_images"
        options="{
@@ -139,46 +148,44 @@
            }
        }"/&gt;
             </pre>
-            <p style="font-size:0.9rem;color:#444;">
-                <strong>Options summary:</strong><br/>
-                <code>childImageField</code>: child field that stores the image; default <code>image_1920</code>.<br/>
-                <code>acceptedFileExtensions</code>: default <code>image/*</code>; batch selection accepts matching types.<br/>
-                <code>extraData</code>: defaults for new lines; <code>previewImage</code>, <code>cssStyles</code>, <code>enable_zoom</code> / <code>enableZoom</code> are UI-only; other keys become defaults for other child fields.<br/>
-                Lightbox, single download, and ZIP are built into the widget — <strong>no</strong> extra option switches (ZIP still requires saved child rows).<br/>
-                Full details: <code>README.md</code> in the module.
+            <p style="font-size:0.9rem;line-height:1.55;color:#4b5563;">
+                <strong style="color:#111827;">Options summary:</strong><br/>
+                <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">childImageField</code> — child image field (default <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">image_1920</code>).<br/>
+                <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">acceptedFileExtensions</code> — default <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">image/*</code>.<br/>
+                <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">extraData</code> — defaults for new lines; preview/zoom keys are UI-only. Lightbox, single download, and ZIP are built in (ZIP needs saved rows). Full details in <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">README.md</code>.
             </p>
         </div>
     </div>
 </section>
 
-<section class="oe_container oe_dark">
+<section class="oe_container" style="background:#ffffff;color:#111827;padding:24px 12px;border:1px solid #e5e7eb;">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h3>FAQ</h3>
-            <dl style="font-size:0.95rem;line-height:1.6;color:#ddd;">
-                <dt style="font-weight:bold;color:#fff;">ZIP button does nothing?</dt>
-                <dd>Bulk ZIP only includes <strong>saved</strong> child lines. Save the parent form first; if all lines are new and unsaved, you will be prompted to save.</dd>
-                <dt style="font-weight:bold;color:#fff;margin-top:10px;">Captions under thumbnails all say “Image”?</dt>
-                <dd>Use the current version: child <code>name</code> is writable in <code>relatedFields</code> and receives the original file name on upload; fix old rows by re-uploading or editing <code>name</code>.</dd>
-                <dt style="font-weight:bold;color:#fff;margin-top:10px;">Images visible before save, blank after?</dt>
-                <dd>Ensure the child image field is writable in <code>relatedFields</code>; check required child fields not covered by <code>extraData</code> defaults.</dd>
-                <dt style="font-weight:bold;color:#fff;margin-top:10px;">Delete control not visible?</dt>
-                <dd>Often the theme hides small form buttons; this module uses a <code>span</code> for delete. Upgrade the module and hard-refresh assets.</dd>
-                <dt style="font-weight:bold;color:#fff;margin-top:10px;">Migrating from <code>eis_drag_drop</code>?</dt>
-                <dd>Uninstall the old module, then install <code>mln_drag_drop</code>; see <code>README.md</code>.</dd>
+            <h3 style="margin-top:0;color:#111827;">FAQ</h3>
+            <dl style="font-size:0.95rem;line-height:1.6;color:#374151;">
+                <dt style="font-weight:bold;color:#111827;">ZIP button does nothing?</dt>
+                <dd style="margin:4px 0 12px 0;">Bulk ZIP only includes <strong style="color:#111827;">saved</strong> child lines. Save the parent form first.</dd>
+                <dt style="font-weight:bold;color:#111827;">Captions under thumbnails all say “Image”?</dt>
+                <dd style="margin:4px 0 12px 0;">Ensure child <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">name</code> is writable; upload fills the original file name.</dd>
+                <dt style="font-weight:bold;color:#111827;">Images visible before save, blank after?</dt>
+                <dd style="margin:4px 0 12px 0;">Check child image field in <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">relatedFields</code> and required fields / <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">extraData</code>.</dd>
+                <dt style="font-weight:bold;color:#111827;">Delete control not visible?</dt>
+                <dd style="margin:4px 0 12px 0;">Upgrade the module; delete uses a <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">span</code> for theme compatibility.</dd>
+                <dt style="font-weight:bold;color:#111827;">Migrating from <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">eis_drag_drop</code>?</dt>
+                <dd style="margin:4px 0 0 0;">Uninstall the old module, then install <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">mln_drag_drop</code>; see <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">README.md</code>.</dd>
             </dl>
         </div>
     </div>
 </section>
 
-<section class="oe_container oe_separator oe_spaced"></section>
+<section class="oe_container oe_separator oe_spaced" style="background:#ffffff;"></section>
 
-<section class="oe_container">
+<section class="oe_container" style="background:#f9fafb;padding:20px 12px;">
     <div class="oe_row oe_spaced">
         <div class="oe_span12" style="text-align:center;">
-            <p style="font-size:0.95rem;color:#555;">
-                <strong>mln Drag Drop Gallery</strong> · Odoo 18 · LGPL-3<br/>
-                Batch upload · zoom preview · single and ZIP download — see <code>README.md</code>.
+            <p style="font-size:0.95rem;color:#374151;margin:0;">
+                <strong style="color:#111827;">mln Drag Drop Gallery</strong> · Odoo 18 · LGPL-3<br/>
+                Batch upload · zoom preview · single and ZIP download — see <code style="background:#e5e7eb;padding:2px 6px;border-radius:4px;">README.md</code>.
             </p>
         </div>
     </div>

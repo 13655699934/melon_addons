@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="mln_drag_drop.DragAndDropImagesField">
+        <div class="o_mln_dnd_images o_dnd_multi_wrapper"
+             t-att-class="state.dragging ? 'o_dnd_dragging' : ''"
+             t-on-dragover="onDragOver"
+             t-on-dragleave="onDragLeave"
+             t-on-drop="onDrop">
+            <!-- Toolbar outside the thumbnail flex row; use span not button (themes often hide small buttons in forms). -->
+            <div t-if="records.length" class="o_dnd_multi_toolbar_row">
+                <span role="button"
+                      tabindex="0"
+                      class="o_dnd_multi_batch_zip"
+                      title="Download all saved images as a ZIP file (save the form first if lines are new)"
+                      aria-label="Download all images as ZIP"
+                      t-on-click="onDownloadAllZip"
+                      t-on-keydown="onBatchZipKeydown">
+                    <i class="fa fa-download o_dnd_multi_batch_zip_icon" aria-hidden="true"/>
+                    Download all (ZIP)
+                </span>
+            </div>
+            <div class="o_dnd_multi_items">
+                <t t-foreach="records" t-as="line" t-key="line.resId or line._virtualId">
+                    <div class="o_dnd_multi_tile">
+                        <div class="o_dnd_multi_thumb">
+                            <img class="o_dnd_multi_preview"
+                                 t-att-class="{
+                                     'o_dnd_zoomable': props.enableZoom,
+                                     'o_dnd_preview_clickable': !isPlaceholderPreview(line),
+                                 }"
+                                 t-att-style="tileStyle"
+                                 t-att-src="getPreviewSrc(line)"
+                                 t-att-alt="getLineCaption(line)"
+                                 t-att-title="getPreviewTitle(line)"
+                                 role="button"
+                                 t-att-tabindex="isPlaceholderPreview(line) ? -1 : 0"
+                                 t-on-click.stop="() => this.openLightbox(line)"
+                                 t-on-keydown.stop="(ev) => this.onPreviewImgKeydown(ev, line)"/>
+                            <span role="button"
+                                  tabindex="0"
+                                  class="o_dnd_multi_download_btn fa fa-download"
+                                  title="Download this image"
+                                  aria-label="Download this image"
+                                  t-on-click.stop="() => this.onDownloadLine(line)"
+                                  t-on-keydown.stop="(ev) => this.onDownloadKeydown(ev, line)"/>
+                            <!-- span: dash_backend_theme hides small <button> inside o_form_sheet (24px, Delete title, btn-sm, …) -->
+                            <span t-if="!props.readonly"
+                                  role="button"
+                                  tabindex="0"
+                                  class="o_dnd_multi_remove_x"
+                                  title="Remove image"
+                                  aria-label="Remove image"
+                                  t-on-click.stop="() => this.removeItem(line)"
+                                  t-on-keydown.stop="(ev) => this.onRemoveKeydown(ev, line)">
+                                ×
+                            </span>
+                        </div>
+                        <div class="o_dnd_multi_caption text-truncate"
+                             t-att-title="getLineCaption(line)"
+                             t-esc="getLineCaption(line)"/>
+                    </div>
+                </t>
+                <label t-if="!props.readonly" class="o_dnd_multi_drop_zone">
+                    <input class="o_dnd_hidden_input"
+                           type="file"
+                           multiple="multiple"
+                           t-att-accept="props.acceptedFileExtensions"
+                           t-on-change="onInputChange"/>
+                    <span>Drag or Upload</span>
+                </label>
+            </div>
+            <div t-if="state.lightbox"
+                 class="o_dnd_lightbox"
+                 role="dialog"
+                 aria-modal="true"
+                 t-att-aria-label="state.lightbox.title"
+                 t-on-click="onLightboxBackdropClick">
+                <div class="o_dnd_lightbox_inner">
+                    <span role="button"
+                          tabindex="0"
+                          class="o_dnd_lightbox_close"
+                          title="Close"
+                          aria-label="Close"
+                          t-on-click="closeLightbox"
+                          t-on-keydown="onLightboxCloseKeydown">×</span>
+                    <img class="o_dnd_lightbox_img"
+                         t-att-src="state.lightbox.src"
+                         t-att-alt="state.lightbox.title"/>
+                    <div class="o_dnd_lightbox_caption text-truncate" t-esc="state.lightbox.title"/>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

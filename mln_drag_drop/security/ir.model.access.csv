@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mln_drag_drop_demo_user,mln_drag_drop.demo,mln_drag_drop.model_mln_drag_drop_demo,base.group_user,1,1,1,1
+access_mln_drag_drop_demo_line_user,mln_drag_drop.demo.line,mln_drag_drop.model_mln_drag_drop_demo_line,base.group_user,1,1,1,1

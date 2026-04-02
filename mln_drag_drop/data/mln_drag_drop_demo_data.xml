@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="mln_drag_drop_demo_sample" model="mln_drag_drop.demo">
+        <field name="name">Try drag &amp; drop on this record</field>
+    </record>
+</odoo>

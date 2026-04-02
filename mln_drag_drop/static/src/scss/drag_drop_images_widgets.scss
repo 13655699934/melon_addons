@@ -1,0 +1,290 @@
+.o_dnd_hidden_input {
+    display: none;
+}
+
+.o_dnd_multi_wrapper {
+    border: 1px dashed #c8c8c8;
+    border-radius: 10px;
+    padding: 10px;
+    background: #fbfbfb;
+    /* Avoid clipping delete controls that sit on tile corners */
+    overflow: visible;
+}
+
+.o_dnd_multi_toolbar_row {
+    margin-bottom: 10px;
+}
+
+/* Batch ZIP: not a real <button> so backend themes do not hide it in form sheets */
+.o_dnd_multi_batch_zip {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 4px;
+    border: 1px solid #5c636a;
+    background: #6c757d;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.o_dnd_multi_batch_zip:hover {
+    background: #5c636a;
+    border-color: #565e64;
+    color: #fff;
+}
+
+.o_dnd_multi_batch_zip:focus-visible {
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
+}
+
+.o_dnd_multi_batch_zip_icon {
+    font-size: 14px;
+    opacity: 0.95;
+}
+
+.o_dnd_multi_items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow: visible;
+}
+
+.o_dnd_multi_tile {
+    position: relative;
+    flex-shrink: 0;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 150px;
+}
+
+/* Frame + clip image only; delete bar stays inside (never clipped by sheet) */
+.o_dnd_multi_thumb {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+    background: #fff;
+}
+
+.o_dnd_multi_preview {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    vertical-align: top;
+}
+
+.o_dnd_preview_clickable {
+    cursor: zoom-in;
+}
+
+.o_dnd_preview_clickable:focus-visible {
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
+}
+
+/* Top-right red × — use <span role="button">: themes hide small <button> in forms */
+.o_dnd_multi_remove_x {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    background: #dc3545;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    cursor: pointer;
+    z-index: 5;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.o_dnd_multi_remove_x:hover {
+    background: #bb2d3b;
+    color: #fff;
+}
+
+.o_dnd_multi_remove_x:focus-visible {
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
+}
+
+/* Per-thumbnail download: compact + bright green (matches gallery accent) */
+.o_dnd_multi_download_btn {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    background: #22c55e;
+    color: #fff;
+    font-size: 10px;
+    line-height: 1;
+    text-align: center;
+    cursor: pointer;
+    z-index: 4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.28);
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    text-decoration: none;
+}
+
+.o_dnd_multi_download_btn:hover {
+    background: #16a34a;
+    color: #fff;
+}
+
+.o_dnd_multi_download_btn:focus-visible {
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
+}
+
+.o_dnd_multi_caption {
+    max-width: 150px;
+    margin-top: 4px;
+    font-size: 11px;
+    line-height: 1.25;
+    color: #495057;
+    text-align: center;
+}
+
+.o_dnd_multi_drop_zone {
+    width: 150px;
+    height: 150px;
+    border: 1px dashed #b6b6b6;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #6c757d;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+    padding: 8px;
+}
+
+.o_dnd_dragging {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.12);
+}
+
+.o_dnd_zoomable:hover {
+    transform: scale(1.08);
+    transition: transform 0.2s ease;
+    z-index: 1;
+}
+
+/* Odoo uses o_field_one2many on the wrapper, not the widget name — unclip corners */
+.o_field_widget.o_field_one2many:has(> .o_mln_dnd_images) {
+    overflow: visible;
+}
+
+/* Fullscreen preview (above backend chrome) */
+.o_dnd_lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px 32px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.88);
+}
+
+.o_dnd_lightbox_inner {
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Do not use Sass min(96vw, 100%): compile fails with "Incompatible units: '%' and 'vw'". */
+.o_dnd_lightbox_img {
+    box-sizing: border-box;
+    max-width: 96vw;
+    max-height: calc(100vh - 140px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.55);
+}
+
+.o_dnd_lightbox_caption {
+    box-sizing: border-box;
+    max-width: 720px;
+    width: 100%;
+    color: #f8f9fa;
+    font-size: 14px;
+    text-align: center;
+}
+
+.o_dnd_lightbox_close {
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    padding: 0;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 20001;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.o_dnd_lightbox_close:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
+    color: #fff;
+}
+
+.o_dnd_lightbox_close:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}

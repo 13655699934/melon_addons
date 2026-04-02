@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mln_drag_drop_demo_line_kanban" model="ir.ui.view">
+        <field name="name">mln_drag_drop.demo.line.kanban</field>
+        <field name="model">mln_drag_drop.demo.line</field>
+        <field name="arch" type="xml">
+            <kanban default_order="sequence" create="true" edit="true" delete="true">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="image_1920"/>
+                <templates>
+                    <t t-name="card" class="p-1">
+                        <div class="text-center">
+                            <field name="image_1920" widget="image" class="w-100" options="{'size': [0, 90]}"/>
+                            <div class="small text-truncate mt-1">
+                                <field name="name"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_mln_drag_drop_demo_line_form" model="ir.ui.view">
+        <field name="name">mln_drag_drop.demo.line.form</field>
+        <field name="model">mln_drag_drop.demo.line</field>
+        <field name="arch" type="xml">
+            <form string="Demo line">
+                <group>
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="image_1920" widget="image"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mln_drag_drop_demo_form" model="ir.ui.view">
+        <field name="name">mln_drag_drop.demo.form</field>
+        <field name="model">mln_drag_drop.demo</field>
+        <field name="arch" type="xml">
+            <form string="Drag &amp; Drop gallery demo (drag_drop_images)">
+                <sheet>
+                    <div class="alert alert-info mb-3" role="alert">
+                        <p class="mb-1">
+                            <strong>Live demo</strong> of <code>drag_drop_images</code>: drag files onto the dashed area
+                            or click <strong>Drag or Upload</strong>.
+                        </p>
+                        <p class="mb-0 small">
+                            Use the red <strong>×</strong> on each thumbnail to remove a row, then <strong>Save</strong>.
+                            Delete uses <code>&lt;span role="button"&gt;</code> so it stays visible with themes that hide
+                            small <code>&lt;button&gt;</code> in forms.
+                        </p>
+                    </div>
+                    <group>
+                        <field name="name" placeholder="Demo title"/>
+                    </group>
+                    <notebook>
+                        <page string="Gallery" name="gallery">
+                            <field name="line_ids"
+                                   nolabel="1"
+                                   widget="drag_drop_images"
+                                   options="{
+                                       'childImageField': 'image_1920',
+                                       'acceptedFileExtensions': 'image/*',
+                                       'extraData': {
+                                           'enable_zoom': true,
+                                           'cssStyles': 'width:120px;height:120px;object-fit:cover;border-radius:8px;'
+                                       }
+                                   }"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mln_drag_drop_demo_list" model="ir.ui.view">
+        <field name="name">mln_drag_drop.demo.list</field>
+        <field name="model">mln_drag_drop.demo</field>
+        <field name="arch" type="xml">
+            <list string="Drag Drop Demos">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_mln_drag_drop_demo" model="ir.actions.act_window">
+        <field name="name">Drag &amp; Drop Demo</field>
+        <field name="res_model">mln_drag_drop.demo</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a demo record to try the gallery widget.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_mln_drag_drop_demo_root"
+              name="mln Drag Drop"
+              sequence="25"
+              groups="base.group_user"
+              web_icon="mln_drag_drop,static/description/icon.png"/>
+
+    <menuitem id="menu_mln_drag_drop_demo"
+              name="Demo"
+              parent="menu_mln_drag_drop_demo_root"
+              action="action_mln_drag_drop_demo"
+              sequence="10"/>
+
+</odoo>

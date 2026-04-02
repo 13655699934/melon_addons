@@ -9,15 +9,11 @@
         <div class="oe_span8">
             <h2 class="oe_slogan" style="color:#0f766e;text-align:left;margin-top:0;">mln · Drag Drop Image Gallery</h2>
             <p style="font-size:1.05rem;line-height:1.55;color:#333;">
-                <strong>Odoo 18</strong> 后台表单：<strong>One2many 多图</strong>一站式体验——
-                <strong>批量上传</strong>（拖入多张或一次多选文件）、
-                <strong>放大预览</strong>（点击缩略图全屏灯箱，Esc / 遮罩 / 关闭钮退出）、
-                <strong>下载</strong>（每张图左下角单张下载；顶部「Download all (ZIP)」打包已保存行）。
-                视图中使用 <code>widget="drag_drop_images"</code> 即可，子表需图片字段与可选 <code>name</code> 作为文件名/标题。
-            </p>
-            <p style="font-size:0.95rem;line-height:1.5;color:#555;">
-                <em>English:</em> One2many image gallery with <strong>multi-file upload</strong>, <strong>click-to-zoom preview</strong> (lightbox),
-                and <strong>per-image + ZIP batch download</strong> — configure via <code>drag_drop_images</code> and XML options.
+                <strong>Odoo 18</strong> backend forms: <strong>One2many multi-image</strong> in one place —
+                <strong>batch upload</strong> (drag in several images or multi-select in the file dialog),
+                <strong>zoom preview</strong> (click a thumbnail for a full-screen lightbox; close with Esc, backdrop, or the close control),
+                <strong>download</strong> (per-image button bottom-left; toolbar <strong>Download all (ZIP)</strong> for saved lines only).
+                Use <code>widget="drag_drop_images"</code> in the view; the child model needs an image field and optional <code>name</code> for file name / title.
             </p>
         </div>
     </div>
@@ -26,27 +22,27 @@
 <section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h3 style="margin-top:0;">核心能力 · Upload · Preview · Download</h3>
+            <h3 style="margin-top:0;">Core features · Upload · Preview · Download</h3>
             <div class="oe_row">
                 <div class="oe_span4">
-                    <h4 style="color:#a7f3d0;font-size:1rem;">批量上传</h4>
+                    <h4 style="color:#a7f3d0;font-size:1rem;">Batch upload</h4>
                     <p style="font-size:0.9rem;line-height:1.55;color:#ccc;">
-                        将多张图片<strong>拖入</strong>虚线区域，或点击「Drag or Upload」在文件对话框中<strong>一次选择多个</strong>文件；
-                        每张图会创建一行子记录。上传时自动把<strong>原始文件名</strong>写入子表 <code>name</code>（需在子模型中定义该字段），便于列表与下载命名。
+                        <strong>Drag</strong> multiple images into the dashed area, or click <strong>Drag or Upload</strong> and <strong>multi-select</strong> in the file dialog;
+                        each image creates one child line. On upload, the <strong>original file name</strong> is written to child <code>name</code> (define that field on the child model) for list display and download names.
                     </p>
                 </div>
                 <div class="oe_span4">
-                    <h4 style="color:#a7f3d0;font-size:1rem;">放大预览</h4>
+                    <h4 style="color:#a7f3d0;font-size:1rem;">Zoom preview</h4>
                     <p style="font-size:0.9rem;line-height:1.55;color:#ccc;">
-                        点击<strong>缩略图本身</strong>打开深色遮罩灯箱，大图按窗口自适应显示；
-                        按 <strong>Esc</strong>、点击<strong>空白遮罩</strong>或右上角 <strong>×</strong> 关闭。可选 <code>enable_zoom</code> 开启悬停轻微放大动效。
+                        Click the <strong>thumbnail</strong> to open a dark overlay lightbox; the large image scales to the window.
+                        Close with <strong>Esc</strong>, clicking the <strong>backdrop</strong>, or the <strong>×</strong> control. Optional <code>enable_zoom</code> adds a slight hover zoom effect.
                     </p>
                 </div>
                 <div class="oe_span4">
-                    <h4 style="color:#a7f3d0;font-size:1rem;">下载</h4>
+                    <h4 style="color:#a7f3d0;font-size:1rem;">Download</h4>
                     <p style="font-size:0.9rem;line-height:1.55;color:#ccc;">
-                        <strong>单张：</strong>左下角绿色圆形按钮，在当前页触发保存，不新开标签（同域 <code>/web/image</code>）。<br/>
-                        <strong>批量：</strong>工具栏「Download all (ZIP)」仅打包<strong>已保存</strong>子行；未保存请先保存主表单。ZIP 内文件名优先用子行 <code>name</code>。
+                        <strong>Single:</strong> green circular button bottom-left; triggers save on the current page, same tab (same-origin <code>/web/image</code>).<br/>
+                        <strong>Bulk:</strong> toolbar <strong>Download all (ZIP)</strong> only packs <strong>saved</strong> child lines; save the parent form first. ZIP entry names prefer child line <code>name</code>.
                     </p>
                 </div>
             </div>
@@ -57,31 +53,31 @@
 <section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h3 style="margin-top:0;">界面预览 · Screenshots</h3>
+            <h3 style="margin-top:0;">Screenshots</h3>
             <p style="font-size:0.9rem;color:#ccc;">
-                下图使用本模块随附的 <code>screenshot_1.png</code> / <code>screenshot_2.png</code>。
-                发布前请替换为<strong>真实截屏</strong>（建议体现：批量上传区、灯箱预览、单张下载与 ZIP 按钮），宽度约 560–900px，PNG/JPG 均可。
+                The images below use the bundled <code>screenshot_1.png</code> / <code>screenshot_2.png</code>.
+                Replace them with <strong>real screenshots</strong> before publishing (suggested: batch upload area, lightbox, single download and ZIP), width about 560–900px, PNG or JPG.
             </p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h4 style="color:#eee;">图 1 · 画廊：上传 / 下载 / ZIP</h4>
+            <h4 style="color:#eee;">Figure 1 · Gallery: upload / download / ZIP</h4>
             <div class="oe_demo oe_screenshot">
-                <img src="screenshot_1.png" alt="mln 多图拖拽、批量下载 ZIP、单张下载" style="width:100%;max-width:900px;height:auto;border-radius:8px;border:1px solid rgba(255,255,255,0.15);"/>
+                <img src="screenshot_1.png" alt="mln multi-image drag-drop, ZIP batch download, single download" style="width:100%;max-width:900px;height:auto;border-radius:8px;border:1px solid rgba(255,255,255,0.15);"/>
             </div>
             <p style="font-size:0.85rem;color:#bbb;">
-                典型效果：顶部「Download all (ZIP)」、每张图左下下载 / 右上删除 ×、下方文件名、右侧「Drag or Upload」支持多选。
+                Typical layout: toolbar <strong>Download all (ZIP)</strong>, per-image download bottom-left / delete × top-right, caption below, <strong>Drag or Upload</strong> on the right with multi-select.
             </p>
         </div>
     </div>
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h4 style="color:#eee;">图 2 · 与表单字段并列（示例布局）</h4>
+            <h4 style="color:#eee;">Figure 2 · Alongside other form fields (sample layout)</h4>
             <div class="oe_demo oe_screenshot">
-                <img src="screenshot_2.png" alt="mln 拖拽组件在表单中的布局示意" style="width:100%;max-width:900px;height:auto;border-radius:8px;border:1px solid rgba(255,255,255,0.15);"/>
+                <img src="screenshot_2.png" alt="mln drag-drop widget layout in a form" style="width:100%;max-width:900px;height:auto;border-radius:8px;border:1px solid rgba(255,255,255,0.15);"/>
             </div>
-            <p style="font-size:0.85rem;color:#bbb;">可与 Char、Many2one 等同屏；适合服务项多图、产品附图、工单图集等。</p>
+            <p style="font-size:0.85rem;color:#bbb;">Works next to Char, Many2one, etc.; suitable for service photos, product attachments, work order galleries, and similar.</p>
         </div>
     </div>
 </section>
@@ -89,15 +85,15 @@
 <section class="oe_container">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h3>模块能做什么 · Overview</h3>
+            <h3>Overview</h3>
             <ul style="line-height:1.7;font-size:0.98rem;">
-                <li><strong>挂件：</strong><code>drag_drop_images</code>，用于 <strong>One2many</strong> 字段。</li>
-                <li><strong>批量上传：</strong>拖放多文件或文件选择器 <code>multiple</code>；创建多行子记录；子表 <code>name</code> 建议用于文件名展示（挂件已声明 <code>name</code> 可写，避免保存丢失）。</li>
-                <li><strong>放大预览：</strong>点击缩略图打开灯箱；键盘与遮罩关闭。</li>
-                <li><strong>下载：</strong>单张不跳新标签；批量 ZIP 走服务器路由（需已保存子行且有读权限）。</li>
-                <li><strong>子模型：</strong>需二进制/Image 字段（常用 <code>image_1920</code>）；可选派生缩略字段作 <code>previewImage</code>，避免 RPC 无效字段。</li>
-                <li><strong>主题兼容：</strong>删除、下载、ZIP 等控件优先使用 <code>&lt;span role="button"&gt;</code>，降低主题隐藏小号 <code>&lt;button&gt;</code> 的影响。</li>
-                <li><strong>内置演示：</strong>菜单 <strong>mln Drag Drop → Demo</strong>，可立即试拖、预览、下载与 ZIP。</li>
+                <li><strong>Widget:</strong> <code>drag_drop_images</code> for <strong>One2many</strong> fields.</li>
+                <li><strong>Batch upload:</strong> multi-file drag-and-drop or file input <code>multiple</code>; creates one child row per image; child <code>name</code> recommended for captions (widget marks <code>name</code> writable so values are not lost on save).</li>
+                <li><strong>Zoom preview:</strong> click thumbnail for lightbox; Esc and backdrop to close.</li>
+                <li><strong>Download:</strong> single image without a new tab; bulk ZIP via server route (requires saved child rows and read access).</li>
+                <li><strong>Child model:</strong> needs a binary / image field (often <code>image_1920</code>); optional derived thumbnail as <code>previewImage</code> to avoid invalid RPC fields.</li>
+                <li><strong>Theme compatibility:</strong> delete, download, and ZIP controls prefer <code>&lt;span role="button"&gt;</code> to reduce themes hiding small <code>&lt;button&gt;</code> elements.</li>
+                <li><strong>Built-in demo:</strong> menu <strong>mln Drag Drop → Demo</strong> to try drag, preview, download, and ZIP immediately.</li>
             </ul>
         </div>
     </div>
@@ -106,20 +102,20 @@
 <section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
         <div class="oe_span6">
-            <h3>适用场景 · Use cases</h3>
+            <h3>Use cases</h3>
             <ul style="line-height:1.65;font-size:0.95rem;color:#ddd;">
-                <li>多图录入 + 需要现场放大核对细节</li>
-                <li>需要把图集单张或整批交给客户 / 仓库（下载与 ZIP）</li>
-                <li>仅改 XML 换 UI，少动 Python 业务</li>
+                <li>Multi-image entry with on-screen zoom to check details</li>
+                <li>Handing images to customers or warehouse (single or ZIP)</li>
+                <li>Mostly XML/UI changes with minimal Python business logic</li>
             </ul>
         </div>
         <div class="oe_span6">
-            <h3>依赖与授权 · Technical</h3>
+            <h3>Technical</h3>
             <ul style="line-height:1.65;font-size:0.95rem;color:#ddd;">
-                <li><strong>Odoo：</strong>18.0</li>
-                <li><strong>依赖：</strong><code>web</code></li>
-                <li><strong>协议：</strong>LGPL-3</li>
-                <li><strong>作者：</strong>mln</li>
+                <li><strong>Odoo:</strong> 18.0</li>
+                <li><strong>Depends:</strong> <code>web</code></li>
+                <li><strong>License:</strong> LGPL-3</li>
+                <li><strong>Author:</strong> mln</li>
             </ul>
         </div>
     </div>
@@ -128,8 +124,8 @@
 <section class="oe_container">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h3>快速接入 · XML 示例</h3>
-            <p>子模型含图片字段（示例 <code>image_1920</code>）与 <code>name</code>（推荐，用于标题与下载名）：</p>
+            <h3>Quick start · XML example</h3>
+            <p>Child model with an image field (example <code>image_1920</code>) and <code>name</code> (recommended for title and download name):</p>
             <pre style="background:#f4f4f4;border:1px solid #e0e0e0;border-radius:8px;padding:14px;overflow:auto;font-size:12px;line-height:1.45;">
 &lt;field name="line_ids"
        widget="drag_drop_images"
@@ -144,12 +140,12 @@
        }"/&gt;
             </pre>
             <p style="font-size:0.9rem;color:#444;">
-                <strong>options 摘要：</strong><br/>
-                <code>childImageField</code>：子表存图字段，默认 <code>image_1920</code>。<br/>
-                <code>acceptedFileExtensions</code>：默认 <code>image/*</code>，支持批量选择符合类型的文件。<br/>
-                <code>extraData</code>：新建行默认值；其中 <code>previewImage</code>、<code>cssStyles</code>、<code>enable_zoom</code> / <code>enableZoom</code> 仅 UI，不写入库；其余键可作子表其它字段默认值。<br/>
-                灯箱预览、单张下载、ZIP 为挂件内置能力，<strong>无需</strong>额外 options 开关（ZIP 依赖子行已保存）。<br/>
-                完整说明见模块内 <code>README.md</code>。
+                <strong>Options summary:</strong><br/>
+                <code>childImageField</code>: child field that stores the image; default <code>image_1920</code>.<br/>
+                <code>acceptedFileExtensions</code>: default <code>image/*</code>; batch selection accepts matching types.<br/>
+                <code>extraData</code>: defaults for new lines; <code>previewImage</code>, <code>cssStyles</code>, <code>enable_zoom</code> / <code>enableZoom</code> are UI-only; other keys become defaults for other child fields.<br/>
+                Lightbox, single download, and ZIP are built into the widget — <strong>no</strong> extra option switches (ZIP still requires saved child rows).<br/>
+                Full details: <code>README.md</code> in the module.
             </p>
         </div>
     </div>
@@ -158,18 +154,18 @@
 <section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h3>常见问题 · FAQ</h3>
+            <h3>FAQ</h3>
             <dl style="font-size:0.95rem;line-height:1.6;color:#ddd;">
-                <dt style="font-weight:bold;color:#fff;">ZIP 按钮点了没反应？</dt>
-                <dd>批量 ZIP 只包含<strong>已保存</strong>的子行。请先保存主表单；若全是新建未落库行，会提示先保存。</dd>
-                <dt style="font-weight:bold;color:#fff;margin-top:10px;">缩略图下名字都是 “Image”？</dt>
-                <dd>请使用当前版本：子表 <code>name</code> 已在 <code>relatedFields</code> 中设为可写，上传时会写入原始文件名；旧数据需重传或手改 <code>name</code>。</dd>
-                <dt style="font-weight:bold;color:#fff;margin-top:10px;">保存前能看到图，保存后空白？</dt>
-                <dd>子表图片字段需可写 relatedFields；并检查子表是否有其它必填字段未在 <code>extraData</code> 中给默认值。</dd>
-                <dt style="font-weight:bold;color:#fff;margin-top:10px;">删除按钮不显示？</dt>
-                <dd>多为主题隐藏表单内小按钮；本模块删除用 <code>span</code>。请升级模块并强刷资源缓存。</dd>
-                <dt style="font-weight:bold;color:#fff;margin-top:10px;">从 <code>eis_drag_drop</code> 迁移？</dt>
-                <dd>卸载旧模块后安装 <code>mln_drag_drop</code>，详见 <code>README.md</code>。</dd>
+                <dt style="font-weight:bold;color:#fff;">ZIP button does nothing?</dt>
+                <dd>Bulk ZIP only includes <strong>saved</strong> child lines. Save the parent form first; if all lines are new and unsaved, you will be prompted to save.</dd>
+                <dt style="font-weight:bold;color:#fff;margin-top:10px;">Captions under thumbnails all say “Image”?</dt>
+                <dd>Use the current version: child <code>name</code> is writable in <code>relatedFields</code> and receives the original file name on upload; fix old rows by re-uploading or editing <code>name</code>.</dd>
+                <dt style="font-weight:bold;color:#fff;margin-top:10px;">Images visible before save, blank after?</dt>
+                <dd>Ensure the child image field is writable in <code>relatedFields</code>; check required child fields not covered by <code>extraData</code> defaults.</dd>
+                <dt style="font-weight:bold;color:#fff;margin-top:10px;">Delete control not visible?</dt>
+                <dd>Often the theme hides small form buttons; this module uses a <code>span</code> for delete. Upgrade the module and hard-refresh assets.</dd>
+                <dt style="font-weight:bold;color:#fff;margin-top:10px;">Migrating from <code>eis_drag_drop</code>?</dt>
+                <dd>Uninstall the old module, then install <code>mln_drag_drop</code>; see <code>README.md</code>.</dd>
             </dl>
         </div>
     </div>
@@ -182,7 +178,7 @@
         <div class="oe_span12" style="text-align:center;">
             <p style="font-size:0.95rem;color:#555;">
                 <strong>mln Drag Drop Gallery</strong> · Odoo 18 · LGPL-3<br/>
-                批量上传 · 放大预览 · 单张与 ZIP 下载 — 详见 <code>README.md</code>。
+                Batch upload · zoom preview · single and ZIP download — see <code>README.md</code>.
             </p>
         </div>
     </div>

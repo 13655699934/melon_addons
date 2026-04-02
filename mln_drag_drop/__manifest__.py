@@ -38,8 +38,8 @@ Docs: *README.md* and *static/description/index.html* (App Store listing).
     ],
     "images": [
         "static/description/icon.png",
-        "static/description/screenshot_1.png",
-        "static/description/screenshot_2.png",
+        "static/description/demo2.png",
+        "static/description/demo.png",
     ],
     "assets": {
         "web.assets_backend": [

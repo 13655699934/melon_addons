@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="rule_mln_advanced_list_preference_own" model="ir.rule">
+        <field name="name">mln advanced list preference: own only</field>
+        <field name="model_id" ref="mln_advanced_list.model_mln_advanced_list_preference"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    <record id="rule_mln_advanced_list_filter_line_own" model="ir.rule">
+        <field name="name">mln advanced list filter line: own preference only</field>
+        <field name="model_id" ref="mln_advanced_list.model_mln_advanced_list_filter_line"/>
+        <field name="domain_force">[('preference_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+</odoo>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-inherit="web.ListView" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-component='props.Renderer']" position="attributes">
+            <attribute name="editable">mlnEffectiveEditable</attribute>
+        </xpath>
+    </t>
+
+    <t t-inherit="web.ListRenderer" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('o_list_renderer')]/table" position="before">
+            <div t-if="mlnAdvEnabled" class="o_mln_adv_toolbar d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2 px-1">
+                <span class="fw-semibold o_mln_toolbar_title">Filters</span>
+                <div class="d-flex align-items-center gap-1 flex-wrap ms-auto">
+                    <Dropdown position="'bottom-end'">
+                        <button type="button" class="btn btn-sm btn-light border dropdown-toggle" title="Export">
+                            <i class="fa fa-download me-1"/> Export
+                        </button>
+                        <t t-set-slot="content">
+                            <DropdownItem onSelected="() => this.onMlnExport('pdf')">PDF</DropdownItem>
+                            <DropdownItem onSelected="() => this.onMlnExport('xlsx')">Excel</DropdownItem>
+                            <DropdownItem onSelected="() => this.onMlnExport('csv')">CSV</DropdownItem>
+                        </t>
+                    </Dropdown>
+                    <button type="button" class="btn btn-sm btn-light border" title="Copy"
+                        t-on-click="onMlnCopy">
+                        <i class="fa fa-clipboard me-1"/> Copy
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" t-on-click="onMlnResetFilters">
+                        Reset filters
+                    </button>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//thead/tr/th[hasclass('o_list_record_selector')]" position="after">
+            <th t-if="mlnAdvEnabled" class="o_mln_row_no_th text-muted text-center align-middle">N°</th>
+        </xpath>
+        <xpath expr="//thead/tr[1]" position="after">
+            <tr t-if="mlnAdvEnabled and mlnShowColumnFilterRow" class="o_mln_header_filter_row">
+                <th t-if="hasSelectors" class="p-1 border-0 bg-view align-middle"/>
+                <th t-if="mlnAdvEnabled" class="p-1 border-0 bg-view align-middle"/>
+                <t t-foreach="columns" t-as="column" t-key="column.id + '_mlnf'">
+                    <th t-if="column.type === 'field'" class="p-1 border-0 bg-view align-top o_mln_filter_th">
+                        <t t-set="mlnFlt" t-value="getMlnFilterMetaForColumn(column)"/>
+                        <input t-if="mlnFlt" type="text" class="form-control form-control-sm o_mln_col_filter"
+                            t-att-placeholder="mlnFlt.placeholder"
+                            t-att-value="mlnFlt.value"
+                            t-on-input="(ev) => this.onMlnFilterInput(mlnFlt.field_name, ev)"
+                        />
+                    </th>
+                    <th t-else="" class="p-1 border-0 bg-view"/>
+                </t>
+                <th t-if="hasOpenFormViewColumn" class="p-1 border-0 bg-view"/>
+                <th t-if="hasActionsColumn" class="p-1 border-0 bg-view"/>
+            </tr>
+        </xpath>
+        <xpath expr="//tfoot//tr/td[1]" position="after">
+            <td t-if="mlnAdvEnabled"/>
+        </xpath>
+    </t>
+
+    <t t-inherit="web.ListRenderer.GroupRow" t-inherit-mode="extension" owl="1">
+        <xpath expr="//tr/th[1]" position="before">
+            <th t-if="mlnAdvEnabled" class="o_mln_group_num_spacer align-middle bg-view" tabindex="-1"> </th>
+        </xpath>
+    </t>
+
+    <t t-inherit="web.ListRenderer.RecordRow" t-inherit-mode="extension" owl="1">
+        <xpath expr="//td[hasclass('o_list_record_selector')]" position="after">
+            <td t-if="mlnAdvEnabled" class="o_mln_row_no text-center text-muted user-select-none align-middle">
+                <t t-esc="getMlnRowNumber(record, group)"/>
+            </td>
+        </xpath>
+    </t>
+
+</templates>

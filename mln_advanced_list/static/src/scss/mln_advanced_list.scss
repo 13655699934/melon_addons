@@ -1,0 +1,49 @@
+.o_list_renderer {
+    .o_mln_adv_toolbar {
+        border-radius: 0.5rem;
+        padding: 0.35rem 0.5rem;
+        background: linear-gradient(135deg, #f8f6ff 0%, #ffffff 70%, #f3f0ff 100%);
+        border: 1px solid rgba(94, 75, 154, 0.12);
+
+        .o_mln_toolbar_title {
+            color: #5e4b9a;
+            font-size: 0.95rem;
+        }
+    }
+
+    thead tr.o_mln_header_filter_row th {
+        border-bottom-width: 1px;
+        vertical-align: middle;
+    }
+
+    .o_mln_col_filter {
+        min-width: 4.5rem;
+        font-size: 0.8125rem;
+
+        &:focus {
+            border-color: #5e4b9a;
+            box-shadow: 0 0 0 0.12rem rgba(94, 75, 154, 0.18);
+        }
+    }
+}
+
+.o_list_table {
+    tr.o_data_row:hover td {
+        background-color: rgba(94, 75, 154, 0.06) !important;
+        transition: background-color 0.12s ease-out;
+    }
+
+    th.o_mln_row_no_th,
+    td.o_mln_row_no {
+        width: 3rem;
+        min-width: 3rem;
+        font-variant-numeric: tabular-nums;
+        font-weight: 500;
+    }
+}
+
+.o_mln_crm_pipeline_list {
+    .o_data_row td {
+        vertical-align: middle;
+    }
+}

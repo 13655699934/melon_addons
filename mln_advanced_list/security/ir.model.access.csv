@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mln_advanced_list_preference_user,mln.advanced.list.preference.user,mln_advanced_list.model_mln_advanced_list_preference,base.group_user,1,1,1,1
+access_mln_advanced_list_filter_line_user,mln.advanced.list.filter.line.user,mln_advanced_list.model_mln_advanced_list_filter_line,base.group_user,1,1,1,1

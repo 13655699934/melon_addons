@@ -1,0 +1,139 @@
+<!--
+  Odoo Apps Store: use inline styles; store layout is light and has no backend CSS.
+-->
+<section class="oe_container" style="background:#ffffff;color:#1f2937;padding:20px 12px;">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span4 text-center">
+            <img src="icon.png" alt="mln Advanced List"
+                 style="max-width:140px;width:100%;height:auto;border-radius:16px;box-shadow:0 8px 24px rgba(94,75,154,0.2);"/>
+            <p style="margin-top:8px;font-size:0.875rem;color:#6b7280;">Module icon</p>
+        </div>
+        <div class="oe_span8">
+            <h2 class="oe_slogan" style="color:#5e4b9a;text-align:left;margin-top:0;">mln Advanced List View</h2>
+            <p style="font-size:1.05rem;line-height:1.65;color:#111827;">
+                <strong>Odoo 18</strong> — Upgrade every <strong>main window list view</strong> with
+                <strong>per-column quick filters</strong>, <strong>row numbers</strong>,
+                <strong>one-click export</strong> (PDF, Excel, CSV) and <strong>copy to clipboard</strong>,
+                plus optional <strong>per-user list preferences</strong> (inline edit and filter hints) stored on the server.
+                Works across standard models; includes compatibility for <strong>Account file-upload list</strong> views
+                (e.g. some Sales Order trees).
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container" style="background:#f5f3ff;color:#111827;padding:24px 12px;">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h3 style="margin-top:0;color:#5e4b9a;font-size:1.25rem;">Key features</h3>
+            <div class="oe_row">
+                <div class="oe_span4" style="margin-bottom:16px;">
+                    <div style="background:#ffffff;border:1px solid #e9e3ff;border-radius:10px;padding:14px;height:100%;">
+                        <h4 style="color:#5e4b9a;font-size:1rem;margin-top:0;">Smart column filters</h4>
+                        <p style="font-size:0.9rem;line-height:1.55;color:#374151;margin:0;">
+                            One input per visible, filterable column — text, numbers, booleans, selection,
+                            many2one, <strong>date / datetime</strong> (ranges like <code style="background:#ede9fe;padding:2px 5px;border-radius:4px;">2024-03</code>),
+                            and <strong>many2many</strong> (name search on the comodel). Filters merge with the search bar domain.
+                        </p>
+                    </div>
+                </div>
+                <div class="oe_span4" style="margin-bottom:16px;">
+                    <div style="background:#ffffff;border:1px solid #e9e3ff;border-radius:10px;padding:14px;height:100%;">
+                        <h4 style="color:#5e4b9a;font-size:1rem;margin-top:0;">Export &amp; copy</h4>
+                        <p style="font-size:0.9rem;line-height:1.55;color:#374151;margin:0;">
+                            <strong>PDF</strong>, <strong>Excel</strong> (.xlsx), <strong>CSV</strong> (UTF-8 with BOM).
+                            Download file names use the model’s <strong>display name</strong> from <code style="background:#ede9fe;padding:2px 5px;border-radius:4px;">ir.model</code>
+                            (or <code style="background:#ede9fe;padding:2px 5px;border-radius:4px;">_description</code>).
+                            <strong>Copy</strong> exports the grid as tab-separated text for spreadsheets.
+                        </p>
+                    </div>
+                </div>
+                <div class="oe_span4" style="margin-bottom:16px;">
+                    <div style="background:#ffffff;border:1px solid #e9e3ff;border-radius:10px;padding:14px;height:100%;">
+                        <h4 style="color:#5e4b9a;font-size:1rem;margin-top:0;">List UX</h4>
+                        <p style="font-size:0.9rem;line-height:1.55;color:#374151;margin:0;">
+                            <strong>N°</strong> column with row index (respects pager offset).
+                            Toolbar: export menu, copy, <strong>Reset filters</strong>.
+                            Subtle row hover styling. Inline edit can follow per-user preference when configured.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container" style="background:#ffffff;color:#111827;padding:24px 12px;">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h3 style="margin-top:0;color:#111827;">Screenshots · Demo 1 · Demo 2 · Demo 3</h3>
+            <p style="font-size:0.95rem;line-height:1.55;color:#4b5563;">
+                Add three images in this folder before publishing:
+                <code style="background:#e5e7eb;padding:2px 6px;border-radius:4px;">screenshot_1.png</code> (Demo 1),
+                <code style="background:#e5e7eb;padding:2px 6px;border-radius:4px;">screenshot_2.png</code> (Demo 2),
+                <code style="background:#e5e7eb;padding:2px 6px;border-radius:4px;">screenshot_3.png</code> (Demo 3).
+                Recommended width about <strong style="color:#374151;">560–900px</strong>, PNG or JPG.
+            </p>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h4 style="color:#111827;font-size:1.05rem;">Demo 1 · Toolbar, column filter row, and row numbers</h4>
+            <div class="oe_demo oe_screenshot" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:8px;">
+                <img src="screenshot_1.png" alt="Advanced list toolbar and column filters" style="width:100%;max-width:900px;height:auto;border-radius:6px;display:block;margin:0 auto;"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='block';"/>
+                <p style="display:none;text-align:center;color:#6b7280;font-size:0.9rem;">Add <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">screenshot_1.png</code></p>
+            </div>
+            <p style="font-size:0.875rem;line-height:1.5;color:#6b7280;">Shows <strong style="color:#374151;">Filters</strong> bar (export, copy, reset), second header row inputs, and the <strong style="color:#374151;">N°</strong> column.</p>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h4 style="color:#111827;font-size:1.05rem;">Demo 2 · Export menu or filtered result set</h4>
+            <div class="oe_demo oe_screenshot" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:8px;">
+                <img src="screenshot_2.png" alt="Advanced list export PDF Excel CSV" style="width:100%;max-width:900px;height:auto;border-radius:6px;display:block;margin:0 auto;"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='block';"/>
+                <p style="display:none;text-align:center;color:#6b7280;font-size:0.9rem;">Add <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">screenshot_2.png</code></p>
+            </div>
+            <p style="font-size:0.875rem;line-height:1.5;color:#6b7280;">Optional: open <strong style="color:#374151;">Export</strong> dropdown, or a list after applying column filters + search domain.</p>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h4 style="color:#111827;font-size:1.05rem;">Demo 3 · PDF sample or file-upload list (Sales / Account)</h4>
+            <div class="oe_demo oe_screenshot" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:8px;">
+                <img src="screenshot_3.png" alt="Exported PDF or file upload list with advanced list" style="width:100%;max-width:900px;height:auto;border-radius:6px;display:block;margin:0 auto;"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='block';"/>
+                <p style="display:none;text-align:center;color:#6b7280;font-size:0.9rem;">Add <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">screenshot_3.png</code> — e.g. PDF export preview or a <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">file_upload_list</code> tree.</p>
+            </div>
+            <p style="font-size:0.875rem;line-height:1.5;color:#6b7280;">Use for a <strong style="color:#374151;">downloaded PDF/Excel</strong> with model-based file name, or a list that uses the Account <strong style="color:#374151;">file-upload</strong> renderer with the same toolbar.</p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container" style="background:#f3f4f6;color:#111827;padding:24px 12px;">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h3 style="margin-top:0;color:#111827;">Technical notes</h3>
+            <ul style="line-height:1.7;font-size:0.98rem;color:#374151;padding-left:1.25rem;">
+                <li><strong style="color:#111827;">Odoo:</strong> 18.0</li>
+                <li><strong style="color:#111827;">Depends:</strong> <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">web</code>, <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">account</code> (for <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">file_upload_list</code> renderer compatibility)</li>
+                <li><strong style="color:#111827;">Python:</strong> <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">xlsxwriter</code> for Excel (bundled with Odoo in most installs); <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">reportlab</code> for PDF</li>
+                <li><strong style="color:#111827;">PDF &amp; CJK:</strong> the module looks for system or bundled fonts (e.g. Noto CJK); you can drop <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">.ttf/.ttc</code> files under <code style="background:#e5e7eb;padding:2px 5px;border-radius:4px;">static/fonts/</code> in the module</li>
+                <li><strong style="color:#111827;">Scope:</strong> advanced UI applies to main window lists where the search model matches the list model (embedded x2many lists are excluded by design)</li>
+                <li><strong style="color:#111827;">License:</strong> LGPL-3</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container" style="background:#ffffff;color:#111827;padding:24px 12px;border:1px solid #e5e7eb;">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12" style="text-align:center;">
+            <p style="font-size:0.95rem;color:#374151;margin:0;">
+                <strong style="color:#111827;">mln Advanced List View</strong> · Odoo 18 · LGPL-3<br/>
+                Column filters · row numbers · PDF / Excel / CSV · copy
+            </p>
+        </div>
+    </div>
+</section>

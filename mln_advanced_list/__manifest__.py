@@ -42,6 +42,9 @@ opened as a main window list (search panel + list).
         "security/ir.model.access.csv",
         "security/mln_advanced_list_security.xml",
     ],
+    "images": [
+        "static/description/screenshot_1.png"
+    ],
     "assets": {
         "web.assets_backend": [
             "mln_advanced_list/static/src/scss/mln_advanced_list.scss",
